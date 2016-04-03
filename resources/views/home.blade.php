@@ -1,5 +1,9 @@
 @extends('layouts.app')
 
+@section('nav-bar')
+<li><a href = "{{ url('edit_profile') }}">Edit Profile</a></li>
+@endsection
+
 @section('content')
 <div class="container">
     <div class="row">

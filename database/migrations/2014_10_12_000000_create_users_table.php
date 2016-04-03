@@ -23,7 +23,7 @@ class CreateUsersTable extends Migration
             $table->integer('start_year');
             $table->integer('end_year');
             $table->text('address');
-            $table->integer('contact');
+            $table->string('contact');
             $table->rememberToken();
             $table->timestamps();
         });
