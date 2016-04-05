@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Apr 01, 2016 at 08:03 AM
+-- Generation Time: Apr 04, 2016 at 07:48 PM
 -- Server version: 10.1.9-MariaDB
 -- PHP Version: 5.6.15
 
@@ -30,15 +30,16 @@ CREATE TABLE `books` (
   `id` int(10) UNSIGNED NOT NULL,
   `user_id` int(10) UNSIGNED NOT NULL,
   `name` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
-  `year` int(11) NOT NULL,
-  `branch_id` int(10) UNSIGNED NOT NULL,
-  `author` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
-  `publication` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
-  `publication_year` int(11) NOT NULL,
-  `no_of_pages` int(11) NOT NULL,
+  `year` int(11) DEFAULT NULL,
+  `branch_id` int(10) UNSIGNED DEFAULT NULL,
+  `author` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `publication` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `publication_year` int(11) DEFAULT NULL,
+  `no_of_pages` int(11) DEFAULT NULL,
   `type` enum('notes','books') COLLATE utf8_unicode_ci NOT NULL,
-  `description` text COLLATE utf8_unicode_ci NOT NULL,
+  `description` text COLLATE utf8_unicode_ci,
   `price` int(11) NOT NULL,
+  `need` enum('buy','sell') COLLATE utf8_unicode_ci NOT NULL DEFAULT 'sell',
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;

@@ -15,6 +15,10 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::auth();
+Route::group(['middleware' => 'web'],function(){
+    Route::auth();
 
-Route::get('/home', 'HomeController@index');
+    Route::get('/home', 'HomeController@index');
+    Route::get('/book',['as' => 'book.create','uses' => 'PostController@create']);
+
+});
