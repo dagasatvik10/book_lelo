@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Book extends Model
 {
+    protected $guarded = ['id'];
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
@@ -28,5 +29,13 @@ class Book extends Model
     public function branch()
     {
         return $this->belongsTo('App\Branch');
+    }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function book_pics()
+    {
+        return $this->hasMany('App\Book_pic');
     }
 }

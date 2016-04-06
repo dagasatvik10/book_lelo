@@ -13,4 +13,12 @@ class Branch extends Model
     {
         return $this->hasMany('App\Book');
     }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function  users()
+    {
+        return $this->hasMany('App\User');
+    }
 }

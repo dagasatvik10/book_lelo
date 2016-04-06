@@ -20,5 +20,5 @@ Route::group(['middleware' => 'web'],function(){
 
     Route::get('/home', 'HomeController@index');
     Route::get('/book',['as' => 'book.create','uses' => 'PostController@create']);
-
+    Route::post('/book',['as' => 'book.store','uses' => 'PostController@store']);
 });

@@ -15,7 +15,12 @@ class CreateTableBookPics extends Migration
         Schema::create('book_pics', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('book_id')->unsigned();
-            $table->string('path');
+            $table->string('name');
+            $table->integer('size')->unsigned();
+            $table->string('original_name');
+            $table->string('extension');
+            $table->string('mime');
+            $table->timestamps();
             $table->foreign('book_id')->references('id')->on('books')->onDelete('cascade');
         });
     }

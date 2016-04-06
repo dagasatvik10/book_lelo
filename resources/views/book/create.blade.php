@@ -7,12 +7,18 @@
         {!! Form::text('name','',['class' => 'form-control']) !!}
     </div>
     <div class="form-group">
-        {!! Form::label('book_pics','Pics') !!}
-        {!! Form::file('book_pics') !!}
+        {!! Form::label('Pics') !!}
+        @for($i=1;$i<=6;$i++)
+            {!! Form::file('pic'.$i) !!}
+        @endfor
     </div>
     <div class="form-group">
         {!! Form::label('type','Type') !!}
         {!! Form::select('type',['books' => 'Books','notes' => 'Notes'],'books',['class' => 'form-control']) !!}
+    </div>
+    <div class="form-group">
+        {!! Form::label('need','Need') !!}
+        {!! Form::select('need',['sell' => 'Sell','buy' => 'Buy'],'sell',['class' => 'form-control']) !!}
     </div>
     <div class="form-group">
         {!! Form::label('author','Author Name') !!}
@@ -40,7 +46,7 @@
     </div>
     <div class="form-group">
         {!! Form::label('no_of_pages','No. of Pages') !!}
-        {!! Form::text('no_of_pages','',['class' => 'form-control']) !!}
+        {!! Form::number('no_of_pages','',['class' => 'form-control']) !!}
     </div>
     <div class="form-group">
         {!! Form::label('description','Description') !!}
