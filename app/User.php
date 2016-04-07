@@ -12,7 +12,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password',
+        'first_name','last_name', 'email', 'password','college_id', 'branch_id', 'start_year', 'end_year', 'address', 'contact',
     ];
 
     /**
@@ -47,4 +47,5 @@ class User extends Authenticatable
     {
         return $this->belongsTo('App\College');
     }
+
 }

@@ -48,10 +48,20 @@ class AuthController extends Controller
      */
     protected function validator(array $data)
     {
+
         return Validator::make($data, [
-            'name' => 'required|max:255',
-            'email' => 'required|email|max:255|unique:users',
-            'password' => 'required|min:6|confirmed',
+            'first_name'    => 'required|max:255|min:2',
+            'last_name'     => 'required|max:255,|min:2',
+            'email'         => 'required|email|max:255|unique:users',
+            'password'      => 'required|min:6|same:password_confirmation',
+            'password_confirmation' => 'required',
+            'branch_id'        => 'required|exists:branches,id',
+            'college_id'       => 'required|exists:colleges,id',
+            'start_year'    => 'required',
+            'duration'      => 'required|in:1,2,3,4',
+            'address'       => 'required|min:5|max:255',
+            'contact'       => 'required|min:10|max:12',
+
         ]);
     }
 
@@ -64,9 +74,16 @@ class AuthController extends Controller
     protected function create(array $data)
     {
         return User::create([
-            'name' => $data['name'],
-            'email' => $data['email'],
-            'password' => bcrypt($data['password']),
+            'first_name'    => $data['first_name'],
+            'last_name'     => $data['last_name'],
+            'email'         => $data['email'],
+            'password'      => bcrypt($data['password']),
+            'college_id'    => $data['college_id'],
+            'branch_id'     => $data['branch_id'],
+            'start_year'    => $data['start_year'],
+            'end_year'      => $data['start_year']+$data['duration'],
+            'address'       => $data['address'],
+            'contact'       => $data['contact'],
         ]);
     }
 }

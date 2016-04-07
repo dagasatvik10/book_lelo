@@ -10,8 +10,14 @@ use App\User;
 use App\Http\Requests;
 use Illuminate\Support\Facades\Auth;
 
-class PostController extends Controller
+class BookController extends Controller
 {
+    public function index()
+    {
+        $books = Auth::user()->books;
+        return view('book.show',compact('books'));
+    }
+
     public function create()
     {
         Auth::login(User::all()->first());
@@ -27,7 +33,7 @@ class PostController extends Controller
         $book->author = $request->author;
         $book->publication = $request->publication;
         $book->publication_year = $request->publication_year;
-        $book->need = $request->need;
+        $book->need = 'sell';
         $book->type = $request->type;
         $book->no_of_pages = $request->no_of_pages;
         $book->description = $request->description;
@@ -57,5 +63,28 @@ class PostController extends Controller
             }
         }
         return $book;
+    }
+
+    public function show($id)
+    {
+        $book = Auth::user()->books->find($id);
+        return view('book.show',compact('book'));
+    }
+
+    public function edit($id)
+    {
+        $book = Auth::user()->books()->find($id);
+        return view('book.edit',compact('book'));
+    }
+
+    public function update($id)
+    {
+        $book = Auth::user()->books()->find($id);
+
+    }
+
+    public function delete($id)
+    {
+
     }
 }

@@ -1,6 +1,6 @@
-@extends('layouts.master')
+@extends('layouts.app')
 
-@section('body')
+@section('content')
     {!! Form::open(['method' => 'POST','files' => true]) !!}
     <div class="form-group">
         {!! Form::label('name','Title') !!}
@@ -15,10 +15,6 @@
     <div class="form-group">
         {!! Form::label('type','Type') !!}
         {!! Form::select('type',['books' => 'Books','notes' => 'Notes'],'books',['class' => 'form-control']) !!}
-    </div>
-    <div class="form-group">
-        {!! Form::label('need','Need') !!}
-        {!! Form::select('need',['sell' => 'Sell','buy' => 'Buy'],'sell',['class' => 'form-control']) !!}
     </div>
     <div class="form-group">
         {!! Form::label('author','Author Name') !!}

@@ -1,5 +1,9 @@
 @extends('layouts.app')
 
+{{--@section('nav-bar')--}}
+{{--<li><a href = "{{ url('edit_profile') }}">Edit Profile</a></li>--}}
+{{--@endsection--}}
+
 @section('content')
 <div class="container">
     <div class="row">
@@ -8,7 +12,14 @@
                 <div class="panel-heading">Dashboard</div>
 
                 <div class="panel-body">
-                    You are logged in!
+                    @foreach($books as $book)
+                        <li>
+                            {{ $book->name }} &nbsp
+                            <a class="btn btn-primary" href={{ route('book.show',['id' => $book->id]) }}>
+                               show
+                            </a>
+                        </li>
+                    @endforeach
                 </div>
             </div>
         </div>
