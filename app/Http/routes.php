@@ -10,17 +10,27 @@
 | and give it the controller to call when that URI is requested.
 |
 */
-// Index Page
-Route::get('/', function () {
-    return view('welcome');
+
+
+Route::group(['middleware' => 'web'],function(){
+    Route::auth();
+
+    Route::get('/',['uses'  => 'HomeController@index','as' => 'home']);
+
+    // Show and Edit User details
+    Route::get('/user',['as' => 'user.show','uses' => 'UserController@show']);
+    Route::get('/user/edit',['as' => 'user.edit','uses' => 'UserController@edit']);
+    Route::post('/user/edit',['as' => 'user.update','uses' => 'UserController@update']);
+
+    // Create book post,edit book post,delete book post
+    Route::get('user/book/create',['as' => 'book.create','uses' => 'BookController@create']);
+    Route::post('user/book/store',['as' => 'book.store','uses' => 'BookController@store']);
+    Route::get('user/book',['as' => 'book.index','uses' => 'BookController@index']);
+    Route::get('user/book/{id}',['as' => 'book.show','uses' => 'BookController@show']);
+    Route::get('user/book/{id}/edit',['as' => 'book.edit','uses' => 'BookController@edit']);
+    Route::post('user/book/{id}/edit',['as' => 'book.update','uses' => 'BookController@update']);
+    Route::get('user/book/{id}/delete',['as' => 'book.delete','uses' => 'BookController@delete']);
+
 });
-// Registration and login routes located in auth() function in Router.php
-Route::auth();
 
-// Home Page after login
-Route::get('/home', 'HomeController@index');
-
-// Edit User details
-Route::get('edit_profile','HomeController@editProfile');
-Route::post('edit_profile','HomeController@updateProfile');
 

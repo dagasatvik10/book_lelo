@@ -28,7 +28,7 @@ class AuthController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = '/home';
+    protected $redirectTo = '/';
 
     /**
      * Create a new authentication controller instance.
@@ -55,7 +55,7 @@ class AuthController extends Controller
             'email'         => 'required|email|max:255|unique:users',
             'password'      => 'required|min:6|same:password_confirmation',
             'password_confirmation' => 'required',
-            'branch_id'        => 'required|exists:branchs,id',
+            'branch_id'        => 'required|exists:branches,id',
             'college_id'       => 'required|exists:colleges,id',
             'start_year'    => 'required',
             'duration'      => 'required|in:1,2,3,4',

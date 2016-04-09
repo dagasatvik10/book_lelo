@@ -1,20 +1,24 @@
 @extends('layouts.app')
 
+
 @section('content')
+
 <div class="container">
     <div class="row">
-        <div class="col-md-8 col-md-offset-2">
+        <div class="col-md-10 col-md-offset-1">
             <div class="panel panel-default">
-                <div class="panel-heading">Register</div>
+                <div class="panel-heading">Edit Profile</div>
+            </div>
                 <div class="panel-body">
-                    <form class="form-horizontal" role="form" method="POST" action="{{ url('/register') }}">
+                    <form class="form-horizontal" role="form" method="POST" action="{{ url('/edit_profile') }}">
                         {!! csrf_field() !!}
+
 
                         <div class="form-group{{ $errors->has('first_name') ? ' has-error' : '' }}">
                             <label class="col-md-4 control-label">First Name</label>
 
                             <div class="col-md-6">
-                                <input type="text" class="form-control" placeholder="Should have atleast 2 characters" name="first_name" value="{{ old('firstname') }}" required>
+                                <input type="text" class="form-control" name="first_name" value="{{ Auth::user()->first_name }}" required>
 
                                 @if ($errors->has('first_name'))
                                     <span class="help-block">
@@ -28,7 +32,7 @@
                             <label class="col-md-4 control-label">Last Name</label>
 
                             <div class="col-md-6">
-                                <input type="text" class="form-control" placeholder="Should have atleast 2 characters" name="last_name" value="{{ old('last_name') }}" required>
+                                <input type="text" class="form-control" name="last_name" value="{{ Auth::user()->last_name }}" required>
 
                                 @if ($errors->has('last_name'))
                                     <span class="help-block">
@@ -43,7 +47,7 @@
                             <label class="col-md-4 control-label">E-Mail Address</label>
 
                             <div class="col-md-6">
-                                <input type="email" class="form-control" name="email" value="{{ old('email') }}" placeholder="Enter E-Mail Address" required>
+                                <input type="email" class="form-control" name="email" value="{{ Auth::user()->email }}" placeholder="Enter E-Mail Address" disabled />
 
                                 @if ($errors->has('email'))
                                     <span class="help-block">
@@ -52,42 +56,14 @@
                                 @endif
                             </div>
                         </div>
-
-                        <div class="form-group{{ $errors->has('password') ? ' has-error' : '' }}">
-                            <label class="col-md-4 control-label">Password</label>
-
-                            <div class="col-md-6">
-                                <input type="password" class="form-control" name="password" placeholder="Should contain atleast 6 characters" required>
-
-                                @if ($errors->has('password'))
-                                    <span class="help-block">
-                                        <strong>{{ $errors->first('password') }}</strong>
-                                    </span>
-                                @endif
-                            </div>
-                        </div>
-
-                        <div class="form-group{{ $errors->has('password_confirmation') ? ' has-error' : '' }}">
-                            <label class="col-md-4 control-label">Confirm Password</label>
-
-                            <div class="col-md-6">
-                                <input type="password" class="form-control" name="password_confirmation" placeholder="Re-Enter Password" required>
-
-                                @if ($errors->has('password_confirmation'))
-                                    <span class="help-block">
-                                        <strong>{{ $errors->first('password_confirmation') }}</strong>
-                                    </span>
-                                @endif
-                            </div>
-                        </div>
+<!-- 
                     <div class="form-group{{ $errors->has('branch_id') ? ' has-error' : '' }}">
                             <label class="col-md-4 control-label">Branch</label>
 
                             <div class="col-md-6">
                                 <select name="branch_id" class="form-control" id="branch_id" value="{{ old('branch_id') }}" required>
                                 <option value="">----SELECT BRANCH----</option>
-
-                                @foreach(\App\Branch::all() as $branch)
+                                @foreach($branches as $branch)
                                 <option value="{{ $branch->id }}">{{ $branch->name }}</option>
                                 @endforeach
                                 </select>
@@ -106,7 +82,7 @@
                         <div class="col-md-6">
                                 <select name="college_id" class="form-control" id="college_id" value="{{ old('college_id') }}" required>
                                 <option value="">----SELECT COLLEGE----</option>
-                                @foreach(\App\College::all() as $college)
+                                @foreach($colleges as $college)
                                 <option value="{{ $college->id }}">{{ $college->name }}</option>
                                 @endforeach
                                 </select>
@@ -116,14 +92,14 @@
                                     </span>
                                 @endif
                             </div>
-                        </div>
+                        </div> -->
 
                         <div class="form-group{{ $errors->has('start_year') ? ' has-error' : '' }}">
                             <label class="col-md-4 control-label">Start year</label>
 
                             <div class="col-md-6">
                                 <select class="form-control"  name="start_year" value="{{ old('start_year') }}" required>
-                                <option selected="selected">----Enter Year of Admission----</option>
+                                <option selected="selected">{{ Auth::user()->start_year }}</option>
                                 <option value ="{{ \Carbon\Carbon::now()->format('Y') }}">{{ \Carbon\Carbon::now()->format('Y') }}</option>
                                 <option value ="{{ \Carbon\Carbon::now()->format('Y')-1 }}">{{ \Carbon\Carbon::now()->format('Y')-1 }}</option>
                                 <option value ="{{ \Carbon\Carbon::now()->format('Y')-2 }}">{{ \Carbon\Carbon::now()->format('Y')-2 }}</option>
@@ -138,11 +114,11 @@
                         </div>
 
                           <div class="form-group{{ $errors->has('duration') ? ' has-error' : '' }}">
-                            <label class="col-md-4 control-label">Duration</label>
+                            <label class="col-md-4 control-label">Course Duration</label>
 
                             <div class="col-md-6">
                                 <select class="form-control" min="1" max="4" name="duration" value="{{ old('duration') }}" required>
-                                <option selected="selected">----Ex. 4 Years for B.Tech----</option>
+                                <option selected="selected">{{ Auth::user()->end_year-Auth::user()->start_year }}</option>
                                 <option value="1">1 year</option>
                                 <option value="2">2 years</option>
                                 <option value="3">3 years</option>
@@ -160,7 +136,7 @@
                             <label class="col-md-4 control-label">Address</label>
                             <div class="col-md-6">
                             
-                            <textarea class="form-control" placeholder="Enter Residence Address" name="address" cols="50" rows="10" id="address"></textarea>
+                            <textarea class="form-control" value="{{ Auth::user()->address }}" name="address" cols="50" rows="10" id="address">{{ Auth::user()->address }}</textarea>
                                 @if ($errors->has('address'))
                                     <span class="help-block">
                                         <strong>{{ $errors->first('address') }}</strong>
@@ -173,7 +149,7 @@
                             <label class="col-md-4 control-label">Contact No</label>
 
                             <div class="col-md-6">
-                                <input type="text" class="form-control" placeholder="Enter your contact number" name="contact" required>
+                                <input type="text" class="form-control" value="{{ Auth::user()->contact }}" name="contact" required>
 
                                 @if ($errors->has('contact'))
                                     <span class="help-block">
@@ -190,17 +166,11 @@
                                 </button>
                             </div>
                         </div>
-                    </form>
+
+                </form>
                 </div>
-            </div>
         </div>
     </div>
 </div>
+
 @endsection
-@if($errors->any())
-<ul>
-@foreach($errors->all() as $error)
-<li>{{ $error }}</li>
-@endforeach
-</ul>
-@endif
