@@ -12,10 +12,20 @@ use Illuminate\Support\Facades\Auth;
 
 class BookController extends Controller
 {
+    /**
+     * Create a new controller instance.
+     *
+     * @return void
+     */
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
     public function index()
     {
         $books = Auth::user()->books;
-        return view('book.show',compact('books'));
+        return view('book.index',compact('books'));
     }
 
     public function create()
@@ -62,7 +72,7 @@ class BookController extends Controller
                 $pic->save();
             }
         }
-        return $book;
+        return redirect()->route('book.index');
     }
 
     public function show($id)
