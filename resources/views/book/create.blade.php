@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-    {!! Form::open(['method' => 'POST','files' => true]) !!}
+    {!! Form::open(['route' => 'book.store','method' => 'POST','files' => true]) !!}
     <div class="form-group">
         {!! Form::label('name','Title') !!}
         {!! Form::text('name','',['class' => 'form-control']) !!}
