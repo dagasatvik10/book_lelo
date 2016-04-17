@@ -62,7 +62,7 @@ class BookController extends Controller
                 $pic->save();
             }
         }
-        return $book;
+        return redirect('/');
     }
 
     public function show($id)

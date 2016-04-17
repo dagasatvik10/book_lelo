@@ -39,4 +39,13 @@ class UserController extends Controller
         $user->save();
         return redirect()->route('home');
     }
+    public function show()
+    {
+        return view('user.show');
+    }
+
+    public function delete()
+    {
+        
+    }
 }

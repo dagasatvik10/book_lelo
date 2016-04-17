@@ -19,8 +19,14 @@ class HomeController extends Controller
      */
     public function index()
     {
+      //  $file=Input::file('public/uploads/images/BookPics_1id1.jpg');
         $books = Book::orderBy('created_at','desc')->get();
-        return view('index',compact('books'));
+       return view('index',compact('books'));
+    }
+
+    public function test()
+    {
+
     }
 
 }

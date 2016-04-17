@@ -21,4 +21,5 @@ class Branch extends Model
     {
         return $this->hasMany('App\User');
     }
+    
 }
