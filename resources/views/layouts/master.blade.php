@@ -127,16 +127,16 @@
 		background-color: dodgerblue;
 		color:white;
 	}
-	#labelId
+	.labelId
 	{
 		color: dodgerblue;
 	}
-	#textboxId{
+	.textboxId{
 		border-color: dodgerblue;
 		border-radius: 5px;
 		color:dodgerblue;
 	}
-	#requiredId{
+	.requiredId{
 		color: #34459e;
 	}
 </style>
@@ -227,28 +227,28 @@
                         {!! csrf_field() !!}
 
                         <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
-                            <label class="col-md-4 control-label" id="labelId">E-Mail Address</label>
+                            <label class="col-md-4 control-label labelId">E-Mail Address</label>
 
                             <div class="col-md-6">
-                                <input type="email" class="form-control" id="textboxId" name="email" value="{{ old('email') }}">
+                                <input type="email" class="form-control textboxId" name="email" value="{{ old('email') }}">
 
                                 @if ($errors->has('email'))
                                     <span class="help-block">
-                                        <strong id="requiredId"><span class="glyphicon glyphicon-exclamation-sign"></span>&nbsp;&nbsp;&nbsp;{{ $errors->first('email') }}</strong>
+                                        <strong class="requiredId"><span class="glyphicon glyphicon-exclamation-sign"></span>&nbsp;&nbsp;&nbsp;{{ $errors->first('email') }}</strong>
                                     </span>
                                 @endif
                             </div>
                         </div>
 
                         <div class="form-group{{ $errors->has('password') ? ' has-error' : '' }}">
-                            <label class="col-md-4 control-label" id="labelId">Password</label>
+                            <label class="col-md-4 control-label labelId">Password</label>
 
                             <div class="col-md-6">
-                                <input type="password" class="form-control" id="textboxId" name="password">
+                                <input type="password" class="form-control textboxId" name="password">
 
                                 @if ($errors->has('password'))
                                     <span class="help-block">
-                                        <strong id="requiredId"><span class="glyphicon glyphicon-exclamation-sign"></span>&nbsp;&nbsp;&nbsp;{{ $errors->first('password') }}</strong>
+                                        <strong class="requiredId"><span class="glyphicon glyphicon-exclamation-sign"></span>&nbsp;&nbsp;&nbsp;{{ $errors->first('password') }}</strong>
                                     </span>
                                 @endif
                             </div>
@@ -257,7 +257,7 @@
                         <div class="form-group">
                             <div class="col-md-6 col-md-offset-4">
                                 <div class="checkbox">
-                                    <label id="labelId">
+                                    <label class="labelId">
                                         <input type="checkbox" name="remember"> Remember Me
                                     </label>
                                 </div>
@@ -296,66 +296,66 @@
                         {!! csrf_field() !!}
 
                         <div class="form-group{{ $errors->has('name') ? ' has-error' : '' }}">
-                            <label class="col-md-4 control-label" id="labelId">Name</label>
+                            <label class="col-md-4 control-label labelId">Name</label>
 
                             <div class="col-md-6">
-                                <input type="text" class="form-control" id="textboxId" name="name" value="{{ old('name') }}">
+                                <input type="text" class="form-control textboxId" name="name" value="{{ old('name') }}">
 
                                 @if ($errors->has('name'))
                                     <span class="help-block">
-                                        <strong id="requiredId"><span class="glyphicon glyphicon-exclamation-sign"></span>&nbsp;&nbsp;&nbsp;{{ $errors->first('name') }}</strong>
+                                        <strong class="requiredId"><span class="glyphicon glyphicon-exclamation-sign"></span>&nbsp;&nbsp;&nbsp;{{ $errors->first('name') }}</strong>
                                     </span>
                                 @endif
                             </div>
                         </div>
 
                         <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
-                            <label class="col-md-4 control-label" id="labelId">E-Mail Address</label>
+                            <label class="col-md-4 control-label labelId">E-Mail Address</label>
 
                             <div class="col-md-6">
-                                <input type="email" class="form-control" id="textboxId" name="email" value="{{ old('email') }}">
+                                <input type="email" class="form-control textboxId" name="email" value="{{ old('email') }}">
 
                                 @if ($errors->has('email'))
                                     <span class="help-block">
-                                        <strong id="requiredId"><span class="glyphicon glyphicon-exclamation-sign"></span>&nbsp;&nbsp;&nbsp;{{ $errors->first('email') }}</strong>
+                                        <strong class="requiredId"><span class="glyphicon glyphicon-exclamation-sign"></span>&nbsp;&nbsp;&nbsp;{{ $errors->first('email') }}</strong>
                                     </span>
                                 @endif
                             </div>
                         </div>
 
                         <div class="form-group{{ $errors->has('password') ? ' has-error' : '' }}">
-                            <label class="col-md-4 control-label" id="labelId">Password</label>
+                            <label class="col-md-4 control-label labelId">Password</label>
 
                             <div class="col-md-6">
-                                <input type="password" class="form-control" id="textboxId" name="password">
+                                <input type="password" class="form-control textboxId" name="password">
 
                                 @if ($errors->has('password'))
                                     <span class="help-block">
-                                        <strong id="requiredId"><span class="glyphicon glyphicon-exclamation-sign"></span>&nbsp;&nbsp;&nbsp;{{ $errors->first('password') }}</strong>
+                                        <strong class="requiredId"><span class="glyphicon glyphicon-exclamation-sign"></span>&nbsp;&nbsp;&nbsp;{{ $errors->first('password') }}</strong>
                                     </span>
                                 @endif
                             </div>
                         </div>
 
                         <div class="form-group{{ $errors->has('password_confirmation') ? ' has-error' : '' }}">
-                            <label class="col-md-4 control-label" id="labelId">Confirm Password</label>
+                            <label class="col-md-4 control-label labelId">Confirm Password</label>
 
                             <div class="col-md-6">
-                                <input type="password" class="form-control" id="textboxId" name="password_confirmation">
+                                <input type="password" class="form-control textboxId" name="password_confirmation">
 
                                 @if ($errors->has('password_confirmation'))
                                     <span class="help-block">
-                                        <strong id="requiredId"><span class="glyphicon glyphicon-exclamation-sign"></span>&nbsp;&nbsp;&nbsp;<span class="glyphicon glyphicon-exclamation-sign"></span>{{ $errors->first('password_confirmation') }}</strong>
+                                        <strong class="requiredId"><span class="glyphicon glyphicon-exclamation-sign"></span>&nbsp;&nbsp;&nbsp;<span class="glyphicon glyphicon-exclamation-sign"></span>{{ $errors->first('password_confirmation') }}</strong>
                                     </span>
                                 @endif
                             </div>
                         </div>
 
- <div class="form-group{{ $errors->has('branch_id') ? ' has-error' : '' }}">
-                            <label class="col-md-4 control-label" id="labelId">Branch</label>
+ 						<div class="form-group{{ $errors->has('branch_id') ? ' has-error' : '' }}">
+                            <label class="col-md-4 control-label labelId">Branch</label>
 
                             <div class="col-md-6">
-                                <select name="branch_id" class="form-control" id="textboxId" value="{{ old('branch_id') }}" required>
+                                <select name="branch_id" class="form-control textboxId" value="{{ old('branch_id') }}" required>
                                 <option value="">----SELECT BRANCH----</option>
 
                                 @foreach(\App\Branch::all() as $branch)
@@ -364,17 +364,18 @@
                                 </select>
                                 @if ($errors->has('branch_id'))
                                     <span class="help-block">
-<strong id="requiredId"><span class="glyphicon glyphicon-exclamation-sign"></span>&nbsp;&nbsp;&nbsp;<span class="glyphicon glyphicon-exclamation-sign"></span>{{ $errors->first('branch_id') }}</strong>                                    </span>
+										<strong class="requiredId"><span class="glyphicon glyphicon-exclamation-sign">
+									</span>&nbsp;&nbsp;&nbsp;<span class="glyphicon glyphicon-exclamation-sign"></span>{{ $errors->first('branch_id') }}</strong>                                    </span>
                                 @endif
                             </div>
                         </div>
 
 
                         <div class="form-group{{ $errors->has('college_id') ? ' has-error' : '' }}">
-                            <label class="col-md-4 control-label" id="labelId">College</label>
+                            <label class="col-md-4 control-label labelId">College</label>
 
                         <div class="col-md-6">
-                                <select name="college_id" class="form-control" id="textboxId" value="{{ old('college_id') }}" required>
+                                <select name="college_id" class="form-control textboxId" value="{{ old('college_id') }}" required>
                                 <option value="">----SELECT COLLEGE----</option>
                                 @foreach(\App\College::all() as $college)
                                 <option value="{{ $college->id }}">{{ $college->name }}</option>
@@ -382,12 +383,13 @@
                                 </select>
                                 @if ($errors->has('college_id'))
                                     <span class="help-block">
-<strong id="requiredId"><span class="glyphicon glyphicon-exclamation-sign"></span>&nbsp;&nbsp;&nbsp;<span class="glyphicon glyphicon-exclamation-sign"></span>{{ $errors->first('college_id') }}</strong>                                    </span>
+										<strong class="requiredId"><span class="glyphicon glyphicon-exclamation-sign">
+									</span>&nbsp;&nbsp;&nbsp;<span class="glyphicon glyphicon-exclamation-sign"></span>{{ $errors->first('college_id') }}</strong>                                    </span>
                                 @endif
                             </div>
                         </div>
-<!-- 
-                        <div class="form-group{{ $errors->has('start_year') ? ' has-error' : '' }}">
+
+                        {{--<div class="form-group{{ $errors->has('start_year') ? ' has-error' : '' }}">
                             <label class="col-md-4 control-label" id="labelId">Start year</label>
 
                             <div class="col-md-6">
@@ -421,12 +423,12 @@
 <strong id="requiredId"><span class="glyphicon glyphicon-exclamation-sign"></span>&nbsp;&nbsp;&nbsp;<span class="glyphicon glyphicon-exclamation-sign"></span>{{ $errors->first('duration') }}</strong>                                    </span>
                                 @endif
                             </div>
-                        </div> -->
+                        </div> --}}
 
                           <div class="form-group{{ $errors->has('start_year') ? ' has-error' : '' }}">
-                            <label class="col-md-4 control-label" id="labelId">Select Batch</label>
+                            <label class="col-md-4 control-label labelId">Select Batch</label>
                         <div class="col-md-3">
-                                <select id="textboxId" class="form-control"  name="start_year" value="{{ old('start_year') }}" required>
+                                <select  class="form-control textboxId"  name="start_year" value="{{ old('start_year') }}" required>
                                 <option selected="selected">Start Year</option>
                                 @for($i=\Carbon\Carbon::now()->format('Y');$i>= \Carbon\Carbon::now()->format('Y')-4;$i--)
                                 <option value ="{{ $i }}">{{ $i }}</option>
@@ -434,12 +436,12 @@
                                 </select>
                                 @if ($errors->has('start_year'))
                                     <span class="help-block">
-                                    <strong id="requiredId"><span class="glyphicon glyphicon-exclamation-sign"></span>&nbsp;&nbsp;&nbsp;<span class="glyphicon glyphicon-exclamation-sign"></span>{{ $errors->first('start_year') }}</strong>                                    </span>
+                                    <strong class="requiredId"><span class="glyphicon glyphicon-exclamation-sign"></span>&nbsp;&nbsp;&nbsp;<span class="glyphicon glyphicon-exclamation-sign"></span>{{ $errors->first('start_year') }}</strong>                                    </span>
                                 @endif
                             </div>
                             <!-- <label class="col-md-4 control-label">End Year</label> -->
                             <div class="col-md-3">
-                                <select id="textboxId" class="form-control"  name="end_year" value="{{ old('end_year') }}" required>
+                                <select class="form-control textboxId"  name="end_year" value="{{ old('end_year') }}" required>
                                 <option selected="selected">End Year</option>
                                 @for($i=\Carbon\Carbon::now()->format('Y');$i<= \Carbon\Carbon::now()->format('Y')+4;$i++)                                
                                 <option value ="{{ $i }}">{{ $i }}</option>
@@ -447,32 +449,33 @@
                                 </select>
                                 @if ($errors->has('end_year'))
                                     <span class="help-block">
-                                    <strong id="requiredId"><span class="glyphicon glyphicon-exclamation-sign"></span>&nbsp;&nbsp;&nbsp;<span class="glyphicon glyphicon-exclamation-sign"></span>{{ $errors->first('end_year') }}</strong>                                    </span>
+                                    <strong class="requiredId"><span class="glyphicon glyphicon-exclamation-sign"></span>&nbsp;&nbsp;&nbsp;<span class="glyphicon glyphicon-exclamation-sign"></span>{{ $errors->first('end_year') }}</strong>                                    </span>
                                 @endif
                             </div>
                         </div>
 
                          <div class="form-group{{ $errors->has('address') ? ' has-error' : '' }}">
-                            <label class="col-md-4 control-label" id="labelId">Address</label>
+                            <label class="col-md-4 control-label labelId">Address</label>
                             <div class="col-md-6">
                             
-                            <textarea class="form-control" id="textboxId" placeholder="Enter Residence Address" name="address" cols="50" rows="10" id="address"></textarea>
+                            <textarea class="form-control textboxId" placeholder="Enter Residence Address" name="address" cols="50" rows="10" id="address"></textarea>
                                 @if ($errors->has('address'))
                                     <span class="help-block">
-<strong id="requiredId"><span class="glyphicon glyphicon-exclamation-sign"></span>&nbsp;&nbsp;&nbsp;<span class="glyphicon glyphicon-exclamation-sign"></span>{{ $errors->first('address') }}</strong>                                    </span>
+										<strong class="requiredId"><span class="glyphicon glyphicon-exclamation-sign">
+									</span>&nbsp;&nbsp;&nbsp;<span class="glyphicon glyphicon-exclamation-sign"></span>{{ $errors->first('address') }}</strong>                                    </span>
                                 @endif
                             </div>
                         </div>
 
                             <div class="form-group{{ $errors->has('contact') ? ' has-error' : '' }}">
-                            <label class="col-md-4 control-label" id="labelId">Contact No</label>
+                            <label class="col-md-4 control-label labelId">Contact No</label>
 
                             <div class="col-md-6">
-                                <input type="text" class="form-control" id="textboxId" placeholder="Enter your contact number" name="contact" required>
+                                <input type="text" class="form-control textboxId" placeholder="Enter your contact number" name="contact" required>
 
                                 @if ($errors->has('contact'))
                                     <span class="help-block">
-<strong id="requiredId"><span class="glyphicon glyphicon-exclamation-sign"></span>&nbsp;&nbsp;&nbsp;<span class="glyphicon glyphicon-exclamation-sign"></span>{{ $errors->first('contact') }}</strong>                                    </span>
+<strong class="requiredId"><span class="glyphicon glyphicon-exclamation-sign"></span>&nbsp;&nbsp;&nbsp;<span class="glyphicon glyphicon-exclamation-sign"></span>{{ $errors->first('contact') }}</strong>                                    </span>
                                 @endif
                             </div>
                         </div>
@@ -498,8 +501,7 @@
 		 <div class="main-container">
 		@yield('content')
 		</div> 
-	   
-    </div>
+	</div>
 </div>
 </body>
 </html>
