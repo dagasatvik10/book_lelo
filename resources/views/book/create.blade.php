@@ -39,7 +39,7 @@
         </div>
         <div class="form-group">
             {!! Form::label('year','Course Year') !!}
-            {!! Form::select('year',['1st' => '1st','2nd' => '2nd','3rd' => '3rd','4th' => '4th'],['class' => 'form-control']) !!}
+            {!! Form::select('year',['1st' => '1st','2nd' => '2nd','3rd' => '3rd','4th' => '4th'],'1st',['class' => 'form-control']) !!}
         </div>
         <div class="form-group">
             {!! Form::label('description','Description') !!}

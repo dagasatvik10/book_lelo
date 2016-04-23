@@ -10,10 +10,12 @@
                             {{ $book->name }}
                         </h3>
                     </div>
+					@if(Auth::check())
                     @if($book->user->id === Auth::user()->id)
                         <div class="col-sm-4"><a class="" href={{ route('book.edit',['id' => $book->id]) }}>Edit</a></div>
                         <div class="col-sm-4"><a class="" href={{ route('book.delete',['id' => $book->id]) }}>Delete</a></div>
                     @endif
+					@endif
                 </div>
                 <div class="row"><h5>Branch: {{ $book->branch->name }} &nbsp Year: {{ $book->year }}</h5></div>
                 <div class="row">

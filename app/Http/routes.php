@@ -15,6 +15,7 @@ Route::group(['middleware' => 'web'],function(){
     Route::auth();
 
     Route::get('/',['uses'  => 'HomeController@index','as' => 'home']);
+    Route::get('book/{id}',['uses' => 'HomeController@show','as' => 'show']);
 
     // Show and Edit User details
     Route::get('/user',['as' => 'user.show','uses' => 'UserController@show']);
@@ -23,7 +24,7 @@ Route::group(['middleware' => 'web'],function(){
 
     // Create book post,edit book post,delete book post
     Route::get('user/book/create',['as' => 'book.create','uses' => 'BookController@create']);
-    Route::post('user/book/store',['as' => 'book.store','uses' => 'BookController@store']);
+    Route::post('user/book',['as' => 'book.store','uses' => 'BookController@store']);
     Route::get('user/book',['as' => 'book.index','uses' => 'BookController@index']);
     Route::get('user/book/{id}',['as' => 'book.show','uses' => 'BookController@show']);
     Route::get('user/book/{id}/edit',['as' => 'book.edit','uses' => 'BookController@edit']);
