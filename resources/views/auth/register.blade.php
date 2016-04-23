@@ -86,6 +86,7 @@
                             <div class="col-md-6">
                                 <select name="branch_id" class="form-control" id="branch_id" value="{{ old('branch_id') }}" required>
                                 <option value="">----SELECT BRANCH----</option>
+
                                 @foreach(\App\Branch::all() as $branch)
                                 <option value="{{ $branch->id }}">{{ $branch->name }}</option>
                                 @endforeach
@@ -120,7 +121,7 @@
                         <div class="form-group{{ $errors->has('start_year') ? ' has-error' : '' }}">
                             <label class="col-md-4 control-label">Start year</label>
 
-                            <div class="col-md-6">
+                            <!-- <div class="col-md-6">
                                 <select class="form-control"  name="start_year" value="{{ old('start_year') }}" required>
                                 <option selected="selected">----Enter Year of Admission----</option>
                                 <option value ="{{ \Carbon\Carbon::now()->format('Y') }}">{{ \Carbon\Carbon::now()->format('Y') }}</option>
@@ -134,9 +135,38 @@
                                     </span>
                                 @endif
                             </div>
+                        </div> -->
+
+                        <div class="col-md-6">
+                                <select class="form-control"  name="start_year" value="{{ old('start_year') }}" required>
+                                <option selected="selected">----Start Year----</option>
+                                @for($i={{ \Carbon\Carbon::now()->format('Y') }};$i<={{ \Carbon\Carbon::now()->format('Y') }}-4;$i--)
+                                <option value ="{{ $i }}">{{ $i }}</option>
+                                @endfor
+                                </select>
+                                @if ($errors->has('start_year'))
+                                    <span class="help-block">
+                                        <strong>{{ $errors->first('start_year') }}</strong>
+                                    </span>
+                                @endif
+                            </div>
+                            <label class="col-md-4 control-label">End Year</label>
+                            <div class="col-md-6">
+                                <select class="form-control"  name="end_year" value="{{ old('end_year') }}" required>
+                                <option selected="selected">----End Year----</option>
+                                @for($i={{ \Carbon\Carbon::now()->format('Y') }};$i<={{ \Carbon\Carbon::now()->format('Y') }}+4;$i++)
+                                <option value ="{{ $i }}">{{ $i }}</option>
+                                @endfor
+                                </select>
+                                @if ($errors->has('end_year'))
+                                    <span class="help-block">
+                                        <strong>{{ $errors->first('end_year') }}</strong>
+                                    </span>
+                                @endif
+                            </div>
                         </div>
 
-                          <div class="form-group{{ $errors->has('duration') ? ' has-error' : '' }}">
+                        <!--   <div class="form-group{{ $errors->has('duration') ? ' has-error' : '' }}">
                             <label class="col-md-4 control-label">Duration</label>
 
                             <div class="col-md-6">
@@ -154,7 +184,7 @@
                                 @endif
                             </div>
                         </div>
-
+ -->
                          <div class="form-group{{ $errors->has('address') ? ' has-error' : '' }}">
                             <label class="col-md-4 control-label">Address</label>
                             <div class="col-md-6">

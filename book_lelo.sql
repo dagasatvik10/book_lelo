@@ -47,19 +47,19 @@ CREATE TABLE `books` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `branchs`
+-- Table structure for table `branches`
 --
 
-CREATE TABLE `branchs` (
+CREATE TABLE `branches` (
   `id` int(10) UNSIGNED NOT NULL,
   `name` varchar(255) COLLATE utf8_unicode_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
--- Dumping data for table `branchs`
+-- Dumping data for table `branches`
 --
 
-INSERT INTO `branchs` (`id`, `name`) VALUES
+INSERT INTO `branches` (`id`, `name`) VALUES
 (0, 'Civil Engg.'),
 (7, 'Mining Engg.'),
 (10, 'Computer Sc. & engg.'),
@@ -902,7 +902,7 @@ INSERT INTO `migrations` (`migration`, `batch`) VALUES
 ('2014_10_12_000000_create_users_table', 1),
 ('2014_10_12_100000_create_password_resets_table', 1),
 ('2016_03_31_153656_create_colleges_table', 1),
-('2016_03_31_153720_create_branchs_table', 1),
+('2016_03_31_153720_create_branches_table', 1),
 ('2016_03_31_153811_create_books_table', 1),
 ('2016_04_01_043849_create_foreign_key_in_users_table', 1);
 
@@ -954,9 +954,9 @@ ALTER TABLE `books`
   ADD KEY `books_branch_id_foreign` (`branch_id`);
 
 --
--- Indexes for table `branchs`
+-- Indexes for table `branches`
 --
-ALTER TABLE `branchs`
+ALTER TABLE `branches`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -1003,14 +1003,14 @@ ALTER TABLE `users`
 -- Constraints for table `books`
 --
 ALTER TABLE `books`
-  ADD CONSTRAINT `books_branch_id_foreign` FOREIGN KEY (`branch_id`) REFERENCES `branchs` (`id`) ON DELETE CASCADE,
+  ADD CONSTRAINT `books_branch_id_foreign` FOREIGN KEY (`branch_id`) REFERENCES `branches` (`id`) ON DELETE CASCADE,
   ADD CONSTRAINT `books_user_id_foreign` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE;
 
 --
 -- Constraints for table `users`
 --
 ALTER TABLE `users`
-  ADD CONSTRAINT `users_branch_id_foreign` FOREIGN KEY (`branch_id`) REFERENCES `branchs` (`id`) ON DELETE CASCADE,
+  ADD CONSTRAINT `users_branch_id_foreign` FOREIGN KEY (`branch_id`) REFERENCES `branches` (`id`) ON DELETE CASCADE,
   ADD CONSTRAINT `users_college_id_foreign` FOREIGN KEY (`college_id`) REFERENCES `colleges` (`id`) ON DELETE CASCADE;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

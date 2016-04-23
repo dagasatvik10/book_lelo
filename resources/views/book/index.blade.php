@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('layouts.master')
 
 @section('content')
     <div class="container">
@@ -7,7 +7,7 @@
         </div>
         @foreach($books as $book)
             <div class="row">
-                <a class="" href={{ route('book.show',['id' => $book->id]) }}>
+                <a class="" href={{ route('show',['id' => $book->id]) }}>
                     <div class="col-sm-3">
                         <img class="img-responsive img-thumbnail" src={{ '/uploads/images/'.$book->book_pics->first()->name.
                     '.'.$book->book_pics->first()->extension }}>

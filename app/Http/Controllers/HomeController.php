@@ -19,13 +19,14 @@ class HomeController extends Controller
      */
     public function index()
     {
+
         if(Auth::check()) {
             $books = Book::where('user_id', '!=', Auth::user()->id)->orderBy('created_at', 'desc')->get();
         }
         else{
             $books = Book::orderBy('created_at','desc')->get();
         }
-        return view('home',compact('books'));
+        return view('index',compact('books'));
     }
 
     public function show($id)
@@ -33,4 +34,5 @@ class HomeController extends Controller
         $book = Book::find($id);
         return view('book.show',compact('book'));
     }
+
 }

@@ -72,14 +72,15 @@ class BookController extends Controller
                 $pic->save();
             }
         }
+
         return redirect()->route('book.index');
     }
 
-    public function show($id)
+    /*public function show($id)
     {
         $book = Auth::user()->books->find($id);
         return view('book.show',compact('book'));
-    }
+    }*/
 
     public function edit($id)
     {
