@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('layouts.master')
 
 @section('content')
 <div class="container">
@@ -10,29 +10,15 @@
                     <form class="form-horizontal" role="form" method="POST" action="{{ url('/register') }}">
                         {!! csrf_field() !!}
 
-                        <div class="form-group{{ $errors->has('first_name') ? ' has-error' : '' }}">
-                            <label class="col-md-4 control-label">First Name</label>
+                      <div class="form-group{{ $errors->has('name') ? ' has-error' : '' }}">
+                            <label class="col-md-4 control-label">Name</label>
 
                             <div class="col-md-6">
-                                <input type="text" class="form-control" placeholder="Should have atleast 2 characters" name="first_name" value="{{ old('firstname') }}" required>
+                                <input type="text" class="form-control" name="name" value="{{ old('name') }}" placeholder="Should Have Atleast 2 characters">
 
-                                @if ($errors->has('first_name'))
+                                @if ($errors->has('name'))
                                     <span class="help-block">
-                                        <strong>{{ $errors->first('first_name') }}</strong>
-                                    </span>
-                                @endif
-                            </div>
-                        </div>
-
-                        <div class="form-group{{ $errors->has('last_name') ? ' has-error' : '' }}">
-                            <label class="col-md-4 control-label">Last Name</label>
-
-                            <div class="col-md-6">
-                                <input type="text" class="form-control" placeholder="Should have atleast 2 characters" name="last_name" value="{{ old('last_name') }}" required>
-
-                                @if ($errors->has('last_name'))
-                                    <span class="help-block">
-                                        <strong>{{ $errors->first('last_name') }}</strong>
+                                        <strong><span class="glyphicon glyphicon-exclamation-sign"></span>&nbsp;&nbsp;&nbsp;{{ $errors->first('name') }}</strong>
                                     </span>
                                 @endif
                             </div>
@@ -47,7 +33,7 @@
 
                                 @if ($errors->has('email'))
                                     <span class="help-block">
-                                        <strong>{{ $errors->first('email') }}</strong>
+                                        <strong><span class="glyphicon glyphicon-exclamation-sign"></span>&nbsp;&nbsp;&nbsp;{{ $errors->first('email') }}</strong>
                                     </span>
                                 @endif
                             </div>
@@ -61,7 +47,7 @@
 
                                 @if ($errors->has('password'))
                                     <span class="help-block">
-                                        <strong>{{ $errors->first('password') }}</strong>
+                                        <strong><span class="glyphicon glyphicon-exclamation-sign"></span>&nbsp;&nbsp;&nbsp;{{ $errors->first('password') }}</strong>
                                     </span>
                                 @endif
                             </div>
@@ -75,7 +61,7 @@
 
                                 @if ($errors->has('password_confirmation'))
                                     <span class="help-block">
-                                        <strong>{{ $errors->first('password_confirmation') }}</strong>
+                                        <strong><span class="glyphicon glyphicon-exclamation-sign"></span>&nbsp;&nbsp;&nbsp;{{ $errors->first('password_confirmation') }}</strong>
                                     </span>
                                 @endif
                             </div>
@@ -93,7 +79,7 @@
                                 </select>
                                 @if ($errors->has('branch_id'))
                                     <span class="help-block">
-                                        <strong>{{ $errors->first('branch_id') }}</strong>
+                                        <strong><span class="glyphicon glyphicon-exclamation-sign"></span>&nbsp;&nbsp;&nbsp;{{ $errors->first('branch_id') }}</strong>
                                     </span>
                                 @endif
                             </div>
@@ -101,8 +87,7 @@
 
 
                         <div class="form-group{{ $errors->has('college_id') ? ' has-error' : '' }}">
-                            <label class="col-md-4 control-label">College</label>
-
+                        <label class="col-md-4 control-label">College</label>
                         <div class="col-md-6">
                                 <select name="college_id" class="form-control" id="college_id" value="{{ old('college_id') }}" required>
                                 <option value="">----SELECT COLLEGE----</option>
@@ -112,91 +97,27 @@
                                 </select>
                                 @if ($errors->has('college_id'))
                                     <span class="help-block">
-                                        <strong>{{ $errors->first('college_id') }}</strong>
+                                        <strong><span class="glyphicon glyphicon-exclamation-sign"></span>&nbsp;&nbsp;&nbsp;{{ $errors->first('college_id') }}</strong>
                                     </span>
                                 @endif
                             </div>
                         </div>
 
-                        <div class="form-group{{ $errors->has('start_year') ? ' has-error' : '' }}">
-                            <label class="col-md-4 control-label">Start year</label>
-
-                            <!-- <div class="col-md-6">
-                                <select class="form-control"  name="start_year" value="{{ old('start_year') }}" required>
-                                <option selected="selected">----Enter Year of Admission----</option>
-                                <option value ="{{ \Carbon\Carbon::now()->format('Y') }}">{{ \Carbon\Carbon::now()->format('Y') }}</option>
-                                <option value ="{{ \Carbon\Carbon::now()->format('Y')-1 }}">{{ \Carbon\Carbon::now()->format('Y')-1 }}</option>
-                                <option value ="{{ \Carbon\Carbon::now()->format('Y')-2 }}">{{ \Carbon\Carbon::now()->format('Y')-2 }}</option>
-                                <option value ="{{ \Carbon\Carbon::now()->format('Y')-3 }}">{{ \Carbon\Carbon::now()->format('Y')-3 }}</option>
-                                </select>
-                                @if ($errors->has('start_year'))
-                                    <span class="help-block">
-                                        <strong>{{ $errors->first('start_year') }}</strong>
-                                    </span>
-                                @endif
-                            </div>
-                        </div> -->
-
-                        <div class="col-md-6">
-                                <select class="form-control"  name="start_year" value="{{ old('start_year') }}" required>
-                                <option selected="selected">----Start Year----</option>
-                                @for($i={{ \Carbon\Carbon::now()->format('Y') }};$i<={{ \Carbon\Carbon::now()->format('Y') }}-4;$i--)
-                                <option value ="{{ $i }}">{{ $i }}</option>
+                      <div class="form-group{{ $errors->has('batch') ? ' has-error' : '' }}">
+                      <label class="col-md-4 control-label">Select Batch</label>
+                        <div class="col-md-3">
+                                <select class="form-control"  name="batch" value="{{ old('batch') }}" required>
+                                <option selected="selected">--Batch--</option>
+                                @for($i=\Carbon\Carbon::now()->format('Y');$i>= \Carbon\Carbon::now()->format('Y')-4;$i--)
+                                <option value ="{{ $i }}">{{ $i }}-{{ $i+4 }}</option>
                                 @endfor
                                 </select>
-                                @if ($errors->has('start_year'))
+                                @if ($errors->has('batch'))
                                     <span class="help-block">
-                                        <strong>{{ $errors->first('start_year') }}</strong>
-                                    </span>
+                                    <strong><span class="glyphicon glyphicon-exclamation-sign"></span>&nbsp;&nbsp;&nbsp;<span class="glyphicon glyphicon-exclamation-sign"></span>{{ $errors->first('batch') }}</strong>                                    </span>
                                 @endif
-                            </div>
-                            <label class="col-md-4 control-label">End Year</label>
-                            <div class="col-md-6">
-                                <select class="form-control"  name="end_year" value="{{ old('end_year') }}" required>
-                                <option selected="selected">----End Year----</option>
-                                @for($i={{ \Carbon\Carbon::now()->format('Y') }};$i<={{ \Carbon\Carbon::now()->format('Y') }}+4;$i++)
-                                <option value ="{{ $i }}">{{ $i }}</option>
-                                @endfor
-                                </select>
-                                @if ($errors->has('end_year'))
-                                    <span class="help-block">
-                                        <strong>{{ $errors->first('end_year') }}</strong>
-                                    </span>
-                                @endif
-                            </div>
                         </div>
-
-                        <!--   <div class="form-group{{ $errors->has('duration') ? ' has-error' : '' }}">
-                            <label class="col-md-4 control-label">Duration</label>
-
-                            <div class="col-md-6">
-                                <select class="form-control" min="1" max="4" name="duration" value="{{ old('duration') }}" required>
-                                <option selected="selected">----Ex. 4 Years for B.Tech----</option>
-                                <option value="1">1 year</option>
-                                <option value="2">2 years</option>
-                                <option value="3">3 years</option>
-                                <option value="4">4 years</option>
-                                </select>
-                                @if ($errors->has('duration'))
-                                    <span class="help-block">
-                                        <strong>{{ $errors->first('duration') }}</strong>
-                                    </span>
-                                @endif
-                            </div>
-                        </div>
- -->
-                         <div class="form-group{{ $errors->has('address') ? ' has-error' : '' }}">
-                            <label class="col-md-4 control-label">Address</label>
-                            <div class="col-md-6">
-                            
-                            <textarea class="form-control" placeholder="Enter Residence Address" name="address" cols="50" rows="10" id="address"></textarea>
-                                @if ($errors->has('address'))
-                                    <span class="help-block">
-                                        <strong>{{ $errors->first('address') }}</strong>
-                                    </span>
-                                @endif
-                            </div>
-                        </div>
+                    </div>
 
                             <div class="form-group{{ $errors->has('contact') ? ' has-error' : '' }}">
                             <label class="col-md-4 control-label">Contact No</label>
@@ -206,7 +127,7 @@
 
                                 @if ($errors->has('contact'))
                                     <span class="help-block">
-                                        <strong>{{ $errors->first('contact') }}</strong>
+                                        <strong><span class="glyphicon glyphicon-exclamation-sign"></span>&nbsp;&nbsp;&nbsp;{{ $errors->first('contact') }}</strong>
                                     </span>
                                 @endif
                             </div>
@@ -226,10 +147,3 @@
     </div>
 </div>
 @endsection
-@if($errors->any())
-<ul>
-@foreach($errors->all() as $error)
-<li>{{ $error }}</li>
-@endforeach
-</ul>
-@endif

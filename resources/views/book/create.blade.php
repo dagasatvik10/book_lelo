@@ -1,6 +1,10 @@
-@extends('layouts.app')
+@extends('layouts.master')
 
 @section('content')
+    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 ">
+        <div class="page-header">
+        <h3>Post Ad</h3>
+        </div>
     {!! Form::open(['action' => 'BookController@store', 'method' => 'POST','files' => true]) !!}
     <div class="form-group">
         {!! Form::label('name','Title') !!}
@@ -56,4 +60,12 @@
         {!! Form::submit('Post',['class' => 'form-control']) !!}
     </div>
     {!! Form::close() !!}
+    @if($errors->any())
+    <ul>
+    @foreach($errors->all() as $error)
+    <li>{{!! $error !!}}</li>
+    @endforeach
+    </ul>
+    @endif
+    </div>
 @stop

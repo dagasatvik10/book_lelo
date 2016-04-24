@@ -7,6 +7,7 @@ use App\College;
 use App\Http\Requests\EditProfileRequest;
 use App\Http\Requests;
 use App\User;
+use Request;
 
 class UserController extends Controller
 {
@@ -22,30 +23,47 @@ class UserController extends Controller
 
     public function edit()
     {
-        $branches = Branch::all();
-        $colleges = College::all();
-        return view('user.edit')->with('branches',$branches)->with('colleges',$colleges);
+        return view('user.edit');
     }
 
     public function update(EditProfileRequest $request)
     {
         $user = User::find(Auth::user()->id);
-        $user->first_name = $request->first_name;
-        $user->last_name = $request->last_name;
-        $user->start_year = $request->start_year;
-        $user->end_year = $request->duration + $request->start_year;
-        $user->address = $request->address;
+        $user->name = $request->name;
+        $user->batch = $request->batch;
         $user->contact = $request->contact;
         $user->save();
         return redirect()->route('home');
     }
+
     public function show()
     {
-        return view('user.show');
+         return view('user.show');
+    }
+
+    public function deleteconfirm()
+    {
+        return view('user.deleteconfirm');
     }
 
     public function delete()
     {
-        
+       /* $rules = array(
+            'password' => 'required|min:6|same:password_confirmation'
+    );
+
+        $validator = Validator::make(Input::all(), $rules);
+
+        if ($validator->fails()) 
+        {
+            return redirect()->route('user.deleteconfirm')
+            ->withErrors($validator); // send back all errors to the login form
+        }
+        else
+        {
+            $user=User::find(Auth::user()->id);
+            $user->delete();
+            return redirect()->route('home');
+        }*/
     }
 }

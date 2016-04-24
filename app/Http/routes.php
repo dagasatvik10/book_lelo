@@ -11,17 +11,17 @@
 |
 */
 
-
-Route::group(['middleware' => 'web'],function(){
     Route::auth();
-
     Route::get('/',['uses'  => 'HomeController@index','as' => 'home']);
 
+
+Route::group(['middleware' =>'auth'],function(){
     // Show and Edit User details
     Route::get('/user',['as' => 'user.show','uses' => 'UserController@show']);
     Route::get('/user/edit',['as' => 'user.edit','uses' => 'UserController@edit']);
     Route::post('/user/edit',['as' => 'user.update','uses' => 'UserController@update']);
-    Route::post('/user/delete',['uses' => 'UserController@delete']);
+    Route::get('/user/deleteconfirm',['as'=>'user.deleteconfirm','uses' => 'UserController@deleteconfirm']);    
+    Route::post('/user/delete',['as'=>'user.delete','uses' => 'UserController@delete']);
 
     // Create book post,edit book post,delete book post
     Route::get('user/book/create',['as' => 'book.create','uses' => 'BookController@create']);
