@@ -31,8 +31,8 @@ Route::group(['middleware' => 'web'],function(){
     //Route::get('user/book/{id}',['as' => 'book.show','uses' => 'BookController@show']);
     Route::get('user/book/{id}/edit',['as' => 'book.edit','uses' => 'BookController@edit']);
     Route::post('user/book/{id}/edit',['as' => 'book.update','uses' => 'BookController@update']);
-    Route::get('user/book/{id}/delete',['as' => 'book.delete','uses' => 'BookController@delete']);
-    Route::get('/test',['uses' => 'HomeController@test']);
+    Route::delete('user/book/{id}/delete',['as' => 'book.delete','uses' => 'BookController@delete']);
+    Route::post('/bookSort',['uses' => 'HomeController@book_sort','as' => 'book_sort']);
 });
 
 

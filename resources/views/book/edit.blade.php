@@ -2,7 +2,7 @@
 
 @section('content')
     <div class="container">
-        {!! Form::open(['route' => 'book.store','method' => 'POST','files' => true]) !!}
+        {!! Form::open(['route' => ['book.update',$book->id]]) !!}
         <div class="form-group">
             {!! Form::label('name','Title') !!}
             {!! Form::text('name',$book->name,['class' => 'form-control']) !!}

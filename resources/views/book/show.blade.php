@@ -17,10 +17,21 @@
                     @endif
 					@endif
                 </div>
-                <div class="row"><h5>Branch: {{ $book->branch->name }} &nbsp Year: {{ $book->year }}</h5></div>
                 <div class="row">
+					<h5>
+						@if(!empty($book->branch_id) or $book->branch_id == '0')
+							Branch: {{ $book->branch->name }}
+						@endif
+						@if($book->year != null)
+							&nbsp Year: {{ $book->year }}
+						@endif
+					</h5>
+				</div>
+                <div class="row">
+					@if($book->book_pics->first() != null)
                     <img class="img-responsive img-rounded" src={{ '/uploads/images/'.$book->book_pics->first()->name.
                     '.'.$book->book_pics->first()->extension }} }}>
+					@endif
                 </div>
                 <br>
                 <div class="row">

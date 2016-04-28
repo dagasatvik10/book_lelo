@@ -3,12 +3,10 @@
 <head>
 	<meta charset="UTF-8">
 	<title>BookLelo</title>
-	<link rel="stylesheet" type="text/css" href="css/bootstrap.min.css" />
-	<script src="js/jquery.min.js"></script>
+	<script src='{{ asset('js/jquery.min.js') }}'></script>
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
 	<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
-	<link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
-    <link rel="stylesheet" type="text/css" href="css/bootstrap.css">
+	{{--<link rel="stylesheet" type="text/css" href="/css/bootstrap.min.css">--}}
     <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
 <style type="text/css">
 	
@@ -140,14 +138,6 @@
 	}
 </style>
 
-<script>
-	$(document).ready( function()
-	{
-	    $('[data-toggle="popover"]').popover();   
-		// $('#loginModal').modal();
-	});
-
-</script>
 </head>
 <body>
 
@@ -189,15 +179,13 @@
         <li><a href="#" data-toggle="modal" data-target="#signupModal"><font class="dropdown-text"><span class="glyphicon glyphicon-user"></span>  Sign Up</font></a></li>
         <li><a href="#" data-toggle="modal" data-target="#loginModal"><font class="dropdown-text"><span class="glyphicon glyphicon-log-in"></span>  Login</font></a></li>
       @else
-<!--         <li><a href="{{ url('/logout') }}"><font class="dropdown-text"><span class="glyphicon glyphicon-log-in"></span>Sign Out</font></a></li>
- -->     
 <a href="#" class="dropdown-toggle" data-toggle="dropdown" style="text-decoration:none;padding-right:10px;"><font class="dropdown-text"><span class="glyphicon glyphicon-user"></span> {{ Auth::user()->first_name}} {{ Auth::user()->last_name }}</font><b class="caret"></b></a>
   <ul class="dropdown-menu">
                         <li>
                             <a href="{{url('/user')}}"><i class="fa fa-fw fa-user"></i>My Profile</a>
                         </li>
                         <li>
-                            <a href="#"><i class="fa fa-fw fa-envelope"></i>My Ads</a>
+                            <a href="{{ route('book.index') }}"><i class="fa fa-fw fa-envelope"></i>My Ads</a>
                         </li>
                         <li class="divider"></li>
                         <li>
@@ -474,7 +462,8 @@
 
                                 @if ($errors->has('contact'))
                                     <span class="help-block">
-<strong class="requiredId"><span class="glyphicon glyphicon-exclamation-sign"></span>&nbsp;&nbsp;&nbsp;<span class="glyphicon glyphicon-exclamation-sign"></span>{{ $errors->first('contact') }}</strong>                                    </span>
+										<strong class="requiredId"><span class="glyphicon glyphicon-exclamation-sign"></span>&nbsp;&nbsp;&nbsp;<span class="glyphicon glyphicon-exclamation-sign"></span>{{ $errors->first('contact') }}</strong>
+									</span>
                                 @endif
                             </div>
                         </div>
@@ -497,10 +486,20 @@
 
 <div class="container">
 	<div class="col-lg-10 col-md-10 col-sm-10 col-xs-10 col-lg-offset-1 col-md-offset-1 col-sm-offset-1 col-xs-offset-1">
-		 <div class="main-container">
-		@yield('content')
-		</div> 
+		<div class="main-container">
+			@yield('content')
+		</div>
 	</div>
 </div>
+
+<script>
+	$(document).ready( function()
+	{
+		$('[data-toggle="popover"]').popover();
+		// $('#loginModal').modal();
+		sortBooksList();
+	});
+</script>
+@yield('script')
 </body>
 </html>

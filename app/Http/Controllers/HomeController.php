@@ -3,11 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Book;
-use App\Branch;
-use App\College;
 use App\Http\Requests;
-use App\User;
-use App\Http\Requests\EditProfileRequest;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
 class HomeController extends Controller
@@ -21,11 +18,12 @@ class HomeController extends Controller
     {
 
         if(Auth::check()) {
-            $books = Book::where('user_id', '!=', Auth::user()->id)->orderBy('created_at', 'desc')->get();
+            $books = Book::where('user_id', '!=use Illuminate\Http\Request;', Auth::user()->id)->orderBy('created_at', 'desc')->paginate(3);
         }
         else{
-            $books = Book::orderBy('created_at','desc')->get();
+            $books = Book::orderBy('created_at','desc')->paginate(3);
         }
+        //dd($books->first()->book_pics->first() == null);
         return view('index',compact('books'));
     }
 
@@ -35,4 +33,39 @@ class HomeController extends Controller
         return view('book.show',compact('book'));
     }
 
+    public function book_sort(Request $request)
+    {
+        //return response()->json(['html' => $request->college]);
+        if($request->college != 'none') {
+            $college_id = (int)$request->college;
+            //dd($college_id);
+            $books = Book::whereHas('user',function($query) use($college_id) {
+                $query->where('college_id',$college_id);
+            })->orderBy('created_at', $request->order);
+        }
+        else {
+            $books = Book::orderBy('created_at', $request->order);
+        }
+
+        if(Auth::check()) {
+            $books = $books->where('user_id', '!=', Auth::user()->id)->paginate(3);
+        }
+
+
+        if($request->branch != 'none') {
+            $branch_id = (int)$request->branch;
+            //dd($branch_id);
+            $books = $books->where('branch_id',$branch_id);
+        }
+
+        if($request->year != 'none') {
+            $books = $books->where('year',$request->year);
+        }
+
+        $books = $books->paginate(3);
+
+        $html = view('test',compact('books'))->render();
+        return response()->json(['success' => true,'html' => $html]);
+//        return view('index',compact('books'));
+    }
 }
