@@ -38,14 +38,18 @@ class BookController extends Controller
     {
         $book = new Book;
         $book->name = $request->name;
-        $book->year = $request->year;
-        $book->branch_id = $request->branch;
-        $book->author = $request->author;
-        $book->publication = $request->publication;
-        $book->publication_year = $request->publication_year;
-        $book->need = 'sell';
+        $book->year = $request->year == 'none'?null:$request->year;
+        $book->branch_id = $request->branch=='none'?null:$request->branch;
         $book->type = $request->type;
-        $book->no_of_pages = $request->no_of_pages;
+        $book->need = 'sell';
+        if($book->type == 'books') {
+            $book->author = $request->author;
+            $book->publication = $request->publication;
+            $book->publication_year = $request->publication_year;
+        }
+        else {
+            $book->no_of_pages = $request->no_of_pages;
+        }
         $book->description = $request->description;
         $book->price = $request->price;
         $book->user()->associate(Auth::user());
@@ -73,7 +77,7 @@ class BookController extends Controller
             }
         }
 
-        return redirect()->route('book.index');
+        return redirect()->route('home');
     }
 
     /*public function show($id)
@@ -88,14 +92,30 @@ class BookController extends Controller
         return view('book.edit',compact('book'));
     }
 
-    public function update($id)
+    public function update($id,BookRequest $request)
     {
         $book = Auth::user()->books()->find($id);
+        $book->name = $request->name;
+        $book->year = $request->year == 'none'?null:$request->year;
+        $book->branch_id = $request->branch=='none'?null:$request->branch;
+        $book->author = $request->author;
+        $book->publication = $request->publication;
+        $book->publication_year = $request->publication_year;
+        $book->need = 'sell';
+        $book->type = $request->type;
+        $book->no_of_pages = $request->no_of_pages;
+        $book->description = $request->description;
+        $book->price = $request->price;
+        $book->save();
 
+        return redirect()->route('book.index');
     }
 
     public function delete($id)
     {
+        $book = Auth::user()->books->find($id);
+        $book->delete();
 
+        return redirect()->route('book.index');
     }
 }

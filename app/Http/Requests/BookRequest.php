@@ -25,14 +25,20 @@ class BookRequest extends Request
     {
         return [
             'name' => 'required',
-            'type' => 'required',
-            'price' => 'required',
-            'pic1' => 'image',
-            'pic2' => 'image',
-            'pic3' => 'image',
-            'pic4' => 'image',
-            'pic5' => 'image',
-            'pic6' => 'image'
+            'type' => 'required|in:books,notes',
+            'price' => 'required|numeric',
+            'year' => 'alpha_num',
+            'pic1' => 'image|size:100',
+            'pic2' => 'image|size:100',
+            'pic3' => 'image|size:100',
+            'pic4' => 'image|size:100',
+            'pic5' => 'image|size:100',
+            'pic6' => 'image|size:100',
+            'branch_id' => 'numeric',
+            'author' => 'alpha',
+            'publication_year' => 'digits:4',
+            'no_of_pages' => 'numeric',
+            'need' => 'in:buy,sell',
         ];
     }
 }
