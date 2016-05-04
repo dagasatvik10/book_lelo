@@ -15,7 +15,7 @@
                     @foreach($books as $book)
                         <li>
                             {{ $book->name }} &nbsp
-                            <a class="btn btn-primary" href={{ route('book.show',['id' => $book->id]) }}>
+                            <a class="btn btn-primary" href={{ route('show',['id' => $book->id]) }}>
                                show
                             </a>
                         </li>
