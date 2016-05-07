@@ -8,6 +8,10 @@ use App\Http\Requests\EditProfileRequest;
 use App\Http\Requests;
 use App\User;
 use Request;
+use Input;
+use Hash;
+use Auth;
+use Validator;
 
 class UserController extends Controller
 {
@@ -48,22 +52,29 @@ class UserController extends Controller
 
     public function delete()
     {
-       /* $rules = array(
-            'password' => 'required|min:6|same:password_confirmation'
-    );
-
-        $validator = Validator::make(Input::all(), $rules);
-
+         $validator = Validator::make(Input::all(), [
+        'password' => 'required|min:6|same:password_confirmation',
+        ]);
         if ($validator->fails()) 
         {
             return redirect()->route('user.deleteconfirm')
-            ->withErrors($validator); // send back all errors to the login form
+            ->withErrors($validator);
         }
         else
         {
             $user=User::find(Auth::user()->id);
-            $user->delete();
-            return redirect()->route('home');
-        }*/
+            if(Hash::check(Input::get('password'), $user->password))
+            {
+                Auth::logout();
+                $user->delete();
+                return redirect()->route('home');
+            }
+            else
+            {
+                $message='Password Entered is Incorrect';
+                return redirect()->route('user.deleteconfirm')
+                ->withErrors($message);
+            }
+        }
     }
 }

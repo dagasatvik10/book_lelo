@@ -30,7 +30,7 @@ class BookController extends Controller
 
     public function create()
     {
-        Auth::login(User::all()->first());
+      //  Auth::login(User::all()->first());
         return view('book.create');
     }
 

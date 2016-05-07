@@ -4,12 +4,25 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
+use Nicolaslopezj\Searchable\SearchableTrait;
+
 class Book extends Model
 {
+    use SearchableTrait;
+
     protected $guarded = ['id'];
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
+
+    protected $searchable = [
+        'columns' => [
+            'name' => 10,
+            'author' => 10,
+            'publication' => 5,
+            ],
+    ];
+
     public function user()
     {
         return $this->belongsTo('App\User');
