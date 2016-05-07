@@ -10,11 +10,13 @@
 | and give it the controller to call when that URI is requested.
 |
 */
-
+Route::group(['middleware' => 'web'],function(){
     Route::auth();
     Route::get('/',['uses'  => 'HomeController@index','as' => 'home']);
     Route::get('book/{id}',['uses' => 'HomeController@show','as' => 'show']);
-
+    Route::post('search',['uses' => 'HomeController@search','as' => 'search']);
+    Route::post('/bookSort',['uses' => 'HomeController@book_sort','as' => 'book_sort']);
+});
 
 Route::group(['middleware' =>'auth'],function(){
     // Show and Edit User details
@@ -32,7 +34,13 @@ Route::group(['middleware' =>'auth'],function(){
     Route::get('user/book/{id}/edit',['as' => 'book.edit','uses' => 'BookController@edit']);
     Route::post('user/book/{id}/edit',['as' => 'book.update','uses' => 'BookController@update']);
     Route::delete('user/book/{id}/delete',['as' => 'book.delete','uses' => 'BookController@delete']);
-    Route::post('/bookSort',['uses' => 'HomeController@book_sort','as' => 'book_sort']);
 });
 
 
+Route::group(['prefix' => 'messages'], function () {
+    Route::get('/', ['as' => 'messages', 'uses' => 'MessagesController@index']);
+    Route::post('create', ['as' => 'messages.create', 'uses' => 'MessagesController@create']);
+    Route::post('/', ['as' => 'messages.store', 'uses' => 'MessagesController@store']);
+    Route::get('{id}', ['as' => 'messages.show', 'uses' => 'MessagesController@show']);
+    Route::put('{id}', ['as' => 'messages.update', 'uses' => 'MessagesController@update']);
+});

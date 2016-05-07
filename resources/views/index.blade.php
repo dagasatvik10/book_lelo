@@ -126,17 +126,16 @@
 
 @section('content')
 
-<div class="col-lg-10 col-md-10 col-xs-10 col-sm-10 col-lg-offset-1 col-md-offset-1 col-sm-offset-1 col-xs-offset-1">
+<div class="col-lg-10 col-md-10 col-xs-10 col-sm-8 col-lg-offset-1">
 	<br>
 	<div class="search-div row">
-		<input type="text" class="search-bar" />
-		<span class="dropdown-text search-icon glyphicon glyphicon-search"></span>
+		<form action="{{ url('/search') }}" method="POST" role="form">
+		<input type="text" class="search-bar" name="search" />
+			{!! csrf_field() !!}
+		<span class="search-icon glyphicon glyphicon-search"></span>
 		<br><br>
-		<div class="radio-search">
-
-		</div>
+		</form>
 	</div>
-
 	<div class="row">
 		{!! Form::open(['class' => 'form-inline','role' => 'form','id' => 'sort_form','route' => 'book_sort']) !!}
 		<div class="form-group">
@@ -194,15 +193,8 @@
 								{{ $book->year }} year
 							@endif
 						</h4>
-						<h4>Seller : {{ $book->user->name }}</h4>
+						<h4>Seller : {{ $book->user->name}}</h4>
 						<h4>College : {{ $book->user->college->name}}</h4>
-						{{--<p>Address :
-						@if(strlen($book->user()->getResults()['address']) > $predefinedAddressLength)
-							{{ substr($book->user()->getResults()['address'], 0, $predefinedAddressLength) }}...
-						@else
-							{{ $book->user()->getResults()['address'] }}
-						@endif
-						</p>--}}
 					</div>
 				</div>
 			</a>
@@ -215,11 +207,10 @@
 	</div>
 	{{--POST AD BUTTON --}}
 	<div class="col-lg-2 col-lg-offset-2">
-		<a href="#" class="btn btn-primary" data-toggle="modal">Post an Ad</a>
+		<a href="{{ url('/user/book/create')}}" class="btn btn-primary">Post an Ad</a>
 	</div>
 	{{--END POST AD BUTTON --}}
 </div>
-
 @stop
 
 @section('script')

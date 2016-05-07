@@ -4,7 +4,7 @@
 	<meta charset="UTF-8">
 	<title>BookLeLow</title>
 	<link rel="stylesheet" type="text/css" href="/css/bootstrap.min.css" />
-	<script src='{{ asset("js/jquery.min.js") }}''></script>
+	<script src='{{ asset("js/jquery.min.js") }}'></script>
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
 	<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
 	{{--<link rel="stylesheet" type="text/css" href="/css/bootstrap.min.css">--}}
@@ -138,6 +138,14 @@
 		color: #34459e;
 	}
 </style>
+<script>
+	$(document).ready( function()
+	{
+	    $('[data-toggle="popover"]').popover();   
+		//$('#loginModal').modal();
+	});
+
+</script>
 </head>
 <body>
 
@@ -187,24 +195,24 @@
       	<!-- END LOOP FOR HEADINGS -->
       </ul>
       <ul class="nav navbar-nav navbar-right">
-@if(Auth::guest())
+		  @if(Auth::guest())
         <li><a href="{{ url('/register') }}"><font class="dropdown-text"><span class="glyphicon glyphicon-user"></span>  Sign Up</font></a></li>
         <li><a href="#" data-toggle="modal" data-target="#loginModal"><font class="dropdown-text"><span class="glyphicon glyphicon-log-in"></span>  Login</font></a></li>
-@else   
-	<a href="#" class="dropdown-toggle" data-toggle="dropdown" style="text-decoration:none;padding-right:10px;"><font class="dropdown-text"><span class="glyphicon glyphicon-user"></span> {{ Auth::user()->name }}</font><b class="caret"></b></a>
-  	<ul class="dropdown-menu">
-        <li>
-            <a href="{{url('/user')}}"><i class="fa fa-fw fa-user"></i>My Profile</a>
-        </li>
-        <li>
-           <a href="#"><i class="fa fa-fw fa-envelope"></i>My Ads</a>
-        </li>
-        <li class="divider"></li>
-        <li>
-        	<a href="{{ url('/logout') }}"><i class="fa fa-fw fa-power-off"></i> Log Out</a>
-        </li>
-    </ul>
-@endif
+		  @else
+			  <a href="#" class="dropdown-toggle" data-toggle="dropdown" style="text-decoration:none;padding-right:10px;"><font class="dropdown-text"><span class="glyphicon glyphicon-user"></span> {{ Auth::user()->name }}</font><b class="caret"></b></a>
+			  <ul class="dropdown-menu">
+                        <li>
+                            <a href="{{url('/user')}}"><i class="fa fa-fw fa-user"></i>My Profile</a>
+                        </li>
+                        <li>
+                            <a href="{{ route('book.index') }}"><i class="fa fa-fw fa-envelope"></i>My Ads</a>
+                        </li>
+                        <li class="divider"></li>
+                        <li>
+                            <a href="{{ url('/logout') }}"><i class="fa fa-fw fa-power-off"></i> Log Out</a>
+                        </li>
+              </ul>
+		  @endif
       </ul>
     </div>
   </div>
@@ -294,7 +302,7 @@
                         <option>Select <!-- name from database --></option>
                         <!-- loop here -->
                         @foreach(App\Branch::all() as $branch)
-                            <option>{{ $branch['name'] }}</option>
+                            <option>{{ $branch->name }}</option>
                         @endforeach
                         <!-- end loop here -->
                     </select>
