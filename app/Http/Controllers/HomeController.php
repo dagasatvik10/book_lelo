@@ -18,7 +18,7 @@ class HomeController extends Controller
     {
 
         if(Auth::check()) {
-            $books = Book::where('user_id', '!=use Illuminate\Http\Request;', Auth::user()->id)->orderBy('created_at', 'desc');
+            $books = Book::where('user_id', '!=', Auth::user()->id)->orderBy('created_at', 'desc');
         }
         else{
             $books = Book::orderBy('created_at','desc');
@@ -77,9 +77,10 @@ class HomeController extends Controller
 
     public function search(Request $request)
     {
-        $query=$request->input('search');
+        $query = $request->input('search');
         $books = Book::search($query, null, true)->paginate(1);
         //dd($search);
         return view('index',compact('books'));
     }
+
 }

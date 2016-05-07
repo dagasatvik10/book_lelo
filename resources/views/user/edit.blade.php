@@ -3,22 +3,19 @@
 
 @section('content')
 
-<div class="container">
-    <div class="row">
+    <div class="col-lg-8 col-md-8 col-sm-8 col-xs-12 col-lg-offset-2 col-md-offset-2 col-sm-offset-2" style="margin-top:30px;">
         <div class="col-md-10 col-md-offset-1">
-            <div class="panel panel-default">
-                <div class="panel-heading">Edit Profile</div>
-            </div>
-                <div class="panel-body">
+                <div class="panel-heading headingClass"><h3>Edit Profile</h3></div>
+                <div class="panel-body panelBodyClass">
                     <form class="form-horizontal" role="form" method="POST" action="{{ url('user/edit') }}">
                         {!! csrf_field() !!}
 
 
                         <div class="form-group{{ $errors->has('name') ? ' has-error' : '' }}">
-                            <label class="col-md-4 control-label">Name</label>
+                            <label class="col-md-4 control-label labelClass">Name</label>
 
                             <div class="col-md-6">
-                                <input type="text" class="form-control" name="name" value="{{ Auth::user()->name }}" required>
+                                <input type="text" class="form-control textboxClass" name="name" value="{{ Auth::user()->name }}" required>
 
                                 @if ($errors->has('name'))
                                     <span class="help-block">
@@ -30,10 +27,10 @@
 
 
                         <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
-                            <label class="col-md-4 control-label">E-Mail Address</label>
+                            <label class="col-md-4 control-label labelClass">E-Mail Address</label>
 
                             <div class="col-md-6">
-                                <input type="email" class="form-control" name="email" value="{{ Auth::user()->email }}" placeholder="Enter E-Mail Address" disabled />
+                                <input type="email" class="form-control textboxClass" name="email" value="{{ Auth::user()->email }}" placeholder="Enter E-Mail Address" disabled />
 
                                  @if ($errors->has('email'))
                                     <span class="help-block">
@@ -44,9 +41,9 @@
                         </div>
 
                       <div class="form-group{{ $errors->has('batch') ? ' has-error' : '' }}">
-                      <label class="col-md-4 control-label ">Batch</label>
+                      <label class="col-md-4 control-label labelClass ">Batch</label>
                         <div class="col-md-3">
-                                <select class="form-control"  name="batch" value="{{ old('batch') }}" required>
+                                <select class="form-control textboxClass"  name="batch" value="{{ old('batch') }}" required>
                                 <option selected="selected" value="">--Batch--</option>
                                 @for($i=\Carbon\Carbon::now()->format('Y');$i>= \Carbon\Carbon::now()->format('Y')-4;$i--)
                                 <option value ="{{ $i }}">{{ $i }}-{{ $i+4 }}</option>
@@ -61,10 +58,10 @@
                         </div>
 
                             <div class="form-group{{ $errors->has('contact') ? ' has-error' : '' }}">
-                            <label class="col-md-4 control-label">Contact No</label>
+                            <label class="col-md-4 control-label labelClass">Contact No</label>
 
                             <div class="col-md-6">
-                                <input type="text" class="form-control" value="{{ Auth::user()->contact }}" name="contact" required>
+                                <input type="text" class="form-control textboxClass" value="{{ Auth::user()->contact }}" name="contact" required>
 
                                 @if ($errors->has('contact'))
                                     <span class="help-block">
@@ -76,7 +73,7 @@
 
                         <div class="form-group">
                             <div class="col-md-6 col-md-offset-4">
-                                <button type="submit" class="btn btn-primary">
+                                <button type="submit" class="btn submit-button">
                                     <i class="fa fa-btn fa-user"></i>Update Profile
                                 </button>
                             </div>
@@ -84,7 +81,6 @@
 
                 </form>
 
-                </div>
         </div>
     </div>
 </div>
