@@ -3,12 +3,11 @@
 <head>
 	<meta charset="UTF-8">
 	<title>BookLeLow</title>
-	<link rel="stylesheet" type="text/css" href="css/bootstrap.min.css" />
-	<script src="js/jquery.min.js"></script>
+	<link rel="stylesheet" type="text/css" href="/css/bootstrap.min.css" />
+	<script src='{{ asset("js/jquery.min.js") }}''></script>
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
 	<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
-	<link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
-    <link rel="stylesheet" type="text/css" href="css/bootstrap.css">
+	{{--<link rel="stylesheet" type="text/css" href="/css/bootstrap.min.css">--}}
     <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
 <style type="text/css">
 	
@@ -26,7 +25,6 @@
 		background-color: #f6f6f6;
 		position:absolute; 
 		top:75px;
-
 	}
 	.main-container{
 		width:100%;
@@ -136,19 +134,10 @@
 		border-radius: 5px;
 		color:dodgerblue;
 	}
-	#requiredId{
+	.requiredId{
 		color: #34459e;
 	}
 </style>
-
-<script>
-	$(document).ready( function()
-	{
-	    $('[data-toggle="popover"]').popover();   
-		//$('#loginModal').modal();
-	});
-
-</script>
 </head>
 <body>
 
@@ -202,7 +191,7 @@
         <li><a href="{{ url('/register') }}"><font class="dropdown-text"><span class="glyphicon glyphicon-user"></span>  Sign Up</font></a></li>
         <li><a href="#" data-toggle="modal" data-target="#loginModal"><font class="dropdown-text"><span class="glyphicon glyphicon-log-in"></span>  Login</font></a></li>
 @else   
-	<a href="#" class="dropdown-toggle" data-toggle="dropdown" style="text-decoration:none;padding-right:10px;"><font class="dropdown-text"><span class="glyphicon glyphicon-user"></span> {{ Auth::user()->first_name}} {{ Auth::user()->last_name }}</font><b class="caret"></b></a>
+	<a href="#" class="dropdown-toggle" data-toggle="dropdown" style="text-decoration:none;padding-right:10px;"><font class="dropdown-text"><span class="glyphicon glyphicon-user"></span> {{ Auth::user()->name }}</font><b class="caret"></b></a>
   	<ul class="dropdown-menu">
         <li>
             <a href="{{url('/user')}}"><i class="fa fa-fw fa-user"></i>My Profile</a>
@@ -216,7 +205,6 @@
         </li>
     </ul>
 @endif
-
       </ul>
     </div>
   </div>
@@ -236,28 +224,28 @@
                         {!! csrf_field() !!}
 
                         <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
-                            <label class="col-md-4 control-label" id="labelId">E-Mail Address</label>
+                            <label class="col-md-4 control-label labelId">E-Mail Address</label>
 
                             <div class="col-md-6">
-                                <input type="email" class="form-control" id="textboxId" name="email" value="{{ old('email') }}">
+                                <input type="email" class="form-control textboxId" name="email" value="{{ old('email') }}">
 
                                 @if ($errors->has('email'))
                                     <span class="help-block">
-                                        <strong id="requiredId"><span class="glyphicon glyphicon-exclamation-sign"></span>&nbsp;&nbsp;&nbsp;{{ $errors->first('email') }}</strong>
+                                        <strong class="requiredId"><span class="glyphicon glyphicon-exclamation-sign"></span>&nbsp;&nbsp;&nbsp;{{ $errors->first('email') }}</strong>
                                     </span>
                                 @endif
                             </div>
                         </div>
 
                         <div class="form-group{{ $errors->has('password') ? ' has-error' : '' }}">
-                            <label class="col-md-4 control-label" id="labelId">Password</label>
+                            <label class="col-md-4 control-label labelId">Password</label>
 
                             <div class="col-md-6">
-                                <input type="password" class="form-control" id="textboxId" name="password">
+                                <input type="password" class="form-control textboxId" name="password">
 
                                 @if ($errors->has('password'))
                                     <span class="help-block">
-                                        <strong id="requiredId"><span class="glyphicon glyphicon-exclamation-sign"></span>&nbsp;&nbsp;&nbsp;{{ $errors->first('password') }}</strong>
+                                        <strong class="requiredId"><span class="glyphicon glyphicon-exclamation-sign"></span>&nbsp;&nbsp;&nbsp;{{ $errors->first('password') }}</strong>
                                     </span>
                                 @endif
                             </div>
@@ -266,7 +254,7 @@
                         <div class="form-group">
                             <div class="col-md-6 col-md-offset-4">
                                 <div class="checkbox">
-                                    <label id="labelId">
+                                    <label class="labelId">
                                         <input type="checkbox" name="remember"> Remember Me
                                     </label>
                                 </div>
@@ -322,8 +310,17 @@
 	<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 ">
 		@yield('content')   
     </div>
-
 </div>
+
+<script>
+	$(document).ready( function()
+	{
+		$('[data-toggle="popover"]').popover();
+		// $('#loginModal').modal();
+		sortBooksList();
+	});
+</script>
+@yield('script')
 </body>
 </html>
 @if($errors->any())

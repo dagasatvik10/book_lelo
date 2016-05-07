@@ -13,6 +13,7 @@
 
     Route::auth();
     Route::get('/',['uses'  => 'HomeController@index','as' => 'home']);
+    Route::get('book/{id}',['uses' => 'HomeController@show','as' => 'show']);
 
 
 Route::group(['middleware' =>'auth'],function(){
@@ -25,13 +26,13 @@ Route::group(['middleware' =>'auth'],function(){
 
     // Create book post,edit book post,delete book post
     Route::get('user/book/create',['as' => 'book.create','uses' => 'BookController@create']);
-    Route::post('user/book/store',['as' => 'book.store','uses' => 'BookController@store']);
+    Route::post('user/book',['as' => 'book.store','uses' => 'BookController@store']);
     Route::get('user/book',['as' => 'book.index','uses' => 'BookController@index']);
-    Route::get('user/book/{id}',['as' => 'book.show','uses' => 'BookController@show']);
+    //Route::get('user/book/{id}',['as' => 'book.show','uses' => 'BookController@show']);
     Route::get('user/book/{id}/edit',['as' => 'book.edit','uses' => 'BookController@edit']);
     Route::post('user/book/{id}/edit',['as' => 'book.update','uses' => 'BookController@update']);
-    Route::get('user/book/{id}/delete',['as' => 'book.delete','uses' => 'BookController@delete']);
-    Route::get('/test',['uses' => 'HomeController@test']);
+    Route::delete('user/book/{id}/delete',['as' => 'book.delete','uses' => 'BookController@delete']);
+    Route::post('/bookSort',['uses' => 'HomeController@book_sort','as' => 'book_sort']);
 });
 
 
