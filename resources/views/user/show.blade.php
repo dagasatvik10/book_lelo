@@ -12,13 +12,12 @@
 {{--End Header--}} 
 
 
-<div class="nav col-xs-12 col-md-12 col-lg-12 col-sm-12">
-<div class="panel panel-info">
-<div class="panel-heading"><h3 class="panel-title">Profile Details</h3></div>
+<div class="col-xs-12 col-md-12 col-lg-12 col-sm-12" style="margin-top:30px;">
+<div class="panel-heading headingClass"><h3>Profile Details</h3></div>
 
-<div class="panel-body">
+<div class="panel-body panelBodyClass">
 <table class="table table-bordered table-hover">
- <tbody>
+<tbody>
  <tr>
   <td>Name : {{ Auth::user()->name}}</td>
  </tr>
@@ -38,14 +37,15 @@
 <td>Contact No : {{ Auth::user()->contact }}</td>
  </tr>
  <tr>
-<a href="{{ url('/user/edit/') }}"><button type="button" class="btn btn-default">Edit Profile</button></a>&nbsp;
-<a href="{{ url('/user/deleteconfirm/') }}"><button type="button" class="btn btn-default">Delete Profile</button></a>
+<a href="{{ url('/user/edit/') }}" style="float:right; "><button type="button" class="btn submit-button">Edit Profile</button></a>&nbsp;&nbsp;&nbsp;&nbsp;
+
+<a href="{{ url('/user/deleteconfirm/') }}" style="float:right;padding-right:20px;"><button type="button" class="btn submit-button">Delete Profile</button></a>
  </tr>
+ <br><br>
  </tbody>
  </table>
 <h4></h4>
 </div>
 
-</div>
 </div>
 @endsection

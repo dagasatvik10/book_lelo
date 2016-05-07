@@ -2,20 +2,18 @@
 
 @section('content')
 
-<div class="container">
- 	<div class="row">
+    <div class="col-lg-8 col-md-8 col-sm-8 col-xs-12 col-lg-offset-2 col-md-offset-2 col-sm-offset-2" style="margin-top:30px;">
         <div class="col-md-8 col-md-offset-2">
-            <div class="panel panel-default">
-                <div class="panel-heading">Please enter your current Password to confirm Deletion of Profile</div>
-                <div class="panel-body">
+                <div class="panel-heading headingClass" style="font-size:14px; font-weight:bold;">Please enter your current Password to confirm Deletion of Profile</div>
+                <div class="panel-body panelBodyClass">
                     <form class="form-horizontal" role="form" method="POST" action="{{ url('/user/delete') }}">
                         {!! csrf_field() !!}
 
                         <div class="form-group{{ $errors->has('password') ? ' has-error' : '' }}">
-                            <label class="col-md-4 control-label">Password</label>
+                            <label class="col-md-4 control-label labelClass">Password</label>
 
                             <div class="col-md-6">
-                                <input type="password" class="form-control" name="password" placeholder="Current Password" required>
+                                <input type="password" class="form-control textboxClass" name="password" placeholder="Current Password" required>
 
                                 @if ($errors->has('password'))
                                     <span class="help-block">
@@ -26,10 +24,10 @@
                         </div>
 
                         <div class="form-group{{ $errors->has('password_confirmation') ? ' has-error' : '' }}">
-                            <label class="col-md-4 control-label">Confirm Password</label>
+                            <label class="col-md-4 control-label labelClass">Confirm Password</label>
 
                             <div class="col-md-6">
-                                <input type="password" class="form-control" name="password_confirmation" placeholder="Re-Enter Password" required>
+                                <input type="password" class="form-control textboxClass" name="password_confirmation" placeholder="Re-Enter Password" required>
 
                                 @if ($errors->has('password_confirmation'))
                                     <span class="help-block">
@@ -42,7 +40,5 @@
                     </form>
                 </div>
             </div>
-        </div>
     </div>
-</div>
 @endsection

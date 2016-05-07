@@ -32,7 +32,6 @@ Route::group(['middleware' =>'auth'],function(){
     Route::get('user/book/{id}/edit',['as' => 'book.edit','uses' => 'BookController@edit']);
     Route::post('user/book/{id}/edit',['as' => 'book.update','uses' => 'BookController@update']);
     Route::delete('user/book/{id}/delete',['as' => 'book.delete','uses' => 'BookController@delete']);
-    Route::post('/bookSort',['uses' => 'HomeController@book_sort','as' => 'book_sort']);
 });
 
 

@@ -18,10 +18,10 @@ class HomeController extends Controller
     {
 
         if(Auth::check()) {
-            $books = Book::where('user_id', '!=use Illuminate\Http\Request;', Auth::user()->id)->orderBy('created_at', 'desc')->paginate(3);
+            $books = Book::where('user_id', '!=', Auth::user()->id)->orderBy('created_at', 'desc')->paginate(5);
         }
         else{
-            $books = Book::orderBy('created_at','desc')->paginate(3);
+            $books = Book::orderBy('created_at','desc')->paginate(5);
         }
         //dd($books->first()->book_pics->first() == null);
         return view('index',compact('books'));
