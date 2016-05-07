@@ -25,11 +25,8 @@ class EditProfileRequest extends Request
     {
         return [
             //
-            'first_name'    => 'required|max:255|min:2',
-            'last_name'     => 'required|max:255,|min:2',
-            'start_year'    => 'required',
-            'duration'      => 'required|in:1,2,3,4',
-            'address'       => 'required|min:5|max:255',
+            'name'    => 'required|max:255|min:2',
+            'batch'    => 'required',
             'contact'       => 'required|min:10|max:12',
         ];
     }

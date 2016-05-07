@@ -94,28 +94,50 @@
 		background: linear-gradient(to bottom right, #34495e, deepskyblue, white);
 		color:white;
 	}
+	.ad-row {
+		border-radius: 20px;
+		border: 1px solid #CEECF5;
+	}
 	.ad-row:hover {
 		border-radius: 20px;
-		border: 1px solid blue;
-
+		border: 1px solid deepskyblue;
+	}
+		.post-ad-button
+	{
+	color: #fff;
+    background-color: #d9534f;
+    border-color
+	display: inline-block;
+    padding: 17px 30px;
+    margin-bottom: 0;
+    font-size: 17px;
+    font-weight: normal;
+    line-height: 1.428571;
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: middle;
+    cursor: pointer;
+    background-image: none;
+    border: 1px solid transparent;
+    border-radius: 0px;
+    margin-top: -78px;
+    margin-right: -10px;
 	}
 </style>
-
-
 
 @section('content')
 
 <div class="col-lg-10 col-md-10 col-xs-10 col-sm-8 col-lg-offset-1">
 	<br>
 	<div class="search-div row">
-		<input type="text" class="search-bar" />
+		<form action="{{ url('/search') }}" method="POST" role="form">
+		<input type="text" class="search-bar" name="search" />
+			{!! csrf_field() !!}
 		<span class="search-icon glyphicon glyphicon-search"></span>
 		<br><br>
-		<div class="radio-search">
-
-		</div>
+		<!-- <div class="radio-search"></div> -->
+		</form>
 	</div>
-
 	<div class="row">
 		{!! Form::open(['class' => 'form-inline','role' => 'form','id' => 'sort_form','route' => 'book_sort']) !!}
 		<div class="form-group">
@@ -187,143 +209,10 @@
 	</div>
 	{{--POST AD BUTTON --}}
 	<div class="col-lg-2 col-lg-offset-2">
-		<a href="#" class="btn btn-primary" data-toggle="modal" data-target="{{ Auth::check()?'#post_ad_modal':'#loginModal' }}">Post an Ad</a>
+		<a href="{{ url('/user/book/create')}}" class="btn btn-primary">Post an Ad</a>
 	</div>
 	{{--END POST AD BUTTON --}}
 </div>
-
-{{--START POST AD MODAL--}}
-<div class="modal fade" id="post_ad_modal" role="dialog">
-<div class="modal-dialog">
-	<br>
-	<div class="panel panel-default modal-content">
-		<div class="panel-heading modal-header" id="mdl-head">
-			<button type="button" class="close" data-dismiss="modal">&times;</button>
-			Post an ad
-		</div>
-		<div class="panel-body modal-body">
-			{!! Form::open(['route' => 'book.store','files' => true,'class' => 'form-horizontal','role' => 'form','id' => 'post_ad_form']) !!}
-			<div class="form-group{{ $errors->has('name') ? ' has-error' : '' }}">
-				{!! Form::label('name','Title',['class' => 'col-md-4 control-label labelId']) !!}
-				<div class="col-md-6">
-					{!! Form::text('name','',['class' => 'form-control textboxId','required' => true]) !!}
-					@if ($errors->has('name'))
-						<span class="help-block">
-							<strong class="requiredId"><span class="glyphicon glyphicon-exclamation-sign"></span>&nbsp;&nbsp;&nbsp;{{ $errors->first('name') }}</strong>
-						</span>
-					@endif
-				</div>
-			</div>
-			<div class="form-group">
-				{!! Form::label('pic','Pics',['class' => 'col-md-4 control-label labelId']) !!}
-				<div class="col-md-6">
-					@for($i=1;$i<=6;$i++)
-						{!! Form::file('pic'.$i,['class' => 'form-control textboxId']) !!}
-					@endfor
-				</div>
-			</div>
-			<div class="form-group{{ $errors->has('type') ? ' has-error' : '' }}">
-				{!! Form::label('type','Type',['class' => 'col-md-4 control-label labelId']) !!}
-				<div class="col-md-6">
-					{!! Form::select('type',['books' => 'Books','notes' => 'Notes'],'books',['class' => 'form-control textboxId']) !!}
-					@if ($errors->has('type'))
-						<span class="help-block">
-							<strong class="requiredId"><span class="glyphicon glyphicon-exclamation-sign"></span>&nbsp;&nbsp;&nbsp;{{ $errors->first('type') }}</strong>
-						</span>
-					@endif
-				</div>
-			</div>
-			<div class="form-group{{ $errors->has('author') ? ' has-error' : '' }}">
-				{!! Form::label('author','Author Name',['class' => 'col-md-4 control-label labelId']) !!}
-				<div class="col-md-6">
-					{!! Form::text('author','',['class' => 'form-control textboxId']) !!}
-					@if ($errors->has('author'))
-						<span class="help-block">
-							<strong class="requiredId"><span class="glyphicon glyphicon-exclamation-sign"></span>&nbsp;&nbsp;&nbsp;{{ $errors->first('author') }}</strong>
-						</span>
-					@endif
-				</div>
-			</div>
-			<div class="form-group{{ $errors->has('publication') ? ' has-error' : '' }}">
-				{!! Form::label('publication','Publication',['class' => 'col-md-4 control-label labelId']) !!}
-				<div class="col-md-6">
-					{!! Form::text('publication','',['class' => 'form-control textboxId']) !!}
-					@if ($errors->has('publication'))
-						<span class="help-block">
-							<strong class="requiredId"><span class="glyphicon glyphicon-exclamation-sign"></span>&nbsp;&nbsp;&nbsp;{{ $errors->first('publication') }}</strong>
-						</span>
-					@endif
-				</div>
-			</div>
-			<div class="form-group{{ $errors->has('publication_year') ? ' has-error' : '' }}">
-				{!! Form::label('publication_year','Publication Year',['class' => 'col-md-4 control-label labelId']) !!}
-				<div class="col-md-6">
-					{!! Form::number('publication_year','',['class' => 'form-control textboxId']) !!}
-					@if ($errors->has('publication_year'))
-						<span class="help-block">
-							<strong class="requiredId"><span class="glyphicon glyphicon-exclamation-sign"></span>&nbsp;&nbsp;&nbsp;{{ $errors->first('publication_year') }}</strong>
-						</span>
-					@endif
-				</div>
-			</div>
-			<div class="form-group{{ $errors->has('branch') ? ' has-error' : '' }}">
-				{!! Form::label('branch','Branch',['class' => 'col-md-4 control-label labelId']) !!}
-				<div class="col-md-6">
-					<select name='branch' class='form-control textboxId'>
-						<option value="none">None</option>
-					@foreach(App\Branch::all() as $branch)
-						<option value={{ $branch->id }}>{{ $branch->name }}</option>
-					@endforeach
-					</select>
-				</div>
-			</div>
-			<div class="form-group{{ $errors->has('year') ? ' has-error' : '' }}">
-				{!! Form::label('year','Course Year',['class' => 'col-md-4 control-label labelId']) !!}
-				<div class="col-md-6">
-					{!! Form::select('year',['none' => 'None','1st' => '1st','2nd' => '2nd','3rd' => '3rd','4th' => '4th'],'none',['class' => 'form-control textboxId']) !!}
-					@if ($errors->has('year'))
-						<span class="help-block">
-							<strong class="requiredId"><span class="glyphicon glyphicon-exclamation-sign"></span>&nbsp;&nbsp;&nbsp;{{ $errors->first('year') }}</strong>
-						</span>
-					@endif
-				</div>
-			</div>
-			<div class="form-group{{ $errors->has('description') ? ' has-error' : '' }}">
-				{!! Form::label('description','Description',['class' => 'col-md-4 control-label labelId']) !!}
-				<div class="col-md-6">
-					{!! Form::textarea('description','',['class' => 'form-control textboxId']) !!}
-					@if ($errors->has('description'))
-						<span class="help-block">
-							<strong class="requiredId"><span class="glyphicon glyphicon-exclamation-sign"></span>&nbsp;&nbsp;&nbsp;{{ $errors->first('description') }}</strong>
-						</span>
-					@endif
-				</div>
-			</div>
-			<div class="form-group{{ $errors->has('price') ? ' has-error' : '' }}">
-				{!! Form::label('price','Price',['class' => 'col-md-4 control-label labelId']) !!}
-				<div class="col-md-6">
-					{!! Form::number('price','',['class' => 'form-control textboxId','required' => true]) !!}
-					@if ($errors->has('price'))
-						<span class="help-block">
-							<strong class="requiredId"><span class="glyphicon glyphicon-exclamation-sign"></span>&nbsp;&nbsp;&nbsp;{{ $errors->first('price') }}</strong>
-						</span>
-					@endif
-				</div>
-			</div>
-			<div class="form-group">
-				<div class="col-md-6 col-md-offset-4">
-					<button id="submit_ad" type="submit" class="btn btn-primary">
-						<i class="fa fa-btn fa-user"></i>Post
-					</button>
-				</div>
-			</div>
-			{!! Form::close() !!}
-		</div>
-	</div>
-</div>
-</div>
-{{--END POST AD MODAL	--}}
-
 @stop
 
 @section('script')

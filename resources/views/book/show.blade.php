@@ -49,6 +49,13 @@
                     <h3>
                         {{ $book->user->name }}
                     </h3>
+                    @if(Auth::check())
+                    <form action="{{url('/messages/create')}}" role="form" method="POST">
+                    {!! csrf_field() !!}
+                    <input type="hidden" name="seller" value="{{ $book->user->id }}">
+                    <input type="submit" value="Send Message">
+                    </form>
+                    @endif
                 </div>
             </div>
         </div>

@@ -36,21 +36,20 @@ class HomeController extends Controller
     public function book_sort(Request $request)
     {
         //return response()->json(['html' => $request->college]);
+
+        $books = Book::orderBy('created_at', $request->order);
+
         if($request->college != 'none') {
             $college_id = (int)$request->college;
             //dd($college_id);
             $books = Book::whereHas('user',function($query) use($college_id) {
                 $query->where('college_id',$college_id);
-            })->orderBy('created_at', $request->order);
-        }
-        else {
-            $books = Book::orderBy('created_at', $request->order);
+            });
         }
 
         if(Auth::check()) {
             $books = $books->where('user_id', '!=', Auth::user()->id);
         }
-
 
         if($request->branch != 'none') {
             $branch_id = (int)$request->branch;
@@ -61,11 +60,24 @@ class HomeController extends Controller
         if($request->year != 'none') {
             $books = $books->where('year',$request->year);
         }
-
+        
         $books = $books->paginate(1);
 
         $html = view('test',compact('books'))->render();
         return response()->json(['success' => true,'html' => $html]);
 //        return view('index',compact('books'));
+    }
+
+    public function searchBook()
+    {
+        return view('search');
+    }
+
+    public function search(Request $request)
+    {
+        $query=$request->input('search');
+        $books = Book::search($query, null, true)->paginate(1);
+        //dd($search);
+        return view('index',compact('books'));
     }
 }

@@ -52,16 +52,14 @@ class AuthController extends Controller
     {
 
         return Validator::make($data, [
-            'name'    => 'required|max:255|min:2',
-            'email'         => 'required|email|max:255|unique:users',
-            'password'      => 'required|min:6|same:password_confirmation',
-            'password_confirmation' => 'required',
-            'branch_id'        => 'required|exists:branches,id',
-            'college_id'       => 'required|exists:colleges,id',
-            'start_year'    => 'required',
-            'end_year'      => 'required',
-            'address'       => 'required|min:5|max:255',
-            'contact'       => 'required|min:10|max:12',
+            'name'                   => 'required|max:255|min:2',
+            'email'                  => 'required|email|max:255|unique:users',
+            'password'               => 'required|min:6|same:password_confirmation',
+            'password_confirmation'  => 'required',
+            'branch_id'              => 'required|exists:branches,id',
+            'college_id'             => 'required|exists:colleges,id',
+            'batch'                  => 'required',
+            'contact'                => 'required|min:10|max:12',
 
         ]);
     }
@@ -74,18 +72,14 @@ class AuthController extends Controller
      */
     protected function create(array $data)
     {
-        $a=$data['name'];
-        $a=explode(" ",$a);
+
         return User::create([
-            'first_name'    => $a[0],
-            'last_name'     => $a[1],
+            'name'          => $data['name'],
             'email'         => $data['email'],
             'password'      => bcrypt($data['password']),
             'college_id'    => $data['college_id'],
             'branch_id'     => $data['branch_id'],
-            'start_year'    => $data['start_year'],
-            'end_year'      => $data['end_year'],
-            'address'       => $data['address'],
+            'batch'         => $data['batch'],
             'contact'       => $data['contact'],
         ]);
     }
