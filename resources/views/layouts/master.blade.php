@@ -287,7 +287,7 @@
 	}
 </style>
 <script>
-	$(document).ready( function()​
+	/*$(document).ready( function()​
 	{
 	    $('[data-toggle="popover"]').popover();   
 	    $('.dropdown-item').click(function (e){
@@ -301,152 +301,175 @@
                 $(this).find('input[type=checkbox]').prop("checked", true);
             }
         });
-    });
-
-
-
+    });*/
 </script>
 </head>
 <body>
 
 <header class="navbar nav-bar navbar-fixed-top">
-  <div class="container-fluid">
-    <div class="navbar-header">
-      <button type="button" class="navbar-toggle glyph-btn" data-toggle="collapse" data-target="#Navbar">
-        <span class="format-glyph glyphicon glyphicon-chevron-down"></span> 
-      </button>
-      <a class="navbar-brand" href="{{ url('/') }}">
-      	<div class="title"><font class="book">Book </font><font class="lelo">LeLow </font></div>
-      	<div class="smiley-rotate"><font class="smiley">&nbsp;:)</font></div>
-      </a>
-        <br>
+	<div class="container-fluid">
+		<div class="navbar-header">
+			<button type="button" class="navbar-toggle glyph-btn" data-toggle="collapse" data-target="#Navbar">
+				<span class="format-glyph glyphicon glyphicon-chevron-down"></span>
+			</button>
+			<a class="navbar-brand" href="{{ url('/') }}">
+				<div class="title"><font class="book">Book </font><font class="lelo">LeLow </font></div>
+				<div class="smiley-rotate"><font class="smiley">&nbsp;:)</font></div>
+			</a>
+			<br>
 
-    </div>
-    <br><br>
-    <div class="collapse navbar-collapse" id="Navbar">
+		</div>
+		<br><br>
+		<div class="collapse navbar-collapse" id="Navbar">
 
-      <ul class="nav navbar-nav">
-      
-      	<li class="dropdown dropdown-list" id="list">
-        	<a class="dropdown-toggle" data-toggle="dropdown" href="#">
-        		<font class="dropdown-text">BRANCH<span class="caret"></span></a></font>
-        	
-        	<ul class="dropdown-menu">
-          		<!-- APPLY NESTED LOOP HERE FOR DATA -->
-          		@foreach(App\Branch::all()->take(6) as $branch)
-          		<li>
-          			<div class="dropdown-item">
-          				<div class="dropdown-checkbox"><input type="checkbox" value="{{ $branch->id }}"/></div>
-          				<div class="dropdown-name"> 
-                            <a href="#" data-toggle="popover" data-trigger="hover" data-content="{{ $branch['name'] }}" data-placement="bottom">{{ $branch['name'] }}</a>
-                        </div>
-          			</div>
-          		</li>
-          		@endforeach
-				<!--END NESTED LOOP HERE FOR DATA -->
-        	    <hr style="width:100%;">
-                <li>
-                    <div class="dropdown-item">
-                        <div class="dropdown-name"> <a href="#" data-toggle="modal" data-target="#dropdownBranchModal">View More...</a></div>
-                    </div>
-                </li>
+			{!! Form::open(['route' => 'book_sort','role' => 'form','id' => 'sort_form']) !!}
+			<ul class="nav navbar-nav">
+				<li class="dropdown dropdown-list" id="list">
+					<a class="dropdown-toggle" data-toggle="dropdown" href="#">
+						<font class="dropdown-text">BRANCH<span class="caret"></span></a></font>
 
-            </ul>
-      	</li>
+					<ul class="dropdown-menu">
+						<!-- APPLY NESTED LOOP HERE FOR DATA -->
+						<li>
+							<div class="dropdown-item">
+								<div class="dropdown-checkbox">
+									<input type="radio" class="sort_elements" name="branch" value="none" checked/>
+								</div>
+								<div class="dropdown-name">
+									<a href="#" data-toggle="popover" data-trigger="hover" data-content="none" data-placement="bottom">All Branches</a>
+								</div>
+							</div>
+						</li>
+						@foreach(App\Branch::all()->take(6) as $branch)
+							<li>
+								<div class="dropdown-item">
+									<div class="dropdown-checkbox">
+										<input type="radio" class="sort_elements" name="branch" value="{{ $branch->id }}"/>
+									</div>
+									<div class="dropdown-name">
+										<a href="#" data-toggle="popover" data-trigger="hover" data-content="{{ $branch['name'] }}" data-placement="bottom">{{ $branch['name'] }}</a>
+									</div>
+								</div>
+							</li>
+							@endforeach
+									<!--END NESTED LOOP HERE FOR DATA -->
+							<hr style="width:100%;">
+							<li>
+								<div class="dropdown-item">
+									<div class="dropdown-name"> <a href="#" data-toggle="modal" data-target="#dropdownBranchModal">View More...</a></div>
+								</div>
+							</li>
+
+					</ul>
+				</li>
 
 
-        <li class="dropdown dropdown-list" id="list">
-            <a class="dropdown-toggle" data-toggle="dropdown" href="#">
-                <font class="dropdown-text">YEAR<span class="caret"></span></font>
-            </a>
-            <ul class="dropdown-menu">
-                <!-- APPLY NESTED LOOP HERE FOR DATA -->
-                <li>
-                    <div class="dropdown-item">
-                        <div class="dropdown-checkbox"><input type="checkbox"/></div>
-                        <div class="dropdown-name">1st Year</div>
-                    </div>
-                    <div class="dropdown-item">
-                        <div class="dropdown-checkbox"><input type="checkbox"/></div>
-                        <div class="dropdown-name">2nd Year</div>
-                    </div>
-                    <div class="dropdown-item">
-                        <div class="dropdown-checkbox"><input type="checkbox"/></div>
-                        <div class="dropdown-name">3rd Year</div>
-                    </div>
-                    <div class="dropdown-item">
-                        <div class="dropdown-checkbox"><input type="checkbox"/></div>
-                        <div class="dropdown-name">4th Year</div>
-                    </div>
-                </li>
-            </ul>
-        </li>
+				<li class="dropdown dropdown-list" id="list">
+					<a class="dropdown-toggle" data-toggle="dropdown" href="#">
+						<font class="dropdown-text">YEAR<span class="caret"></span></font>
+					</a>
+					<ul class="dropdown-menu">
+						<!-- APPLY NESTED LOOP HERE FOR DATA -->
+						<li>
+							<div class="dropdown-item">
+								<div class="dropdown-checkbox"><input type="radio" class="sort_elements" name="year" value="none" checked/></div>
+								<div class="dropdown-name">All Years</div>
+							</div>
+							<div class="dropdown-item">
+								<div class="dropdown-checkbox"><input type="radio" class="sort_elements" name="year" value="1st"/></div>
+								<div class="dropdown-name">1st Year</div>
+							</div>
+							<div class="dropdown-item">
+								<div class="dropdown-checkbox"><input type="radio" class="sort_elements" name="year" value="2nd"/></div>
+								<div class="dropdown-name">2nd Year</div>
+							</div>
+							<div class="dropdown-item">
+								<div class="dropdown-checkbox"><input type="radio" class="sort_elements" name="year" value="3rd"/></div>
+								<div class="dropdown-name">3rd Year</div>
+							</div>
+							<div class="dropdown-item">
+								<div class="dropdown-checkbox"><input type="radio" class="sort_elements" name="year" value="4th"/></div>
+								<div class="dropdown-name">4th Year</div>
+							</div>
+						</li>
+					</ul>
+				</li>
 
-        <li class="dropdown dropdown-list" id="list">
-            <a class="dropdown-toggle" data-toggle="dropdown" href="#">
-                <font class="dropdown-text">COLLEGE<span class="caret"></span></font>
-            </a>
-            <ul class="dropdown-menu">
-                @foreach(App\College::all()->take(6) as $college)
-                <li>
-                    <div class="dropdown-item">
-                        <div class="dropdown-checkbox"><input type="checkbox" value="{{ $college->id }}"/></div>
-                        <div class="dropdown-name">
-                            <a href="#" data-toggle="popover" data-trigger="hover" data-content="{{ $college['name'] }}" data-placement="bottom">{{ $college['name'] }}</a>
-                        </div>
-                    </div>
-                </li>
-                @endforeach
-                <hr style="width:100%;">
-                <li>
-                    <div class="dropdown-item">
-                        <div class="dropdown-name"> <a href="#" data-toggle="modal" data-target="#dropdownCollegeModal">View More...</a></div>
-                    </div>
-                </li>
-            </ul>
-        </li>
-      </ul>
-        <ul class="nav navbar-nav navbar-right">
-        <li id="list"><a class="class-a" href="{{ url('/') }}"><font class="dropdown-text"><span class="glyphicon glyphicon-home"></span> Home</font></a></li>
-@if(Auth::guest())
-        <li id="list"><a class="class-a" href="{{ url('/register') }}"><font class="dropdown-text"><span class="glyphicon glyphicon-user"></span>  Sign Up</font></a></li>
-        <li id="list" style="margin-right:125px;"><a class="class-a" href="#" data-toggle="modal" data-target="#loginModal " ><font class="dropdown-text"><span class="glyphicon glyphicon-log-in"></span>  Login</font></a></li>
-@else   
-        <li  id="list" class="dropdown dropdown-list" style="margin-right:100px;">
-        
-                <a href="#" class="dropdown-toggle" data-toggle="dropdown" style="text-decoration:none;padding-right:10px;">
-                    <font class="dropdown-text"><span class="glyphicon glyphicon-user"></span>
-                    {{ Auth::user()->name}} <b class="caret"></b></font>
-                </a>
-                <ul class="dropdown-menu">
-                    <li>
-                        <div class="dropdown-item" >
-                            <div class="dropdown-name">
-                                <a href="{{url('/user')}}"><i class="fa fa-fw fa-user"></i>My Profile</a>
-                            </div>
-                        </div>
-                    </li>
-                    <li>
-                        <div class="dropdown-item" >
-                            <div class="dropdown-name">
-                                <a href="#"><i class="fa fa-fw fa-envelope"></i>My Ads</a>
-                            </div>
-                        </div>
-                    </li>
-                    <li class="divider"></li>
-                    <li>
-                        <div class="dropdown-item" >
-                            <div class="dropdown-name">
-                                <a href="{{ url('/logout') }}"><i class="fa fa-fw fa-power-off"></i> Log Out</a>
-                            </div>
-                        </div>
-                    </li>
-                </ul>
-        </li>
-@endif
-        </ul>
-    </div>
-  </div>
+				<li class="dropdown dropdown-list" id="list">
+					<a class="dropdown-toggle" data-toggle="dropdown" href="#">
+						<font class="dropdown-text">COLLEGE<span class="caret"></span></font>
+					</a>
+					<ul class="dropdown-menu">
+						<li>
+							<div class="dropdown-item">
+								<div class="dropdown-checkbox"><input type="radio" class="sort_elements" name="college" value="none" checked/></div>
+								<div class="dropdown-name">
+									<a href="#" data-toggle="popover" data-trigger="hover" data-content="none" data-placement="bottom">All Colleges</a>
+								</div>
+							</div>
+						</li>
+						@foreach(App\College::all()->take(6) as $college)
+							<li>
+								<div class="dropdown-item">
+									<div class="dropdown-checkbox"><input type="radio" class="sort_elements" name="college" value="{{ $college->id }}"/></div>
+									<div class="dropdown-name">
+										<a href="#" data-toggle="popover" data-trigger="hover" data-content="{{ $college['name'] }}" data-placement="bottom">{{ $college['name'] }}</a>
+									</div>
+								</div>
+							</li>
+						@endforeach
+						<hr style="width:100%;">
+						<li>
+							<div class="dropdown-item">
+								<div class="dropdown-name"> <a href="#" data-toggle="modal" data-target="#dropdownCollegeModal">View More...</a></div>
+							</div>
+						</li>
+					</ul>
+				</li>
+			</ul>
+			{!! Form::close() !!}
+
+			<ul class="nav navbar-nav navbar-right">
+				<li id="list"><a class="class-a" href="{{ url('/') }}"><font class="dropdown-text"><span class="glyphicon glyphicon-home"></span> Home</font></a></li>
+				@if(Auth::guest())
+					<li id="list"><a class="class-a" href="{{ url('/register') }}"><font class="dropdown-text"><span class="glyphicon glyphicon-user"></span>  Sign Up</font></a></li>
+					<li id="list" style="margin-right:125px;"><a class="class-a" href="#" data-toggle="modal" data-target="#loginModal " ><font class="dropdown-text"><span class="glyphicon glyphicon-log-in"></span>  Login</font></a></li>
+				@else
+					<li  id="list" class="dropdown dropdown-list" style="margin-right:100px;">
+
+						<a href="#" class="dropdown-toggle" data-toggle="dropdown" style="text-decoration:none;padding-right:10px;">
+							<font class="dropdown-text"><span class="glyphicon glyphicon-user"></span>
+								{{ Auth::user()->name}} <b class="caret"></b></font>
+						</a>
+						<ul class="dropdown-menu">
+							<li>
+								<div class="dropdown-item" >
+									<div class="dropdown-name">
+										<a href="{{url('/user')}}"><i class="fa fa-fw fa-user"></i>My Profile</a>
+									</div>
+								</div>
+							</li>
+							<li>
+								<div class="dropdown-item" >
+									<div class="dropdown-name">
+										<a href="#"><i class="fa fa-fw fa-envelope"></i>My Ads</a>
+									</div>
+								</div>
+							</li>
+							<li class="divider"></li>
+							<li>
+								<div class="dropdown-item" >
+									<div class="dropdown-name">
+										<a href="{{ url('/logout') }}"><i class="fa fa-fw fa-power-off"></i> Log Out</a>
+									</div>
+								</div>
+							</li>
+						</ul>
+					</li>
+				@endif
+			</ul>
+		</div>
+	</div>
 </header>
 
 
@@ -528,11 +551,11 @@
                     <!-- heading from database --> Select Branch
                 </div>
                 <div class="panel-body modal-body">
-                    <select class="form-control textboxClass">
-                        <option>Select <!-- name from database --></option>
+                    <select class="form-control textboxClass sort_elements" name="branch">
+                        <option value="none">Select <!-- name from database --></option>
                         <!-- loop here -->
                         @foreach(App\Branch::all() as $branch)
-                            <option>{{ $branch->name }}</option>
+                            <option value='{{ $branch->id }}'>{{ $branch->name }}</option>
                         @endforeach
                         <!-- end loop here -->
                     </select>
@@ -553,11 +576,11 @@
                     <!-- heading from database --> Select College
                 </div>
                 <div class="panel-body modal-body">
-                    <select class="form-control textboxClass">
-                        <option>Select <!-- name from database --></option>
+                    <select class="form-control textboxClass sort_elements" name="college">
+                        <option value="none">Select <!-- name from database --></option>
                         <!-- loop here -->
                         @foreach(App\College::all() as $college)
-                            <option>{{ $college['name'] }}</option>
+                            <option value="{{ $college->id }}">{{ $college['name'] }}</option>
                         @endforeach
                         <!-- end loop here -->
                     </select>
@@ -576,20 +599,31 @@
 </div>
 
 <script>
-	$(document).ready( function()
-	{
-		$('[data-toggle="popover"]').popover();
-		// $('#loginModal').modal();
-		sortBooksList();
-	});
 </script>
 @yield('script')
 </body>
 </html>
-@if($errors->any())
 <script type="text/javascript">
     $(document).ready(function(){
-    $("#loginModal").modal('show');
+		@if($errors->any())
+				$("#loginModal").modal('show');
+		@endif
+
+		$('[data-toggle="popover"]').popover();
+		// $('#loginModal').modal();
+
+		sortBooksList();
+
+		$('.dropdown-item').click(function (e){
+			var cur = $(this).find('input[type=checkbox]');
+			if(cur.prop("checked"))
+			{
+				$(this).find('input[type=checkbox]').prop("checked", false);
+			}
+			else
+			{
+				$(this).find('input[type=checkbox]').prop("checked", true);
+			}
+		});
 });
 </script>
-@endif

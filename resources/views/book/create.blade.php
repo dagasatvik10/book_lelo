@@ -57,7 +57,7 @@
             </div>
             <div class="form-group">
                 <div class="col-md-4">{!! Form::label('year','Course Year',['class' => 'labelClass']) !!}</div>
-                <div class="col-md-10">{!! Form::select('year',['1','2','3','4'],['class' => 'form-control textboxClass']) !!}</div>
+                <div class="col-md-10">{!! Form::select('year',['1st','2nd','3rd','4th'],['class' => 'form-control textboxClass']) !!}</div>
             </div>
             <div class="form-group">
                 <div class="col-md-4">{!! Form::label('no_of_pages','No. of Pages',['class' => 'labelClass']) !!}</div>

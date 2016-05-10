@@ -1,18 +1,8 @@
 <?php
 
-/*
-|--------------------------------------------------------------------------
-| Application Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register all of the routes for an application.
-| It's a breeze. Simply tell Laravel the URIs it should respond to
-| and give it the controller to call when that URI is requested.
-|
-*/
 Route::group(['middleware' => 'web'],function(){
     Route::auth();
-    Route::get('/',['uses'  => 'HomeController@index','as' => 'home']);
+    Route::get('/{search?}',['uses'  => 'HomeController@index','as' => 'home']);
     Route::get('book/{id}',['uses' => 'HomeController@show','as' => 'show']);
     Route::post('search',['uses' => 'HomeController@search','as' => 'search']);
     Route::post('/bookSort',['uses' => 'HomeController@book_sort','as' => 'book_sort']);
@@ -30,7 +20,6 @@ Route::group(['middleware' =>'auth'],function(){
     Route::get('user/book/create',['as' => 'book.create','uses' => 'BookController@create']);
     Route::post('user/book',['as' => 'book.store','uses' => 'BookController@store']);
     Route::get('user/book',['as' => 'book.index','uses' => 'BookController@index']);
-    //Route::get('user/book/{id}',['as' => 'book.show','uses' => 'BookController@show']);
     Route::get('user/book/{id}/edit',['as' => 'book.edit','uses' => 'BookController@edit']);
     Route::post('user/book/{id}/edit',['as' => 'book.update','uses' => 'BookController@update']);
     Route::delete('user/book/{id}/delete',['as' => 'book.delete','uses' => 'BookController@delete']);

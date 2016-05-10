@@ -9,21 +9,17 @@ use Illuminate\Support\Facades\Auth;
 
 class HomeController extends Controller
 {
-    /**
-     * Show the application dashboard.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index()
+    public function index($search = null)
     {
+        $books = Book::latest('created_at');
 
-        if(Auth::check()) {
-            $books = Book::where('user_id', '!=', Auth::user()->id)->orderBy('created_at', 'desc');
+        if($search == null) {
+            $books = $books->authUserSort();
         }
-        else{
-            $books = Book::orderBy('created_at','desc');
+        else {
+            $books = $books->search($search, null, true);
         }
-        //dd($books->first()->book_pics->first() == null);
+
         $books = $books->paginate(3);
 
         return view('index',compact('books'));
@@ -37,14 +33,16 @@ class HomeController extends Controller
 
     public function book_sort(Request $request)
     {
-        //return response()->json(['html' => $request->college]);
+        $books = Book::latest('created_at')
+            ->branchSort($request->branch)
+            ->collegeSort($request->college)
+            ->yearSort($request->year)
+            ->authUserSort();
 
-        $books = Book::orderBy('created_at', $request->order);
-
-        if($request->college != 'none') {
+        /*if($request->college != 'none') {
             $college_id = (int)$request->college;
             //dd($college_id);
-            $books = Book::whereHas('user',function($query) use($college_id) {
+            $books = $books->whereHas('user',function($query) use($college_id) {
                 $query->where('college_id',$college_id);
             });
         }
@@ -54,33 +52,28 @@ class HomeController extends Controller
         }
 
         if($request->branch != 'none') {
-            $branch_id = (int)$request->branch;
-            //dd($branch_id);
-            $books = $books->where('branch_id',$branch_id);
+            //foreach($request->input('branch') as $branch_id){
+            $books = $books->branchSort($request->branch);
         }
 
         if($request->year != 'none') {
             $books = $books->where('year',$request->year);
-        }
+        }*/
         
-        $books = $books->paginate(1);
+        $books = $books->paginate(3);
 
         $html = view('test',compact('books'))->render();
-        return response()->json(['success' => true,'html' => $html]);
-//        return view('index',compact('books'));
-    }
-
-    public function searchBook()
-    {
-        return view('search');
+        return response()->json(['success' => $books,'html' => $html]);
+        //return view('index',compact('books'));
     }
 
     public function search(Request $request)
     {
-        $query = $request->input('search');
-        $books = Book::search($query, null, true)->paginate(1);
-        //dd($search);
-        return view('index',compact('books'));
+        $search = $request->input('search');
+        //$books = Book::search($query, null, true)->paginate(1);
+
+        //return view('index',compact('books'));
+        return redirect()->route('home',['search' => $search]);
     }
 
 }
