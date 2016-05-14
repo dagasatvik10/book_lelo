@@ -16,7 +16,6 @@ class HomeController extends Controller
      */
     public function index()
     {
-
         if(Auth::check()) {
             $books = Book::where('user_id', '!=', Auth::user()->id)->orderBy('created_at', 'desc');
         }

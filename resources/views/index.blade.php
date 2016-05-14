@@ -117,21 +117,22 @@
 <div class="col-lg-12 col-md-12 col-xs-12 col-sm-12 top-holder" style="width:100%; margin-left:0;">
 	<br>
 	<div class="search-div col-lg-9 col-md-9 col-sm-9 col-xs-12">
-		{!! Form::open(['route' => 'search']) !!}
-		<div class="col-md-11 col-xs-11 col-lg-11 col-sm-11"><input type="text" class="search-bar" placeholder="Search Your Books Here!"/></div>
-		<div class="col-md-1 col-xs-1 col-lg-1 col-sm-1"><span class="search-icon glyphicon glyphicon-search"></span></div>
-		<br>
-		{!! Form::close() !!}}
+		<form action="{{ url('/search') }}" method="POST" role="form">
+	{!! csrf_field() !!}
+	<div class="form-group">
+	<input type="text" name="search" placeholder="Search Book">
+</form>
 	</div>
 
 	<div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
 		@if(Auth::check())
-			<center><a href="{{ url('/user/book/create') }}"><button type="button" class="post-ad-button">POST FREE AD!</button></a></center>
+			<center><a href="{{ url('/user/book/create') }}"><button type="button" class="post-ad-button">Sell A Book!</button></a></center>
 		@else
 			<center><a class="class-a" href="#" data-toggle="modal" data-target="#loginModal "><button type="button" class="post-ad-button">POST FREE AD!</button></a></center>
 		@endif
 	</div>
 </div>
+
 <!-- /search div containing search bar and post ad button -->
 
 
@@ -266,8 +267,48 @@
                 </div>
 
 </div>
-@endif
+@else
+<div class="col-lg-4 col-sm-4 col-md-4 col-xs-12" style="margin-top:115px;">
+	<div class="headingClass">
+		Suggest Your Book
+	</div>
+  <div class="panel-body panelBodyClass">
+  <form class="form-horizontal" role="form" method="POST" action="{{ url('/suggestion') }}">
+   {!! csrf_field() !!}
+  <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
+  	<label class="col-md-6 labelClass">Book Name</label>
+        <div class="col-md-12">
+         <input type="text" class="form-control textboxClass" name="name" value="{{ old('name') }}">
+           @if ($errors->has('name'))
+              <span class="help-block">
+                <strong class="requiredClass"><span class="glyphicon glyphicon-exclamation-sign"></span>&nbsp;&nbsp;&nbsp;{{ $errors->first('name') }}</strong>
+              </span>
+          @endif
+        </div>
+  </div>
+  <div class="form-group{{ $errors->has('author') ? ' has-error' : '' }}">
+  	<label class="col-md-6 labelClass">Author</label>
+        <div class="col-md-12">
+         <input type="text" class="form-control textboxClass" name="author" value="{{ old('author') }}">
+           @if ($errors->has('author'))
+              <span class="help-block">
+                <strong class="requiredClass"><span class="glyphicon glyphicon-exclamation-sign"></span>&nbsp;&nbsp;&nbsp;{{ $errors->first('author') }}</strong>
+              </span>
+          @endif
+        </div>
+  </div>
 
+   <div class="form-group">
+     <div class="col-md-6 col-md-offset-1">
+        <button type="submit" class="btn submit-button">
+           <i class="fa fa-btn fa-sign-in"></i>Submit
+        </button>
+     </div>
+</div>
+  </form>
+  </div>
+ </div>
+ @endif
 @stop
 
 @section('script')

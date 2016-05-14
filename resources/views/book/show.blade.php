@@ -163,7 +163,12 @@
                         <font class="written-data" style="font-size:22px;"><br><font class="heads">Publication Year :</font> {{ $book->publication_year }}</font>
                         <font class="written-data" style="font-size:29px;"><br>Rs {{ $book->price }}/-</font>
                         <p><font class="written-data" style="font-size:16px;"><br>{{ $book->description }}</font>
-                        </p>                      
+                        </p>
+                        <form action="{{url('/messages/create')}}" role="form" method="POST">
+                    {!! csrf_field() !!}
+                    <input type="hidden" name="seller" value="{{ $book->user->id }}">
+                    <input type="submit" value="Send Message">
+                    </form>                      
                 </div>
             </div>
             </div>
@@ -213,16 +218,14 @@
                     <h3>
                         {{ $book->user->name }}
                     </h3>
-                    @if(Auth::check())
-                    <form action="{{url('/messages/create')}}" role="form" method="POST">
+                  
+                </div>
+            </div>
+  <form action="{{url('/messages/create')}}" role="form" method="POST">
                     {!! csrf_field() !!}
                     <input type="hidden" name="seller" value="{{ $book->user->id }}">
                     <input type="submit" value="Send Message">
                     </form>
-                    @endif
-                </div>
-            </div>
-
 
 	<div  style="background-color:red;" class="col-lg-10 col-md-10 col-sm-10 col-xs-10 col-lg-offset-1 col-md-offset-1 col-sm-offset-1">
                     <div>

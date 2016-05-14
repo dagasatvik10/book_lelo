@@ -1,7 +1,7 @@
 @extends('layouts.messagelayout')
 
 @section('content')
-<h1>Create a new message</h1>
+<h1>Send message</h1>
 {!! Form::open(['route' => 'messages.store']) !!}
 <div class="col-md-6">
     <!-- Subject Form Input -->

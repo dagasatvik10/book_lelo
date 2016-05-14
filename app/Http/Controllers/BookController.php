@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Book;
 use App\Book_pic;
 use App\Http\Requests\BookRequest;
+use App\Http\Requests\SuggestionRequest;
 use App\User;
 
 use App\Http\Requests;
@@ -116,5 +117,25 @@ class BookController extends Controller
         $book->delete();
 
         return redirect()->route('book.index');
+    }
+
+    public function suggestion(SuggestionRequest $request)
+    {
+        $book=new Book;
+        $book->name = $request->name;
+        $book->author = $request->author;
+        $book->year = \Carbon\Carbon::now()->format('Y')-Auth::user()->batch;   
+        $book->branch_id = Auth::user()->branch['id'];
+        $book->publication = 0;
+        $book->publication_year = 0;
+        $book->type = 'books';
+        $book->need = 'sell';
+        $book->no_of_pages = 0;
+        $book->description = 'suggestion';
+        $book->price = 0;
+        $book->user()->associate(Auth::user());
+        $book->save();
+
+        return redirect()->route('home');
     }
 }

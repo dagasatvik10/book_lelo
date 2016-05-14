@@ -1,0 +1,33 @@
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>JQuery Demo</title>
+	<script src="js/jquery.min.js" type="text/javascript" charset="utf-8" async defer>
+	</script>
+	<script>
+	$('#butt').click(function() {
+		/* Act on the event */
+		var value = $('#x').attr('value');
+		$('#x').toggle('fast');
+
+		if(value=='Hide')
+		{
+			$('#x').attr('value', 'Show');
+		}
+		else if(value=='Show')
+		{
+			$('#x').attr('value', 'Hide');
+		}
+	});
+	</script>
+</head>
+
+<body>
+	
+	<button type="button" class="btn btn-primary" value="Press" id="butt">Press</button>
+
+	<div id="x">
+	<h3>This is just a test</h3>
+	</div>
+</body>
+</html>
