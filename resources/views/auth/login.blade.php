@@ -3,7 +3,7 @@
 @section('content')
     <div class="row" style="margin-top:50px;">
         <div class="col-md-8 col-md-offset-2">
-            <div class="written-data" style="text-align: center; font-size: 20px;">You must be logged in to post a free ad!</div>
+            {{-- <div class="written-data" style="text-align: center; font-size: 20px;">You must be logged in to post a free ad!</div> --}}
             <br>
             <div class="panel panel-default">
                 <div class="headingClass">Login</div>

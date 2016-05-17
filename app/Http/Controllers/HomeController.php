@@ -11,15 +11,14 @@ class HomeController extends Controller
 {
     public function index($search = null)
     {
-        if($search == null) {
-            $books = Book::orderBy('created_at', RequestFacade::input('order'))
-                ->branchSort(RequestFacade::input('branch'))
-                ->collegeSort(RequestFacade::input('college'))
-                ->yearSort(RequestFacade::input('year'))
-                ->authUserSort();
-        }
-        else {
-            $books = Book::search($search, null, true);
+        $books = Book::orderBy('created_at', RequestFacade::input('order'))
+            ->branchSort(RequestFacade::input('branch'))
+            ->collegeSort(RequestFacade::input('college'))
+            ->yearSort(RequestFacade::input('year'))
+            ->authUserSort();
+
+        if($search != null) {
+            $books = $books->search($search, null, true);
         }
 
         $books = $books->paginate(1);
@@ -38,7 +37,7 @@ class HomeController extends Controller
         return view('book.show',compact('book'));
     }
 
-    public function book_sort(Request $request)
+    /*public function book_sort(Request $request)
     {
         $books = Book::orderBy('created_at',$request->order)
             ->branchSort($request->branch)
@@ -46,7 +45,7 @@ class HomeController extends Controller
             ->yearSort($request->year)
             ->authUserSort();
 
-        /*if($request->college != 'none') {
+        if($request->college != 'none') {
             $college_id = (int)$request->college;
             //dd($college_id);
             $books = $books->whereHas('user',function($query) use($college_id) {
@@ -65,7 +64,7 @@ class HomeController extends Controller
 
         if($request->year != 'none') {
             $books = $books->where('year',$request->year);
-        }*/
+        }
 
         $books = $books->paginate(1);
 
@@ -74,11 +73,11 @@ class HomeController extends Controller
             return response()->json(['success' => $books,'html' => $html]);
         }
 
-        /*$html = view('test',compact('books'))->render();
-        return response()->json(['success' => $books,'html' => $html]);*/
+        //$html = view('test',compact('books'))->render();
+        //return response()->json(['success' => $books,'html' => $html]);
         //return redirect('/');
         return view('index',compact('books'));
-    }
+    }*/
 
     public function search(Request $request)
     {

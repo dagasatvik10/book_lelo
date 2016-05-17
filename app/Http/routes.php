@@ -23,10 +23,13 @@ Route::group(['middleware' =>'auth'],function(){
     Route::get('user/book/{id}/edit',['as' => 'book.edit','uses' => 'BookController@edit']);
     Route::post('user/book/{id}/edit',['as' => 'book.update','uses' => 'BookController@update']);
     Route::delete('user/book/{id}/delete',['as' => 'book.delete','uses' => 'BookController@delete']);
+
+    //Book Suggestion Route
+    Route::post('/suggestion',['as' => 'suggestion','uses' => 'BookController@suggestion']);
 });
 
 
-Route::group(['prefix' => 'messages'], function () {
+Route::group(['prefix' => 'messages','middleware' =>'auth'], function () {
     Route::get('/', ['as' => 'messages', 'uses' => 'MessagesController@index']);
     Route::post('create', ['as' => 'messages.create', 'uses' => 'MessagesController@create']);
     Route::post('/', ['as' => 'messages.store', 'uses' => 'MessagesController@store']);

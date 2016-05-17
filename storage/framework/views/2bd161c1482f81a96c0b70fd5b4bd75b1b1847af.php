@@ -127,12 +127,13 @@
 
 	<div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
 		<?php if(Auth::check()): ?>
-			<center><a href="<?php echo e(url('/user/book/create')); ?>"><button type="button" class="post-ad-button">POST FREE AD!</button></a></center>
+			<center><a href="<?php echo e(url('/user/book/create')); ?>"><button type="button" class="post-ad-button">Sell A Book!</button></a></center>
 		<?php else: ?>
 			<center><a class="class-a" href="#" data-toggle="modal" data-target="#loginModal "><button type="button" class="post-ad-button">POST FREE AD!</button></a></center>
 		<?php endif; ?>
 	</div>
 </div>
+
 <!-- /search div containing search bar and post ad button -->
 
 <div class="row">
@@ -269,8 +270,49 @@
                     </form>
                 </div>
 </div>
-<?php endif; ?>
+<?php else: ?>
+<div class="col-lg-4 col-sm-4 col-md-4 col-xs-12" style="margin-top:115px;">
+	<div class="headingClass">
+		Suggest Your Book
+	</div>
+  <div class="panel-body panelBodyClass">
+  <form class="form-horizontal" role="form" method="POST" action="<?php echo e(url('/suggestion')); ?>">
+   <?php echo csrf_field(); ?>
 
+  <div class="form-group<?php echo e($errors->has('email') ? ' has-error' : ''); ?>">
+  	<label class="col-md-6 labelClass">Book Name</label>
+        <div class="col-md-12">
+         <input type="text" class="form-control textboxClass" name="name" value="<?php echo e(old('name')); ?>">
+           <?php if($errors->has('name')): ?>
+              <span class="help-block">
+                <strong class="requiredClass"><span class="glyphicon glyphicon-exclamation-sign"></span>&nbsp;&nbsp;&nbsp;<?php echo e($errors->first('name')); ?></strong>
+              </span>
+          <?php endif; ?>
+        </div>
+  </div>
+  <div class="form-group<?php echo e($errors->has('author') ? ' has-error' : ''); ?>">
+  	<label class="col-md-6 labelClass">Author</label>
+        <div class="col-md-12">
+         <input type="text" class="form-control textboxClass" name="author" value="<?php echo e(old('author')); ?>">
+           <?php if($errors->has('author')): ?>
+              <span class="help-block">
+                <strong class="requiredClass"><span class="glyphicon glyphicon-exclamation-sign"></span>&nbsp;&nbsp;&nbsp;<?php echo e($errors->first('author')); ?></strong>
+              </span>
+          <?php endif; ?>
+        </div>
+  </div>
+
+   <div class="form-group">
+     <div class="col-md-6 col-md-offset-1">
+        <button type="submit" class="btn submit-button">
+           <i class="fa fa-btn fa-sign-in"></i>Submit
+        </button>
+     </div>
+</div>
+  </form>
+  </div>
+ </div>
+ <?php endif; ?>
 <?php $__env->stopSection(); ?>
 
 <?php $__env->startSection('script'); ?>
