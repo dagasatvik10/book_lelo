@@ -3,12 +3,12 @@
 <head>
 	<meta charset="UTF-8">
 	<title>BookLeLow</title>
-    <link rel="stylesheet" type="text/css" href="{{ asset('css/bootstrap.min.css') }}" />
-	{{--<script src="{{ asset('js/jquery.min.js') }}"></script>--}}
+    <link rel="stylesheet" type="text/css" href="<?php echo e(asset('css/bootstrap.min.css')); ?>" />
+	<?php /*<script src="<?php echo e(asset('js/jquery.min.js')); ?>"></script>*/ ?>
 
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
 
-	<script src="{{ asset('js/bootstrap.min.js') }}"></script>
+	<script src="<?php echo e(asset('js/bootstrap.min.js')); ?>"></script>
 
     <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
 <style type="text/css">
@@ -315,7 +315,7 @@
 			<button type="button" class="navbar-toggle glyph-btn" data-toggle="collapse" data-target="#Navbar">
 				<span class="format-glyph glyphicon glyphicon-chevron-down"></span>
 			</button>
-			<a class="navbar-brand" href="{{ url('/') }}">
+			<a class="navbar-brand" href="<?php echo e(url('/')); ?>">
 				<div class="title"><font class="book">Book </font><font class="lelo">LeLow </font></div>
 				<div class="smiley-rotate"><font class="smiley">&nbsp;:)</font></div>
 			</a>
@@ -325,7 +325,8 @@
 		<br><br>
 		<div class="collapse navbar-collapse" id="Navbar">
 
-			{{--{!! Form::open(['route' => 'book_sort','role' => 'form','id' => 'sort_form']) !!}
+			<?php /*<?php echo Form::open(['route' => 'book_sort','role' => 'form','id' => 'sort_form']); ?>
+
 			<ul class="nav navbar-nav">
 				<li class="dropdown dropdown-list" id="list">
 					<a class="dropdown-toggle" data-toggle="dropdown" href="#">
@@ -343,18 +344,18 @@
 								</div>
 							</div>
 						</li>
-						@foreach(App\Branch::all()->take(6) as $branch)
+						<?php foreach(App\Branch::all()->take(6) as $branch): ?>
 							<li>
 								<div class="dropdown-item">
 									<div class="dropdown-checkbox">
-										<input type="radio" class="sort_elements" name="branch" value="{{ $branch->id }}"/>
+										<input type="radio" class="sort_elements" name="branch" value="<?php echo e($branch->id); ?>"/>
 									</div>
 									<div class="dropdown-name">
-										<a href="#" data-toggle="popover" data-trigger="hover" data-content="{{ $branch->name }}" data-placement="bottom">{{ $branch->name }}</a>
+										<a href="#" data-toggle="popover" data-trigger="hover" data-content="<?php echo e($branch->name); ?>" data-placement="bottom"><?php echo e($branch->name); ?></a>
 									</div>
 								</div>
 							</li>
-						@endforeach
+						<?php endforeach; ?>
 									<!--END NESTED LOOP HERE FOR DATA -->
 							<hr style="width:100%;">
 							<li>
@@ -411,16 +412,16 @@
 								</div>
 							</div>
 						</li>
-						@foreach(App\College::all()->take(6) as $college)
+						<?php foreach(App\College::all()->take(6) as $college): ?>
 							<li>
 								<div class="dropdown-item">
-									<div class="dropdown-checkbox"><input type="radio" class="sort_elements" name="college" value="{{ $college->id }}"/></div>
+									<div class="dropdown-checkbox"><input type="radio" class="sort_elements" name="college" value="<?php echo e($college->id); ?>"/></div>
 									<div class="dropdown-name">
-										<a href="#" data-toggle="popover" data-trigger="hover" data-content="{{ $college->name }}" data-placement="bottom">{{ $college->name }}</a>
+										<a href="#" data-toggle="popover" data-trigger="hover" data-content="<?php echo e($college->name); ?>" data-placement="bottom"><?php echo e($college->name); ?></a>
 									</div>
 								</div>
 							</li>
-						@endforeach
+						<?php endforeach; ?>
 						<hr style="width:100%;">
 						<li>
 							<div class="dropdown-item">
@@ -430,25 +431,25 @@
 					</ul>
 				</li>
 			</ul>
-			{!! Form::close() !!}--}}
+			<?php echo Form::close(); ?>*/ ?>
 
 			<ul class="nav navbar-nav navbar-right">
-				<li id="list"><a class="class-a" href="{{ url('/') }}"><font class="dropdown-text"><span class="glyphicon glyphicon-home"></span> Home</font></a></li>
-				@if(Auth::guest())
-					<li id="list"><a class="class-a" href="{{ url('/register') }}"><font class="dropdown-text"><span class="glyphicon glyphicon-user"></span>  Sign Up</font></a></li>
+				<li id="list"><a class="class-a" href="<?php echo e(url('/')); ?>"><font class="dropdown-text"><span class="glyphicon glyphicon-home"></span> Home</font></a></li>
+				<?php if(Auth::guest()): ?>
+					<li id="list"><a class="class-a" href="<?php echo e(url('/register')); ?>"><font class="dropdown-text"><span class="glyphicon glyphicon-user"></span>  Sign Up</font></a></li>
 					<li id="list" style="margin-right:125px;"><a class="class-a" href="#" data-toggle="modal" data-target="#loginModal " ><font class="dropdown-text"><span class="glyphicon glyphicon-log-in"></span>  Login</font></a></li>
-				@else
+				<?php else: ?>
 					<li  id="list" class="dropdown dropdown-list" style="margin-right:100px;">
 
 						<a href="#" class="dropdown-toggle" data-toggle="dropdown" style="text-decoration:none;padding-right:10px;">
 							<font class="dropdown-text"><span class="glyphicon glyphicon-user"></span>
-								{{ Auth::user()->name}} <b class="caret"></b></font>
+								<?php echo e(Auth::user()->name); ?> <b class="caret"></b></font>
 						</a>
 						<ul class="dropdown-menu">
 							<li>
 								<div class="dropdown-item" >
 									<div class="dropdown-name">
-										<a href="{{url('/user')}}"><i class="fa fa-fw fa-user"></i>My Profile</a>
+										<a href="<?php echo e(url('/user')); ?>"><i class="fa fa-fw fa-user"></i>My Profile</a>
 									</div>
 								</div>
 							</li>
@@ -463,20 +464,20 @@
 							<li>
 								<div class="dropdown-item" >
 									<div class="dropdown-name">
-										<a href="{{ url('/logout') }}"><i class="fa fa-fw fa-power-off"></i> Log Out</a>
+										<a href="<?php echo e(url('/logout')); ?>"><i class="fa fa-fw fa-power-off"></i> Log Out</a>
 									</div>
 								</div>
 							</li>
 						</ul>
 					</li>
-				@endif
+				<?php endif; ?>
 			</ul>
 		</div>
 	</div>
 </header>
 
 
-{{--START LOGIN MODAL--}}
+<?php /*START LOGIN MODAL*/ ?>
 
 <div class="modal fade" id="loginModal" role="dialog">
         <div class="modal-dialog">
@@ -486,33 +487,34 @@
                     Login
                 </div>
                 <div class="panel-body modal-body">
-                    <form class="form-horizontal" role="form" method="POST" action="{{ url('/login') }}">
-                        {!! csrf_field() !!}
-                        <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
+                    <form class="form-horizontal" role="form" method="POST" action="<?php echo e(url('/login')); ?>">
+                        <?php echo csrf_field(); ?>
+
+                        <div class="form-group<?php echo e($errors->has('email') ? ' has-error' : ''); ?>">
                             <label class="col-md-4 control-label labelClass">E-Mail Address</label>
 
                             <div class="col-md-6">
-                                <input type="email" class="form-control textboxClass" name="email" value="{{ old('email') }}">
+                                <input type="email" class="form-control textboxClass" name="email" value="<?php echo e(old('email')); ?>">
 
-                                @if ($errors->has('email'))
+                                <?php if($errors->has('email')): ?>
                                     <span class="help-block">
-                                        <strong class="requiredClass"><span class="glyphicon glyphicon-exclamation-sign"></span>&nbsp;{{ $errors->first('email') }}</strong>
+                                        <strong class="requiredClass"><span class="glyphicon glyphicon-exclamation-sign"></span>&nbsp;<?php echo e($errors->first('email')); ?></strong>
                                     </span>
-                                @endif
+                                <?php endif; ?>
                             </div>
                         </div>
 
-                        <div class="form-group{{ $errors->has('password') ? ' has-error' : '' }}">
+                        <div class="form-group<?php echo e($errors->has('password') ? ' has-error' : ''); ?>">
                             <label class="col-md-4 control-label labelClass">Password</label>
 
                             <div class="col-md-6">
                                 <input type="password" class="form-control textboxClass" name="password">
 
-                                @if ($errors->has('password'))
+                                <?php if($errors->has('password')): ?>
                                     <span class="help-block">
-                                        <strong class="requiredClass"><span class="glyphicon glyphicon-exclamation-sign"></span>&nbsp;&nbsp;&nbsp;{{ $errors->first('password') }}</strong>
+                                        <strong class="requiredClass"><span class="glyphicon glyphicon-exclamation-sign"></span>&nbsp;&nbsp;&nbsp;<?php echo e($errors->first('password')); ?></strong>
                                     </span>
-                                @endif
+                                <?php endif; ?>
                             </div>
                         </div>
 
@@ -532,7 +534,7 @@
                                     <i class="fa fa-btn fa-sign-in"></i>Login
                                 </button>
 
-                                <a class="forgot" href="{{ url('/password/reset') }}">Forgot Your Password?</a>
+                                <a class="forgot" href="<?php echo e(url('/password/reset')); ?>">Forgot Your Password?</a>
                             </div>
                         </div>
                     </form>
@@ -541,9 +543,9 @@
         </div>
     </div>
 
-    {{--END LOGIN MODAL--}}
+    <?php /*END LOGIN MODAL*/ ?>
 
-    {{--START DROPDOWN (Branch) VIEW MORE MODAL--}}
+    <?php /*START DROPDOWN (Branch) VIEW MORE MODAL*/ ?>
 
     <div class="modal fade" id="dropdownBranchModal" role="dialog">
         <div class="modal-dialog">
@@ -557,9 +559,9 @@
                     <select class="form-control textboxClass sort_elements" name="branch">
                         <option value="none">Select <!-- name from database --></option>
                         <!-- loop here -->
-                        @foreach(App\Branch::all() as $branch)
-                            <option value='{{ $branch->id }}'>{{ $branch->name }}</option>
-                        @endforeach
+                        <?php foreach(App\Branch::all() as $branch): ?>
+                            <option value='<?php echo e($branch->id); ?>'><?php echo e($branch->name); ?></option>
+                        <?php endforeach; ?>
                         <!-- end loop here -->
                     </select>
                 </div>
@@ -567,8 +569,8 @@
         </div>
     </div>
 
-    {{--END DROPDOWN (Branch) VIEW MORE MODAL--}} 
-    {{--START DROPDOWN (College) VIEW MORE MODAL--}}
+    <?php /*END DROPDOWN (Branch) VIEW MORE MODAL*/ ?> 
+    <?php /*START DROPDOWN (College) VIEW MORE MODAL*/ ?>
 
     <div class="modal fade" id="dropdownCollegeModal" role="dialog">
         <div class="modal-dialog">
@@ -582,9 +584,9 @@
                     <select class="form-control textboxClass sort_elements" name="college">
                         <option value="none">Select <!-- name from database --></option>
                         <!-- loop here -->
-                        @foreach(App\College::all() as $college)
-                            <option value="{{ $college->id }}">{{ $college['name'] }}</option>
-                        @endforeach
+                        <?php foreach(App\College::all() as $college): ?>
+                            <option value="<?php echo e($college->id); ?>"><?php echo e($college['name']); ?></option>
+                        <?php endforeach; ?>
                         <!-- end loop here -->
                     </select>
                 </div>
@@ -592,25 +594,25 @@
         </div>
     </div>
 
-    {{--END DROPDOWN (College) VIEW MORE MODAL--}} 
+    <?php /*END DROPDOWN (College) VIEW MORE MODAL*/ ?> 
 
 
 <div class="container">
-	{{--<div class="col-lg-10 col-md-10 col-sm-10 col-xs-12 col-lg-offset-1 col-md-offset-1 col-sm-offset-1 main-container">--}}
-            @yield('content')   
-    {{--</div>--}}
+	<?php /*<div class="col-lg-10 col-md-10 col-sm-10 col-xs-12 col-lg-offset-1 col-md-offset-1 col-sm-offset-1 main-container">*/ ?>
+            <?php echo $__env->yieldContent('content'); ?>   
+    <?php /*</div>*/ ?>
 </div>
 
-@yield('script')
+<?php echo $__env->yieldContent('script'); ?>
 </body>
 </html>
 <script type="text/javascript">
 	$(document).ready(function(){
 		sortBooksList();
 
-		@if($errors->any())
+		<?php if($errors->any()): ?>
 				$("#loginModal").modal('show');
-		@endif
+		<?php endif; ?>
 
 		$(document).on('click', '.pagination a', function (e) {
 			getBooks($(this).attr('href').split('page=')[1]);

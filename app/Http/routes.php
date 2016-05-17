@@ -5,7 +5,7 @@ Route::group(['middleware' => 'web'],function(){
     Route::get('/{search?}',['uses'  => 'HomeController@index','as' => 'home']);
     Route::get('book/{id}',['uses' => 'HomeController@show','as' => 'show']);
     Route::post('search',['uses' => 'HomeController@search','as' => 'search']);
-    Route::post('/bookSort',['uses' => 'HomeController@book_sort','as' => 'book_sort']);
+    Route::post('/{search?}',['uses' => 'HomeController@index','as' => 'book_sort']);
 });
 
 Route::group(['middleware' =>'auth'],function(){
