@@ -286,26 +286,6 @@
 		color: #34459e;
 	}
 </style>
-<script>
-	$(document).ready( function()​
-	{
-	    $('[data-toggle="popover"]').popover();   
-	    $('.dropdown-item').click(function (e){
-            var cur = $(this).find('input[type=checkbox]');
-            if(cur.prop("checked"))
-            {
-                $(this).find('input[type=checkbox]').prop("checked", false);
-            }
-            else
-            {
-                $(this).find('input[type=checkbox]').prop("checked", true);
-            }
-        });
-    });
-
-
-
-</script>
 </head>
 <body>
 
