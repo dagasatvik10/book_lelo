@@ -1,41 +1,40 @@
-@extends('layouts.master')
-
-@section('content')
+<?php $__env->startSection('content'); ?>
     <div class="row" style="margin-top:-100px;">
         <div class="col-md-8 col-md-offset-2">
-            {{-- <div class="written-data" style="text-align: center; font-size: 20px;">You must be logged in to post a free ad!</div> --}}
+            <?php /* <div class="written-data" style="text-align: center; font-size: 20px;">You must be logged in to post a free ad!</div> */ ?>
             <br>
             <div class="panel panel-default">
                 <div class="headingClass">Login</div>
                 <div class="panel-body panelBodyClass" style="padding-top: 40px">
-                    <form class="form-horizontal" role="form" method="POST" action="{{ url('/login') }}">
-                        {!! csrf_field() !!}
+                    <form class="form-horizontal" role="form" method="POST" action="<?php echo e(url('/login')); ?>">
+                        <?php echo csrf_field(); ?>
 
-                        <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
+
+                        <div class="form-group<?php echo e($errors->has('email') ? ' has-error' : ''); ?>">
                             <label class="col-md-4 control-label labelClass">E-Mail Address</label>
 
                             <div class="col-md-6">
-                                <input type="email" class="form-control textboxClass" name="email" value="{{ old('email') }}">
+                                <input type="email" class="form-control textboxClass" name="email" value="<?php echo e(old('email')); ?>">
 
-                                @if ($errors->has('email'))
+                                <?php if($errors->has('email')): ?>
                                     <span class="help-block">
-                                        <strong>{{ $errors->first('email') }}</strong>
+                                        <strong><?php echo e($errors->first('email')); ?></strong>
                                     </span>
-                                @endif
+                                <?php endif; ?>
                             </div>
                         </div>
 
-                        <div class="form-group{{ $errors->has('password') ? ' has-error' : '' }}">
+                        <div class="form-group<?php echo e($errors->has('password') ? ' has-error' : ''); ?>">
                             <label class="col-md-4 control-label labelClass">Password</label>
 
                             <div class="col-md-6">
                                 <input type="password" class="form-control textboxClass" name="password">
 
-                                @if ($errors->has('password'))
+                                <?php if($errors->has('password')): ?>
                                     <span class="help-block">
-                                        <strong>{{ $errors->first('password') }}</strong>
+                                        <strong><?php echo e($errors->first('password')); ?></strong>
                                     </span>
-                                @endif
+                                <?php endif; ?>
                             </div>
                         </div>
 
@@ -55,7 +54,7 @@
                                     <i class="fa fa-btn fa-sign-in"></i>Login
                                 </button>
 
-                                <a class="btn forgot" href="{{ url('/password/reset') }}">Forgot Your Password?</a>
+                                <a class="btn forgot" href="<?php echo e(url('/password/reset')); ?>">Forgot Your Password?</a>
                             </div>
                         </div>
                     </form>
@@ -63,4 +62,6 @@
             </div>
         </div>
     </div>
-@endsection
+<?php $__env->stopSection(); ?>
+
+<?php echo $__env->make('layouts.master', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>

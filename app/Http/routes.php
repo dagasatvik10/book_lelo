@@ -1,12 +1,14 @@
 <?php
 
-Route::group(['middleware' => 'web'],function(){
-    Route::auth();
-    Route::get('/{search?}',['uses'  => 'HomeController@index','as' => 'home']);
-    Route::get('book/{id}',['uses' => 'HomeController@show','as' => 'show']);
-    Route::post('search',['uses' => 'HomeController@search','as' => 'search']);
-    Route::post('/{search?}',['uses' => 'HomeController@index','as' => 'book_sort']);
+
+Route::group(['prefix' => 'messages','middleware' =>'auth'], function () {
+    Route::get('/', ['as' => 'messages', 'uses' => 'MessagesController@index']);
+    Route::post('create', ['as' => 'messages.create', 'uses' => 'MessagesController@create']);
+    Route::post('/', ['as' => 'messages.store', 'uses' => 'MessagesController@store']);
+    Route::get('{id}', ['as' => 'messages.show', 'uses' => 'MessagesController@show']);
+    Route::put('{id}', ['as' => 'messages.update', 'uses' => 'MessagesController@update']);
 });
+
 
 Route::group(['middleware' =>'auth'],function(){
     // Show and Edit User details
@@ -21,18 +23,17 @@ Route::group(['middleware' =>'auth'],function(){
     Route::post('user/book',['as' => 'book.store','uses' => 'BookController@store']);
     Route::get('user/book',['as' => 'book.index','uses' => 'BookController@index']);
     Route::get('user/book/{id}/edit',['as' => 'book.edit','uses' => 'BookController@edit']);
-    Route::post('user/book/{id}/edit',['as' => 'book.update','uses' => 'BookController@update']);
+    Route::put('user/book/{id}/edit',['as' => 'book.update','uses' => 'BookController@update']);
     Route::delete('user/book/{id}/delete',['as' => 'book.delete','uses' => 'BookController@delete']);
 
     //Book Suggestion Route
     Route::post('/suggestion',['as' => 'suggestion','uses' => 'BookController@suggestion']);
 });
 
-
-Route::group(['prefix' => 'messages','middleware' =>'auth'], function () {
-    Route::get('/', ['as' => 'messages', 'uses' => 'MessagesController@index']);
-    Route::post('create', ['as' => 'messages.create', 'uses' => 'MessagesController@create']);
-    Route::post('/', ['as' => 'messages.store', 'uses' => 'MessagesController@store']);
-    Route::get('{id}', ['as' => 'messages.show', 'uses' => 'MessagesController@show']);
-    Route::put('{id}', ['as' => 'messages.update', 'uses' => 'MessagesController@update']);
+Route::group(['middleware' => 'web'],function(){
+    Route::auth();
+    Route::get('/{search?}',['uses'  => 'HomeController@index','as' => 'home']);
+    Route::get('book/{id}',['uses' => 'HomeController@show','as' => 'show']);
+    Route::post('search',['uses' => 'HomeController@search','as' => 'search']);
+    Route::post('/{search?}',['uses' => 'HomeController@index','as' => 'book_sort']);
 });
