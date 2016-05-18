@@ -1,3 +1,4 @@
+{{-- Demo file not being used in the messaging App--}}
 @extends('layouts.messagelayout')
 
 @section('content')

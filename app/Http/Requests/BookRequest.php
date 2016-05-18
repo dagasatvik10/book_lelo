@@ -24,7 +24,7 @@ class BookRequest extends Request
     public function rules()
     {
         return [
-            'name' => 'required',
+            'name' => 'required|string|min:2|max:100',
             'type' => 'required|in:books,notes',
             'price' => 'required|numeric',
             'year' => 'numeric',
@@ -35,7 +35,7 @@ class BookRequest extends Request
             'pic5' => 'image',
             'pic6' => 'image',
             'branch_id' => 'numeric',
-            'author' => 'alpha',
+            'author' => 'string',
             'publication_year' => 'digits:4',
             'no_of_pages' => 'numeric',
             'need' => 'in:buy,sell',

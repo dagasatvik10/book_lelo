@@ -430,26 +430,6 @@
         margin: 0;
     }
 </style>
-<script>
-	$(document).ready( function()​
-	{
-	    $('[data-toggle="popover"]').popover();   
-	    $('.dropdown-item').click(function (e){
-            var cur = $(this).find('input[type=checkbox]');
-            if(cur.prop("checked"))
-            {
-                $(this).find('input[type=checkbox]').prop("checked", false);
-            }
-            else
-            {
-                $(this).find('input[type=checkbox]').prop("checked", true);
-            }
-        });
-    });
-
-
-
-</script>
 </head>
 <body>
 
@@ -594,7 +574,7 @@
                     <li>
                         <div class="dropdown-item" >
                             <div class="dropdown-name">
-                                <a href="{{url('/')}}"><i class="fa fa-envelope-o fa-fw"></i>&nbsp; </i> Inbox</a>
+                                <a href="{{url('/messages')}}"><i class="fa fa-envelope-o fa-fw"></i>&nbsp; </i> Inbox</a>
                             </div>
                         </div>
                     </li>
@@ -738,16 +718,6 @@
 	{{--<div class="col-lg-10 col-md-10 col-sm-10 col-xs-12 col-lg-offset-1 col-md-offset-1 col-sm-offset-1 main-container">--}}
             @yield('content')
     {{--</div>--}}
-    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 animated fadeInRight recommend-books-holder" id="full" >
-        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-            <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12 white-data">
-                Didn't find your book? Let us know!
-            </div>
-            <div class="col-lg-9 col-md-9 coll-sm-9 sol-xs-12">
-                <input type="text" class="recommend-books">
-            </div>
-        </div>
-    </div>
 
     <footer class="col-md-12 col-md-12 col-sm-12 col-xs-12 animated fadeInLeft" id="full">
         <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 footnote-left margin-auto">

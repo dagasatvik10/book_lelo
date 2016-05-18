@@ -6,6 +6,7 @@
 	{!! csrf_field() !!}
 	<div class="form-group">
 	<input type="text" name="search" placeholder="Search Book">
+</form>
 	</div>
 	<div class="row">
 		@if(!empty($search))
@@ -17,6 +18,6 @@
 		@endif
 	</div>
 	</div>
-</form>
+
 
 @endsection

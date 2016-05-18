@@ -21,11 +21,23 @@ class MessagesController extends Controller
         $currentUserId = Auth::user()->id;
         // All threads, ignore deleted/archived participants
         $threads = Thread::getAllLatest()->get();
+        if(!($threads->count()))
+        {
+            return view('messenger.blank');
+        }
+        $i=1;
+        $t=array();
+        foreach ($threads as $thread) {
+           $a =\App\User::find($thread->participants()->select('user_id')->where('user_id','!=',Auth::user()->id)->first()->user_id)->name;
+           $t = array_add($t,$i, $a);
+           $i++;
+        }
         // All threads that user is participating in
         // $threads = Thread::forUser($currentUserId)->latest('updated_at')->get();
         // All threads that user is participating in, with new messages
         // $threads = Thread::forUserWithNewMessages($currentUserId)->latest('updated_at')->get();
-        return view('messenger.index', compact('threads', 'currentUserId'));
+        return view('messenger.chatbox',compact('threads','currentUserId','t'));
+        //return view('messenger.index', compact('threads', 'currentUserId'));
     }
     /**
      * Shows a message thread.
@@ -41,13 +53,16 @@ class MessagesController extends Controller
             Session::flash('error_message', 'The thread with ID: ' . $id . ' was not found.');
             return redirect('messages');
         }
+        $threads = Thread::getAllLatest()->get();
         // show current user in list if not a current participant
         // $users = User::whereNotIn('id', $thread->participantsUserIds())->get();
         // don't show the current user in list
         $userId = Auth::user()->id;
-        $users = User::whereNotIn('id', $thread->participantsUserIds($userId))->get();
+        //$users = User::whereNotIn('id', $thread->participantsUserIds($userId))->get();
+        $users = User::findOrFail($thread->creator()->id);
+        $user = $users->id;
         $thread->markAsRead($userId);
-        return view('messenger.show', compact('thread', 'users'));
+        return view('messenger.show', compact('thread', 'users','threads','user'));
     }
     /**
      * Creates a new message thread.
