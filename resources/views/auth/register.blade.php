@@ -145,7 +145,7 @@
                 </div>
             </div>
         </div>
-        <div class="col-md-4">
+        <div class="col-md-4" style="margin-top: 40px">
             <center><a href="{{ url('/user/book/create') }}"><button type="button" class="post-ad-button">POST FREE AD!</button></a></center>
         </div>
     </div>

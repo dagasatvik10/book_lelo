@@ -18,7 +18,7 @@ class HomeController extends Controller
             ->authUserSort();
 
         if($search != null) {
-            $books = $books->search($search, null, true);
+            $books = Book::search($search, null, true);
         }
 
         $books = $books->paginate(1);
