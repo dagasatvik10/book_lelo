@@ -27,7 +27,7 @@ class BookRequest extends Request
             'name' => 'required',
             'type' => 'required|in:books,notes',
             'price' => 'required|numeric',
-            'year' => 'alpha_num',
+            'year' => 'numeric',
             'pic1' => 'image',
             'pic2' => 'image',
             'pic3' => 'image',

@@ -1,7 +1,7 @@
 @extends('layouts.master')
 
 @section('content')
-    <div class="row" style="margin-top:50px;">
+    <div class="row" style="margin-top:-100px;">
         <div class="col-md-8 col-md-offset-2">
             <div class="written-data" style="text-align: center; font-size: 20px;">You must be logged in to post a free ad!</div>
             <br>

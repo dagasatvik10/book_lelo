@@ -2,7 +2,7 @@
 
 @section('content')
 
-    <div class="col-lg-8 col-md-8 col-sm-8 col-xs-12 col-lg-offset-2 col-md-offset-2 col-sm-offset-2" style="margin-top:30px;">
+    <div class="col-lg-8 col-md-8 col-sm-8 col-xs-12 col-lg-offset-2 col-md-offset-2 col-sm-offset-2 margin-auto">
         <div class="col-md-8 col-md-offset-2">
                 <div class="panel-heading headingClass" style="font-size:14px; font-weight:bold;">Please enter your current Password to confirm Deletion of Profile</div>
                 <div class="panel-body panelBodyClass">
@@ -44,8 +44,8 @@
 
                          <div class="form-group">
                             <div class="col-md-6 col-md-offset-4">
-                                <button type="submit" class="btn btn-primary">
-                                    <i class="fa fa-btn fa-user"></i>Delete Profile
+                                <button type="submit" class="btn submit-button">
+                                    <i class="fa fa-btn fa-trash-o"></i> Delete Profile
                                 </button>
                             </div>
                         </div>

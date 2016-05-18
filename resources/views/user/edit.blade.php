@@ -3,10 +3,10 @@
 
 @section('content')
 
-    <div class="col-lg-8 col-md-8 col-sm-8 col-xs-12 col-lg-offset-2 col-md-offset-2 col-sm-offset-2" style="margin-top:30px;">
+    <div class="col-lg-8 col-md-8 col-sm-8 col-xs-12 col-lg-offset-2 col-md-offset-2 col-sm-offset-2" style="margin-top:20px; margin-bottom: 18px;">
         <div class="col-md-10 col-md-offset-1">
-                <div class="panel-heading headingClass"><h3>Edit Profile</h3></div>
-                <div class="panel-body panelBodyClass">
+                <div class="headingClass"><h3>Edit Profile</h3></div>
+                <div class="panelBodyClass" style="padding-top: 10px;">
                     <form class="form-horizontal" role="form" method="POST" action="{{ url('user/edit') }}">
                         {!! csrf_field() !!}
 
@@ -74,7 +74,7 @@
                         <div class="form-group">
                             <div class="col-md-6 col-md-offset-4">
                                 <button type="submit" class="btn submit-button">
-                                    <i class="fa fa-btn fa-user"></i>Update Profile
+                                    <i class="fa fa-btn fa-user"></i> Update Profile
                                 </button>
                             </div>
                         </div>
