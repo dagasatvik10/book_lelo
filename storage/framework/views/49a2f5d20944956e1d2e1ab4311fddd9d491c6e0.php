@@ -114,8 +114,8 @@
 
 
 
-    .book, .smiley{
-        color: white; 
+    .book{
+        color: deepskyblue; 
         font-weight: bold;
         font-size: 40px;
 /*        text-transform: uppercase;
@@ -125,10 +125,14 @@
     
     .smiley{
         color:greenyellow;
+        font-size: 40px;
+/*        text-transform: uppercase;
+*/        text-shadow: 2px 2px 2px #aaa;
+        /*font-family: 'Tangerine', serif;*/
     }
 
     .lelo{
-        color: white;
+        color: orange;
 /*        text-transform: uppercase;
 */        text-shadow: 2px 2px 2px #aaa;
         font-weight: bold;
