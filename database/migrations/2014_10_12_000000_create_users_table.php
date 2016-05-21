@@ -20,7 +20,7 @@ class CreateUsersTable extends Migration
             $table->integer('college_id')->unsigned();
             $table->integer('branch_id')->unsigned();
             $table->integer('batch')->nullable();
-            $table->string('contact');
+            $table->string('contact')->nullable();
             $table->rememberToken();
             $table->timestamps();
         });

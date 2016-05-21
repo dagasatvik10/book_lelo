@@ -2,7 +2,7 @@
 
 @section('content')
     <div class="row" style="margin-top:50px;">
-        <div class="col-md-8">
+        <div class="col-md-8 col-md-offset-2">
             <div class="written-data" style="text-align: center; font-size: 20px;">Register free!</div>
             <br>
             <div class="panel panel-default">
@@ -72,7 +72,7 @@
 
                             <div class="col-md-6">
                                 <select name="branch_id" class="form-control textboxClass" id="branch_id" value="{{ old('branch_id') }}" required>
-                                <option value="">----SELECT BRANCH----</option>
+                                <option value="">-- Branch --</option>
 
                                 @foreach(\App\Branch::all() as $branch)
                                 <option value="{{ $branch->id }}">{{ $branch->name }}</option>
@@ -91,7 +91,7 @@
                         <label class="col-md-4 control-label labelClass">College</label>
                         <div class="col-md-6">
                                 <select name="college_id" class="form-control textboxClass" id="college_id" value="{{ old('college_id') }}" required>
-                                <option value="">----SELECT COLLEGE----</option>
+                                <option value="">-- College --</option>
                                 @foreach(\App\College::all() as $college)
                                 <option value="{{ $college->id }}">{{ $college->name }}</option>
                                 @endforeach
@@ -108,7 +108,7 @@
                       <label class="col-md-4 control-label labelClass">Select Batch</label>
                         <div class="col-md-3">
                                 <select class="form-control textboxClass"  name="batch" value="{{ old('batch') }}" required>
-                                <option selected="selected">--Batch--</option>
+                                <option selected="selected">-- Batch --</option>
                                 @for($i=\Carbon\Carbon::now()->format('Y');$i>= \Carbon\Carbon::now()->format('Y')-4;$i--)
                                 <option value ="{{ $i }}">{{ $i }}-{{ $i+4 }}</option>
                                 @endfor
@@ -137,16 +137,13 @@
                         <div class="form-group">
                             <div class="col-md-6 col-md-offset-4">
                                 <button type="submit" class="btn submit-button">
-                                    <i class="fa fa-btn fa-user"></i>Join Us!
+                                    <i class="fa fa-btn fa-user"></i> Join Us!
                                 </button>
                             </div>
                         </div>
                     </form>
                 </div>
             </div>
-        </div>
-        <div class="col-md-4" style="margin-top: 40px">
-            <center><a href="{{ url('/user/book/create') }}"><button type="button" class="post-ad-button">POST FREE AD!</button></a></center>
         </div>
     </div>
 @endsection

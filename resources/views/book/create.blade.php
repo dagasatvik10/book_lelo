@@ -4,23 +4,23 @@
         height:110px;
         width:110px;
         padding: 5px;
-        background-color: #03085D;
+        background-color: seagreen;
         margin: 0px 10px 10px 0px;
         border-radius: 5px;
         float: left;
     }
     .upload{
-        background-color: #03085D;
+        background-color: white;
         height:100px;
         width: 100px;
-        border: 2px dotted #03085D;
+        border: 2px dotted seagreen;
         cursor: pointer;
         border-radius: 5px;
         transform: rotate(0deg);
         transition: all 100ms linear;
     }
     .upload:hover{
-        background-color: dodgerblue;
+        background-color: lightgreen;
         transform: rotate(360deg);
         transition: all 100ms linear;
     }

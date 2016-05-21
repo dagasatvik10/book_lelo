@@ -42,7 +42,11 @@
 		max-width: 100%;
 		width: 100%;
 	}
-
+	.trending-ads-holder{
+		/*padding-bottom: 20px;
+		height: 600px;
+		background-color: red;*/
+	}
 	.trending-ads{
 		/*background-color: #E4FFFE;*/
 		color: #000;
@@ -116,20 +120,11 @@
 
 
 @section('content')
-	{{--<nav class="col-md-12 col-md-12 col-sm-12 col-xs-12">--}}
-		{{--<center><div class="circular"></div></center>--}}
 
-	{{--</nav>--}}
 		<!-- search div containing search bar and post ad button -->
 <div class="col-lg-12 col-md-12 col-xs-12 col-sm-12 top-holder" style="width:100%; margin-left:0; padding-bottom: 10px;">
 	<br>
 	<div class="col-lg-9 col-md-9 col-sm-9 col-xs-12">
-		{{--<form action="{{ url('/search') }}" method="post">--}}
-			{{--{!! csrf_field() !!}--}}
-		{{--<div class="col-md-11 col-xs-11 col-lg-11 col-sm-11"><input type="text" name="search" class="search-bar" placeholder="Search Books, Authors and Publication Here!"/></div>--}}
-		{{--<div class="col-md-1 col-xs-1 col-lg-1 col-sm-1"><i class="fa fa-search search-icon"></i> </div>--}}
-		{{--<br>--}}
-		{{--</form>--}}
 		<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
 			{!! Form::open(['class' => 'form-inline','role' => 'form','id' => 'sort_form','route' => 'book_sort']) !!}
 			<div class="col-md-12 ad-data" style="color:black;">Find your Books/Notes here!</div>
@@ -177,18 +172,19 @@
 		@if(Auth::check())
 			<center><a href="{{ url('/user/book/create') }}"><button type="button" class="post-ad-button">Sell A Book!</button></a></center>
 		@else
-			<center><a class="class-a" href="#" data-toggle="modal" data-target="#loginModal "><button type="button" class="post-ad-button">POST FREE AD!</button></a></center>
+			<center><a class="class-a" href="#" data-toggle="modal" data-target="#loginModal"><button type="button" class="post-ad-button">SELL A BOOK!</button></a></center>
 		@endif
 	</div>
 	<br><br>
 	<br><br>
 
 </div>
-
+<div class="trending-ads-holder">
 	<div class="col-lg-8 col-sm-8 col-md-8 col-xs-12 trending-ads animated fadeInRight">
 		{{--<h1>TRENDING ADS</h1>--}}
 		{{--<hr>--}}
 		{{--START AD--}}
+		@if(count($books)>0)
 		@foreach($books as $book)
 		<div>
 			<a href='{{ route('show',['id' => $book->id]) }}'>
@@ -196,7 +192,12 @@
 					<div class="col-md-3 col-lg-3 col-sm-3 col-xs-12">
 						@if($book->book_pics->first() != null)
 							<div class="ad-image-holder col-md-12 col-lg-12 col-xs-12 col-sm-12">
-							<img src="{{ '/uploads/images/'.$book->book_pics()->first()->name.'.'.$book->book_pics()->first()->extension }}"
+							<img src="{{ asset('uploads/images/'.$book->book_pics()->first()->name.'.'.$book->book_pics()->first()->extension) }}"
+								 class="img-responsive ad-image" alt="">
+							</div>
+						@else
+						<div class="ad-image-holder col-md-12 col-lg-12 col-xs-12 col-sm-12">
+							<img src="{{ asset('uploads/images/fuck.jpg') }}"
 								 class="img-responsive ad-image" alt="">
 							</div>
 						@endif
@@ -219,6 +220,11 @@
 			</a>
 		</div>
 		@endforeach
+		@else
+		<div class="row ad col-lg-12 col-md-12 col-xs-12 col-sm-12">
+		<h2>No Results Found</h2>	
+		</div>
+		@endif
 		{{--END AD--}}
 		<div style="text-shadow: none;">
 			<div id="pagination-id">
@@ -322,7 +328,7 @@
    <div class="form-group">
      <div class="col-md-6 col-md-offset-1">
         <button type="submit" class="btn submit-button">
-           <i class="fa fa-btn fa-sign-in"></i>Submit
+           <i class="fa fa-btn fa-sign-in"></i> Submit
         </button>
      </div>
 </div>
@@ -330,6 +336,7 @@
   </div>
  </div>
  @endif
+ </div>
 @stop
 
 

@@ -17,7 +17,7 @@
 
             <!--     <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css"> -->
 <style type="text/css">
-	body
+    body
 	{
 		margin: 0;
 		/*font-family: 'Candara';*/
@@ -43,21 +43,58 @@
         /*background: -moz-linear-gradient(bottom, deepskyblue, #19F39A );*/
         /*background: linear-gradient(to right bottom, #03085D, deepskyblue 70%, #19F39A);*/
         position:absolute;
-        top: 150px;
-        padding-bottom: 0px;
+        top: 110px;
+        padding-bottom: 15px;
 	}
 	.main-container{
-		background-color: #f2f2f2;
+		background:inherit;
         /*border-radius: 40px 40px 10px 10px;*/
-        margin-top: 8px;
-        padding-bottom: 10px;
-        box-shadow: 3px 3px 3px gray,-3px 3px 3px gray;
+/*        margin-top: 8px;
+*/        padding-bottom: 10px;
+        min-height: 350px;
+/*        box-shadow: 3px 3px 3px gray,-3px 3px 3px gray;
         border:1px solid gray;
-/*		border: 2px solid lime;
+		border: 2px solid lime;
 */	}
     .margin-auto{
         margin-top:20px;
         margin-bottom: 20px;
+    }
+    .logo{
+        float: left;
+        height: 147px;
+        width:147px;
+        margin-left: -30px;
+        z-index: 9999;
+        text-align: right;
+    }
+    .logo2{
+        float: left;
+        height: 107px;
+        width:107px;
+        margin-left: -30px;
+        z-index: 9999;
+        text-align: right;
+    }
+    .title{
+        text-align: left;
+        margin-left: -60px;
+        float: left;
+        margin-top: 20px;
+        z-index: 9999;
+
+    }
+    .title2{
+        text-align: left;
+        margin-left: -50px;
+        float: left;
+        margin-top: 5px;
+        z-index: 9999;
+
+    }
+    .image-logo{
+        max-height: 100%;
+        max-width: 100%;
     }
 	.nav-bar{
 		background-color: seagreen;
@@ -71,67 +108,70 @@
         -webkit-transition: top 0.6s;
         -moz-transition: top 0.6s;
         transition: top 0.6s;
-		height: 147px;
+		height: 107px;
         box-shadow: 0 4px 4px #aaa;
         }
 
 
 
     .book, .smiley{
-        color: white;
+        color: white; 
         font-weight: bold;
         font-size: 40px;
-        text-transform: uppercase;
-        text-shadow: 2px 2px 2px #aaa;
+/*        text-transform: uppercase;
+*/        text-shadow: 2px 2px 2px #aaa;
         /*font-family: 'Tangerine', serif;*/
     }
     
     .smiley{
-        display: none;
+        color:greenyellow;
     }
 
     .lelo{
         color: white;
-        text-transform: uppercase;
-        text-shadow: 2px 2px 2px #aaa;
+/*        text-transform: uppercase;
+*/        text-shadow: 2px 2px 2px #aaa;
         font-weight: bold;
         font-size: 40px;
         /*font-family: 'Tangerine', serif;*/
     }
-
-	.title{
-		float: left;
-	}
-	.smiley-rotate{
-		float: right;
-		padding-left: 0;
-		transform:rotate(0deg);
-		-webkit-transform:rotate(0deg);
-		-moz-transform:rotate(0deg);
-		-o-transform:rotate(0deg);
-		transition:all 400ms ease-in;
-		-webkit-transition:all 400ms ease-in;
-		-moz-transition:all 400ms ease-in;
-		-o-transition:all 400ms ease-in;
-	}
-	.smiley-rotate:hover, .smiley:hover{
-		transform:rotate(90deg);
-		-webkit-transform:rotate(90deg);
-		-moz-transform:rotate(90deg);
-		-o-transform:rotate(90deg);
-		padding-left: 5px;
-		transition:all 400ms ease-in;
-		-webkit-transition:all 400ms ease-in;
-		-moz-transition:all 400ms ease-in;
-		-o-transition:all 400ms ease-in;
-	}
+    .search-div{
+        /*width:100%;*/
+        background-color: seagreen;
+    }
+    .search-bar{
+        border: solid 2px inherit;
+        font-size: 19px;
+        width:100%;
+        margin-left:0px;
+        height:50px;
+        border-radius: 5px;
+        margin-top: 28px;
+        color:deepskyblue;
+        padding-left: 20px;
+        float: left;
+        transition: all 500ms ease-in-out;
+        -webkit-transition: all 500ms ease-in-out;
+        -moz-transition: all 500ms ease-in-out;
+        -o-transition: all 500ms ease-in-out;
+    }
+    .search-icon{
+        left:-70px;
+        bottom:0px;
+        margin-top: 43px;
+        position:relative;
+        color: seagreen;
+    }
+	
 /*    li.dropdown-list:hover{
         background-color: lime;
         border: 1px solid green;
     }*/
     .hr{border:1px solid #03085D;}
 
-
+    .right-nav{
+        padding-top: 35px;
+    }
     #list, #list:focus, #list:active, #list:before, #list:after{
         background-color: seagreen;
         transition: background-color 400ms ease-out;
@@ -177,7 +217,7 @@
         font-weight: bold;
     }
     .dropdown-name{
-		float: left;
+/*		float: left;*/
 		padding-left: 8px;
 		overflow: hidden;
 		white-space: nowrap;
@@ -211,41 +251,7 @@
         border-bottom: solid 1px #3a5795;
     }
 
-    .search-div{
-        /*width:100%;*/
-        background-color: inherit;
-        height: 80px;
-        z-index: 9999;
-    }
-    .search-bar{
-        border: solid 2px inherit;
-        font-size: 19px;
-        width:98%;
-        height:50px;
-        border-radius: 5px;
-        margin-top: 13px;
-        color:deepskyblue;
-        padding-left: 20px;
-        transition: all 500ms ease-in-out;
-        -webkit-transition: all 500ms ease-in-out;
-        -moz-transition: all 500ms ease-in-out;
-        -o-transition: all 500ms ease-in-out;
-    }
-    .search-bar:focus {
-        /*box-shadow: 2px 0px 2px #FF9900,-2px 0px 2px #FF9900,0px 2px 2px #FF9900,0px -2px 2px #FF9900	;*/
-        transition: all 500ms ease-in-out;
-        -webkit-transition: all 500ms ease-in-out;
-        -moz-transition: all 500ms ease-in-out;
-        -o-transition: all 500ms ease-in-out;
-    }
-    .search-icon{
-        left:-80px;
-        bottom:0px;
-        margin-top: 28px;
-        position:relative;
-        color: seagreen;
-
-    }
+    
 	.headingClass
     {
         background-color:inherit; /*#9EA4DE;*/
@@ -271,6 +277,7 @@
         /*background: linear-gradient(to bottom, #9EA4DE, #FFF);*/
         border-top:none;
         height: 100%;
+        margin-bottom: 18px;
     }
     .labelClass
     {
@@ -319,7 +326,16 @@
     }
     .forgot:hover
     {
-        color: #03085D  ;
+        color: #03085D;
+    }
+    .register-now
+    {
+        color: darkblue;
+        font-size: 19px;
+    }
+    .register-now:hover
+    {
+        color: #03085D;
     }
     .written-data{
         color: ;
@@ -382,26 +398,11 @@
     footer{
         color:white;
         font-weight: bold;
-        height:200px;
         margin-top: 20px;
         /*background-color: #333333;*/
         background: url("/uploads/gray.jpg");
         width: 100%;
         text-align: left;
-    }
-    .recommend-books-holder{
-        background-color: black;
-        min-height: 60px;
-        line-height: 60px;
-    }
-    .recommend-books{
-        width: 100%;
-        height:30px;
-        margin-top:15px;
-        color: deepskyblue;
-        margin-bottom: 15px;
-        border-radius: 4px;
-        padding-left: 10px;
     }
     footer .footnote-left ul{
         list-style: none;
@@ -412,6 +413,7 @@
         height: 50px;
         line-height: 50px;
     }
+    
     footer .footnote-left ul li a{
         text-decoration: none;
         color:white;
@@ -420,116 +422,51 @@
         color: seagreen;
         cursor: pointer;
     }
+    footer .footnote-right{
+        text-align: right;
+    }
+    footer .footnote-right a{
+        text-decoration: none;
+        color:white;
+        font-size:20px;
+    }
+    footer .footnote-right a:hover{
+        color: seagreen;
+        cursor: pointer;
+    }
     #full{
         width: 100%;
+        padding: 0;
+        margin: 0;
+    }
+    #Navbar{
         padding: 0;
         margin: 0;
     }
 </style>
 </head>
 <body>
+<div class='content-holder'>
 
-<header class="navbar nav-bar navbar-fixed-top">
-<div class="container-fluid">
+<header class="navbar nav-bar navbar-fixed-top col-lg-12 col-md-12 col-xs-12">
+<div class="container-fluid col-md-12 col-xs-12 col-lg-12">
     <div class="navbar-header">
-      <button type="button" class="navbar-toggle glyph-btn" data-toggle="collapse" data-target="#Navbar">
-         <i class="fa fa-caret-down format-glyph"></i>
-      </button>
-      <a class="navbar-brand" href="{{ url('/') }}">
-      	<div class="title">
-            <font class="book">Book </font><font class="lelo">LeLow </font>
-            <div class="smiley-rotate"><font class="smiley">&nbsp;:)</font></div>
+      <a href="{{ url('/') }}">
+      	<div class="logo col-lg-2 col-md-2 col-xs-6">
+            <img src="{{asset('/uploads/logo.png')}}" class="image-logo" alt="">
+        </div>
+        <div class="title col-lg-2 col-md-2 col-xs-6">
+            <font class="book">Book</font><font class="lelo">LeLow</font><font class="smiley">.in</font>
         </div>
       </a>
-        <br>
-
+      <button type="button" class="navbar-toggle glyph-btn" data-toggle="collapse" data-target="#Navbar" style="margin-top:15px;">
+         <i class="fa fa-caret-down format-glyph"></i>
+      </button>
     </div>
-    <br><br>
-      
-    <div class="collapse navbar-collapse" id="Navbar">
 
-      <ul class="nav navbar-nav">
+    <div class="col-lg-12 col-md-12 col-xs-12 collapse navbar-collapse " id="Navbar" style="background-color:seagreen; padding-top:0px; width:70%;">
 
-          {{--<li class="dropdown dropdown-list" id="list">--}}
-              {{--<a class="dropdown-toggle" data-toggle="dropdown" href="#">--}}
-                  {{--<font class="dropdown-text">Branch<span class="caret"></span></a></font>--}}
-
-              {{--<ul class="dropdown-menu">--}}
-                  {{--<!-- APPLY NESTED LOOP HERE FOR DATA -->--}}
-                  {{--@foreach(App\Branch::all()->take(6) as $branch)--}}
-                      {{--<li>--}}
-                          {{--<div class="dropdown-item">--}}
-                              {{--<div class="dropdown-checkbox"><input type="checkbox" value="{{ $branch->id }}"/></div>--}}
-                              {{--<div class="dropdown-name">--}}
-                                  {{--<a href="#" data-toggle="popover" data-trigger="hover" data-content="{{ $branch['name'] }}" data-placement="bottom">{{ $branch['name'] }}</a>--}}
-                              {{--</div>--}}
-                          {{--</div>--}}
-                      {{--</li>--}}
-                      {{--@endforeach--}}
-                              {{--<!--END NESTED LOOP HERE FOR DATA -->--}}
-                      {{--<hr style="width:100%;">--}}
-                      {{--<li>--}}
-                          {{--<div class="dropdown-item">--}}
-                              {{--<div class="dropdown-name"> <a href="#" data-toggle="modal" data-target="#dropdownBranchModal">View More...</a></div>--}}
-                          {{--</div>--}}
-                      {{--</li>--}}
-
-              {{--</ul>--}}
-          {{--</li>--}}
-
-
-          {{--<li class="dropdown dropdown-list" id="list">--}}
-              {{--<a class="dropdown-toggle" data-toggle="dropdown" href="#">--}}
-                  {{--<font class="dropdown-text">Year<span class="caret"></span></font>--}}
-              {{--</a>--}}
-              {{--<ul class="dropdown-menu">--}}
-                  {{--<!-- APPLY NESTED LOOP HERE FOR DATA -->--}}
-                  {{--<li>--}}
-                      {{--<div class="dropdown-item">--}}
-                          {{--<div class="dropdown-checkbox"><input type="checkbox"/></div>--}}
-                          {{--<div class="dropdown-name">1st Year</div>--}}
-                      {{--</div>--}}
-                      {{--<div class="dropdown-item">--}}
-                          {{--<div class="dropdown-checkbox"><input type="checkbox"/></div>--}}
-                          {{--<div class="dropdown-name">2nd Year</div>--}}
-                      {{--</div>--}}
-                      {{--<div class="dropdown-item">--}}
-                          {{--<div class="dropdown-checkbox"><input type="checkbox"/></div>--}}
-                          {{--<div class="dropdown-name">3rd Year</div>--}}
-                      {{--</div>--}}
-                      {{--<div class="dropdown-item">--}}
-                          {{--<div class="dropdown-checkbox"><input type="checkbox"/></div>--}}
-                          {{--<div class="dropdown-name">4th Year</div>--}}
-                      {{--</div>--}}
-                  {{--</li>--}}
-              {{--</ul>--}}
-          {{--</li>--}}
-
-          {{--<li class="dropdown dropdown-list" id="list">--}}
-              {{--<a class="dropdown-toggle" data-toggle="dropdown" href="#">--}}
-                  {{--<font class="dropdown-text">College<span class="caret"></span></font>--}}
-              {{--</a>--}}
-              {{--<ul class="dropdown-menu">--}}
-                  {{--@foreach(App\College::all()->take(6) as $college)--}}
-                      {{--<li>--}}
-                          {{--<div class="dropdown-item">--}}
-                              {{--<div class="dropdown-checkbox"><input type="checkbox" value="{{ $college->id }}"/></div>--}}
-                              {{--<div class="dropdown-name">--}}
-                                  {{--<a href="#" data-toggle="popover" data-trigger="hover" data-content="{{ $college['name'] }}" data-placement="bottom">{{ $college['name'] }}</a>--}}
-                              {{--</div>--}}
-                          {{--</div>--}}
-                      {{--</li>--}}
-                  {{--@endforeach--}}
-                  {{--<hr style="width:100%;">--}}
-                  {{--<li>--}}
-                      {{--<div class="dropdown-item">--}}
-                          {{--<div class="dropdown-name"> <a href="#" data-toggle="modal" data-target="#dropdownCollegeModal">View More...</a></div>--}}
-                      {{--</div>--}}
-                  {{--</li>--}}
-              {{--</ul>--}}
-          {{--</li>--}}
-      </ul>
-        <div class="search-div col-lg-8 col-md-8 col-sm-8 col-xs-12">
+        <div class="search-div col-lg-7 col-md-8 col-sm-7 col-xs-12">
             <form action="{{ url('/search') }}" method="post">
                 {!! csrf_field() !!}
                 <div class="col-md-11 col-xs-11 col-lg-11 col-sm-11"><input type="text" name="search" class="search-bar" placeholder="Search Books, Authors and Publication Here!"/></div>
@@ -538,14 +475,15 @@
             </form>
 
         </div>
-        <ul class="nav navbar-nav navbar-right">
+        <div class="col-lg-5 col-md-5 col-xs-12">
+        <ul class="nav navbar-nav navbar-right right-nav">
 
             <li id="list"><a class="class-a" href="{{ url('/') }}"><font class="dropdown-text"><i class="fa fa-home"></i> Home</font></a></li>
 @if(Auth::guest())
         <li id="list"><a class="class-a" href="{{ url('/register') }}"><font class="dropdown-text"><i class="fa fa-user"></i>  Sign Up</font></a></li>
-        <li id="list" style="padding-right:125px;"><a class="class-a" href="#" data-toggle="modal" data-target="#loginModal " ><font class="dropdown-text"><i class="fa fa-sign-in"></i>  Login</font></a></li>
+        <li id="list" style=""><a class="class-a" href="#" data-toggle="modal" data-target="#loginModal " ><font class="dropdown-text"><i class="fa fa-sign-in"></i>  Login</font></a></li>
 @else   
-        <li  id="list" class="dropdown dropdown-list" style="margin-right:100px;">
+        <li  id="list" class="dropdown dropdown-list">
 
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" style="text-decoration:none;padding-right:10px;">
                     <font style="color:greenyellow; margin-top: -16px;"> Welcome,</font>
@@ -586,6 +524,7 @@
         </li>
 @endif
         </ul>
+        </div>
     </div>
   </div>
 </header>
@@ -650,6 +589,11 @@
                                 <a class="forgot" href="{{ url('/password/reset') }}">Forgot Your Password?</a>
                             </div>
                         </div>
+                        <div class="form-group">
+                            <div class="col-md-6 col-md-offset-4">
+                                <a class="register-now" href="{{ url('/register') }}">New User? Register Now!</a>
+                            </div>
+                        </div>
                     </form>
                 </div>
             </div>
@@ -658,78 +602,41 @@
 
     {{--END LOGIN MODAL--}}
 
-    {{--START DROPDOWN (Branch) VIEW MORE MODAL--}}
-
-    <div class="modal fade" id="dropdownBranchModal" role="dialog">
-        <div class="modal-dialog">
-        <br>
-            <div class="panel panel-default modal-content">
-                <div class="panel-heading modal-header" id="mdl-head">
-                    <button type="button" class="close" data-dismiss="modal">&times;</button>
-                    <!-- heading from database --> Select Branch
-                </div>
-                <div class="panel-body modal-body">
-                    <select class="form-control textboxClass sort_elements" name="branch">
-                        <option value="none">Select <!-- name from database --></option>
-                        <!-- loop here -->
-                        @foreach(App\Branch::all() as $branch)
-                            <option value='{{ $branch->id }}'>{{ $branch->name }}</option>
-                        @endforeach
-                        <!-- end loop here -->
-                    </select>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    {{--END DROPDOWN (Branch) VIEW MORE MODAL--}} 
-    {{--START DROPDOWN (College) VIEW MORE MODAL--}}
-
-    <div class="modal " id="dropdownCollegeModal" role="dialog">
-        <div class="modal-dialog">
-        <br>
-            <div class="panel panel-default modal-content">
-                <div class="panel-heading modal-header" id="mdl-head">
-                    <button type="button" class="close" data-dismiss="modal">&times;</button>
-                    <!-- heading from database --> Select College
-                </div>
-                <div class="panel-body modal-body">
-                    <select class="form-control textboxClass sort_elements" name="college">
-                        <option value="none">Select <!-- name from database --></option>
-                        <!-- loop here -->
-                        @foreach(App\College::all() as $college)
-                            <option value="{{ $college->id }}">{{ $college['name'] }}</option>
-                        @endforeach
-                        <!-- end loop here -->
-                    </select>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    {{--END DROPDOWN (College) VIEW MORE MODAL--}} 
-
+   
 
 <div class="container container-fluid" id="full">
-	{{--<div class="col-lg-10 col-md-10 col-sm-10 col-xs-12 col-lg-offset-1 col-md-offset-1 col-sm-offset-1 main-container">--}}
+	<div class="main-container">
             @yield('content')
-    {{--</div>--}}
+    </div>
 
     <footer class="col-md-12 col-md-12 col-sm-12 col-xs-12 animated fadeInLeft" id="full">
-        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 footnote-left margin-auto">
+        <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 footnote-left margin-auto">
                 <ul>
-                    <li><a> Yahooo 1</a></li>
-                    <li><a> Yahooo 2</a></li>
+                    <li><a href="{{ url('/about') }}"> About Us </a></li>
+                    <li><a href="{{ url('/terms') }}"> Terms of Use </a></li>
+                    <li><a href="{{ url('/howwework')}}">How We Work</a></li>
                 </ul>
         </div>
 
-        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 footnote-right margin-auto">
+        <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 footnote-middle margin-auto">
+            <a href="{{ url('/') }}">
+                <div class="logo2 col-lg-2 col-md-2 col-xs-6">
+                    <img src="{{asset('/uploads/logo.png')}}" class="image-logo" alt="">
+                </div>
+                <div class="title2 col-lg-2 col-md-2 col-xs-6">
+                    <font class="book">Book</font><font class="lelo">LeLow</font><font class="smiley">.in</font>
+                </div>
+            </a>
+        </div>
 
+        <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 footnote-right margin-auto" style="background-color:;">
+            <a href="http://www.facebook.com/booklelow" target="_blank"><i class="fa fa-facebook fa-fw"></i> Facebook</a>
         </div>
     </footer>
 </div>
 
 @yield('script')
+</div>
 </body>
 </html>
 <script type="text/javascript">

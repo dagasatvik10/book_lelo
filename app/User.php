@@ -31,9 +31,13 @@ class User extends Authenticatable
      */
     public function books()
     {
-        return $this->hasMany('App\Book');
+        return $this->hasMany('App\Book')->where('need','=','sell');
     }
 
+    public function suggestions()
+    {
+        return $this->hasMany('App\Book')->where('need','=','buy');
+    }
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */

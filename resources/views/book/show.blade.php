@@ -254,11 +254,15 @@
                         <font class="book-data" style="font-size:29px;"><br><i class="fa fa-inr"></i> {{ $book->price }}/-</font>
                         <p><font class="book-data" style="font-size:16px;"><br>{{ $book->description }}</font>
                         </p>
-                        <form action="{{url('/messages/create')}}" role="form" method="POST">
+                        @if(Auth::check())
+                        {{-- <form action="{{url('/messages/create')}}" role="form" method="POST">
                     {!! csrf_field() !!}
                     <input type="hidden" name="seller" value="{{ $book->user->id }}">
-                    <input type="submit" value="Send Message">
-                    </form>                        
+                    <input type="submit" class="btn submit-button" value="Send Message">
+                    </form>  --}}
+                    <a class="btn submit-button" href="{{ url('/messages/create/'.$book->user->id) }}">Send Message
+                    </a>
+                    @endif                       
                 </div>
             </div>
             <hr>

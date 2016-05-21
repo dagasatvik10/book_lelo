@@ -26,7 +26,8 @@ class BookController extends Controller
     public function index()
     {
         $books = Auth::user()->books;
-        return view('book.index',compact('books'));
+        $suggestions = Auth::user()->suggestions;
+        return view('book.index',compact('books','suggestions'));
     }
 
     public function create()
@@ -119,6 +120,13 @@ class BookController extends Controller
         return redirect()->route('book.index');
     }
 
+     public function deleteSuggestion($id)
+        {
+        $book = Auth::user()->suggestions->find($id);
+        $book->delete();
+        return redirect()->route('book.index');
+    }
+
     public function suggestion(SuggestionRequest $request)
     {
         $book=new Book;
@@ -129,7 +137,7 @@ class BookController extends Controller
         $book->publication = 0;
         $book->publication_year = 0;
         $book->type = 'books';
-        $book->need = 'sell';
+        $book->need = 'buy';
         $book->no_of_pages = 0;
         $book->description = 'suggestion';
         $book->price = 0;

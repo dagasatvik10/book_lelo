@@ -18,10 +18,12 @@ class HomeController extends Controller
             ->authUserSort();
 
         if($search != null) {
-            $books = Book::search($search, null, true);
+            $books = $books->search($search, null, true);
         }
 
-        $books = $books->paginate(1);
+        $books = $books->paginate(8);
+
+        //dd($books);
 
         if (RequestFacade::ajax()) {
             $html = view('test',compact('books'))->render();
@@ -83,9 +85,22 @@ class HomeController extends Controller
     {
         $search = $request->input('search');
         //$books = Book::search($query, null, true)->paginate(1);
-
         //return view('index',compact('books'));
         return redirect()->route('home',['search' => $search]);
+    }
+
+    public function terms()
+    {
+        return view('terms');
+    }
+
+    public function about()
+    {
+        return view('about');
+    }
+    public function howwework()
+    {
+        return view('howwework');
     }
 
 }
