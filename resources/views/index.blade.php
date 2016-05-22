@@ -197,7 +197,7 @@
 							</div>
 						@else
 						<div class="ad-image-holder col-md-12 col-lg-12 col-xs-12 col-sm-12">
-							<img src="{{ asset('uploads/images/fuck.jpg') }}"
+							<img src="{{ asset('uploads/notfound.png') }}"
 								 class="img-responsive ad-image" alt="">
 							</div>
 						@endif
@@ -210,7 +210,19 @@
 								{{ $book->branch->name }}
 							@endif
 							@if($book->year != null)
-								{{ $book->year }} year
+								
+                                @if($book->year==1)
+                                <font class="book-data" style="font-size:18px;"><br>For 1st Year</font>
+                                @endif
+                                @if($book->year==2)
+                                <font class="book-data" style="font-size:18px;"><br>For 2nd Year</font>
+                                @endif
+                                @if($book->year==3)
+                                <font class="book-data" style="font-size:18px;"><br>For 3rd Year</font>
+                                @endif
+                                @if($book->year==4)
+                                <font class="book-data" style="font-size:18px;"><br>For 4th Year</font>
+                                @endif
 							@endif
 						</h4>
 						<h4 class="ad-data">Seller : {{ $book->user->name}} </h4>
@@ -296,8 +308,9 @@
 </div>
 @else
 <div class="col-lg-4 col-sm-4 col-md-4 col-xs-12" style="margin-top:115px;">
+<i style="font-size:18;color:darkblue;">Can't find your book? Fill up this form we'll try to get it.</i>
 	<div class="headingClass">
-		Suggest Your Book
+		Get me this Book
 	</div>
   <div class="panel-body panelBodyClass">
   <form class="form-horizontal" role="form" method="POST" action="{{ url('/suggestion') }}">

@@ -16,7 +16,6 @@
 
                             <div class="col-md-6">
                                 <input type="text" class="form-control textboxClass" name="name" value="{{ old('name') }}" placeholder="Should Have Atleast 2 characters">
-
                                 @if ($errors->has('name'))
                                     <span class="help-block">
                                         <strong><span class="glyphicon glyphicon-exclamation-sign"></span>&nbsp;&nbsp;&nbsp;{{ $errors->first('name') }}</strong>

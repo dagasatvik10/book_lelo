@@ -199,7 +199,6 @@
                     <div align="center" class="slider-images">
                         <?php if($book->book_pics->first() != null): ?>
                             <div id="main" class="main-img animated"><img class="img-rounded img-responsive img-thumbnail img-slider" src=<?php echo e('/uploads/images/'.$book->book_pics->first()->name.'.'.$book->book_pics->first()->extension); ?> }}></div>
-                        <?php endif; ?>
                         <?php $ids=7; $idsm=$ids-1; ?>
                         <?php foreach($book->book_pics as $pic): ?>
                                 <?php /*<?php if($idsm!='6'): ?>*/ ?>
@@ -208,6 +207,9 @@
                                 <div id="<?php echo e($ids); ?>" class="second-main-img img-hidden"><img class="img-thumbnail img-resposive img-rounded img-slider" src=<?php echo e('/uploads/images/'.$pic->name.'.'.$pic->extension); ?>></div>
                         <?php $ids++; ?>
                         <?php endforeach; ?>
+                        <?php else: ?>
+                        <div id="main" class="main-img animated"><img class="img-rounded img-responsive img-thumbnail img-slider" src="<?php echo e(asset('uploads/notfound.png')); ?>"></div>
+                        <?php endif; ?>
                     </div>
 
                     <!-- <div align="center" class="right">
@@ -217,6 +219,7 @@
 
                 <div align="center" class="col-lg-12 col-md-12 col-sm-12 col-xs-12 thumbnails">
                     <?php $idt=1;?>
+                    <?php if($book->book_pics->first() != null): ?>
                     <?php foreach($book->book_pics as $pic): ?>
                         <div class="thumbs">
                             <div id="<?php echo e($idt); ?>" onclick="showImg(<?php echo e($idt); ?>)" class="white-shadow">
@@ -225,6 +228,7 @@
                         </div>
                         <?php $idt++; ?>
                     <?php endforeach; ?>
+                <?php endif; ?>
                 </div>
             </div>
 
@@ -244,7 +248,18 @@
                                 <br>    <font class="book-data" style="font-size:18px;">A Book for <?php echo e($book->branch->name); ?></font>
                             <?php endif; ?>
                             <?php if($book->year != null): ?>
-                                <font class="book-data" style="font-size:18px;"><br>For Year<?php echo e($book->year); ?></font>
+                                <?php if($book->year==1): ?>
+                                <font class="book-data" style="font-size:18px;"><br>For 1st Year</font>
+                                <?php endif; ?>
+                                <?php if($book->year==2): ?>
+                                <font class="book-data" style="font-size:18px;"><br>For 2nd Year</font>
+                                <?php endif; ?>
+                                <?php if($book->year==3): ?>
+                                <font class="book-data" style="font-size:18px;"><br>For 3rd Year</font>
+                                <?php endif; ?>
+                                <?php if($book->year==4): ?>
+                                <font class="book-data" style="font-size:18px;"><br>For 4th Year</font>
+                                <?php endif; ?>
                         <?php endif; ?>
                         
                         <font class="book-data" style="font-size:22px;"><br><font class="heads">Seller :</font> <?php echo e($book->user->name); ?></font>

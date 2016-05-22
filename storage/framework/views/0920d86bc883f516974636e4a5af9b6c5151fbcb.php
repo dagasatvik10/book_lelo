@@ -15,7 +15,6 @@
 
                             <div class="col-md-6">
                                 <input type="text" class="form-control textboxClass" name="name" value="<?php echo e(old('name')); ?>" placeholder="Should Have Atleast 2 characters">
-
                                 <?php if($errors->has('name')): ?>
                                     <span class="help-block">
                                         <strong><span class="glyphicon glyphicon-exclamation-sign"></span>&nbsp;&nbsp;&nbsp;<?php echo e($errors->first('name')); ?></strong>

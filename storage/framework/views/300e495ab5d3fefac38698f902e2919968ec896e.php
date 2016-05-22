@@ -197,7 +197,7 @@
 							</div>
 						<?php else: ?>
 						<div class="ad-image-holder col-md-12 col-lg-12 col-xs-12 col-sm-12">
-							<img src="<?php echo e(asset('uploads/images/fuck.jpg')); ?>"
+							<img src="<?php echo e(asset('uploads/notfound.png')); ?>"
 								 class="img-responsive ad-image" alt="">
 							</div>
 						<?php endif; ?>
@@ -211,7 +211,19 @@
 
 							<?php endif; ?>
 							<?php if($book->year != null): ?>
-								<?php echo e($book->year); ?> year
+								
+                                <?php if($book->year==1): ?>
+                                <font class="book-data" style="font-size:18px;"><br>For 1st Year</font>
+                                <?php endif; ?>
+                                <?php if($book->year==2): ?>
+                                <font class="book-data" style="font-size:18px;"><br>For 2nd Year</font>
+                                <?php endif; ?>
+                                <?php if($book->year==3): ?>
+                                <font class="book-data" style="font-size:18px;"><br>For 3rd Year</font>
+                                <?php endif; ?>
+                                <?php if($book->year==4): ?>
+                                <font class="book-data" style="font-size:18px;"><br>For 4th Year</font>
+                                <?php endif; ?>
 							<?php endif; ?>
 						</h4>
 						<h4 class="ad-data">Seller : <?php echo e($book->user->name); ?> </h4>
@@ -299,8 +311,9 @@
 </div>
 <?php else: ?>
 <div class="col-lg-4 col-sm-4 col-md-4 col-xs-12" style="margin-top:115px;">
+<i style="font-size:18;color:darkblue;">Can't find your book? Fill up this form we'll try to get it.</i>
 	<div class="headingClass">
-		Suggest Your Book
+		Get me this Book
 	</div>
   <div class="panel-body panelBodyClass">
   <form class="form-horizontal" role="form" method="POST" action="<?php echo e(url('/suggestion')); ?>">

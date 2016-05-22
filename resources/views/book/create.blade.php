@@ -1,4 +1,18 @@
 @extends('layouts.master')
+<script type="text/javascript">
+    /*function getpages () {
+     if(document.getElementById("type").value=="notes")
+     {
+        document.getElementById("pages").innerHTML="<div class="col-md-4">{!! Form::label('no_of_pages','No. of Pages',['class' => 'labelClass']) !!}</div>
+                <div class="col-md-10">{!! Form::text('no_of_pages','',['class' => 'form-control textboxClass']) !!}</div> ";
+     }
+     else
+     {
+        document.getElementById("pages").type="";
+     }
+}
+    */
+</script>
 <style>
     .outer-class{
         height:110px;
@@ -127,7 +141,7 @@
             </div>
             <div class="form-group">
                 <div class="col-md-4">{!! Form::label('type','Type', ['class' => 'labelClass']) !!}</div>
-                <div class="col-md-10">{!! Form::select('type',['books' => 'Books','notes' => 'Notes'],'books',['class' => 'form-control textboxClass']) !!}</div>
+                <div class="col-md-10">{!! Form::select('type',['books' => 'Books','notes' => 'Notes'],'books',['class' => 'form-control textboxClass','onchange' => 'getpages()','id' => 'type']) !!}</div>
             </div>
             <div class="form-group">
                 <div class="col-md-4">
@@ -139,7 +153,7 @@
                     <div class="" style="padding-left:30px;"> {{--col-lg-4 col-md-4 col-sm-4 col-xs-6--}}
                         <div class="outer-class">
                             <label class="upload">
-                                <input type="file" name="{{'pic'.$i}}" value="" accept="image/*" id="src" >
+                                <input type="file" name="{{'pic'.$i}}" value="" accept="image/*" id="src">
                                 <div class="plus-image-holder">
 
                                     <img src="/uploads/addsign2.png" class="plus-image">
@@ -209,10 +223,11 @@
                     </select>
                 </div>
             </div>
-            <div class="form-group">
-                <div class="col-md-4">{!! Form::label('no_of_pages','No. of Pages',['class' => 'labelClass']) !!}</div>
-                <div class="col-md-10">{!! Form::text('no_of_pages','',['class' => 'form-control textboxClass']) !!}</div>
-            </div>
+            {{--<div class="form-group" id="pages">
+                 <div class="col-md-4">{!! Form::label('no_of_pages','No. of Pages',['class' => 'labelClass']) !!}</div>
+                <div class="col-md-10">{!! Form::text('no_of_pages','',['class' => 'form-control textboxClass']) !!}</div> 
+            </div>--}} 
+
             <div class="form-group">
                 <div class="col-md-4">{!! Form::label('description','Description',['class' => 'labelClass']) !!}</div>
                 <div class="col-md-10">{!! Form::textarea('description','',['class' => 'form-control textboxClass textArea']) !!}</div>
