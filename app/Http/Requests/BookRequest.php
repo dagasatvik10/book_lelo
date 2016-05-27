@@ -25,6 +25,7 @@ class BookRequest extends Request
     {
         return [
             'name' => 'required|string|min:2|max:100',
+            'author' => 'required|string',
             'type' => 'required|in:books,notes',
             'price' => 'required|numeric',
             'year' => 'numeric',

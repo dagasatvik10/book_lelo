@@ -81,5 +81,6 @@ class Book extends Model
         if(Auth::check()){
             $query->where('user_id','!=',Auth::user()->id);
         }
+        $query->where('need','=','sell');
     }
 }

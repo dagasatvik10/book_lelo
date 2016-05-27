@@ -19,11 +19,11 @@ class CreateBooksTable extends Migration
             $table->integer('year');
             $table->integer('branch_id')->unsigned();
             $table->string('author');
-            $table->string('publication');
-            $table->integer('publication_year');
-            $table->integer('no_of_pages');
+            $table->string('publication')->nullable();
+            $table->integer('publication_year')->nullable();
+            $table->integer('no_of_pages')->nullable();
             $table->enum('type',['notes','books']);
-            $table->text('description');
+            $table->text('description')->nullable();
             $table->integer('price');
             $table->enum('need',['buy','sell']);
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');

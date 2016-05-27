@@ -18,26 +18,41 @@ class MessagesController extends Controller
      */
     public function index()
     {
+         // All threads that user is participating in
+        // All threads that user is participating in, with new messages
+        // $threads = Thread::forUserWithNewMessages($currentUserId)->latest('updated_at')->get();
         $currentUserId = Auth::user()->id;
-        // All threads, ignore deleted/archived participants
-        $threads = Thread::getAllLatest()->get();
-        if(!($threads->count()))
+       // $threads = new Thread();
+       // $threads = $threads->scopeForUser($threads,$currentUserId)->get();
+        $threads = Thread::forUser($currentUserId)->latest('updated_at')->get();
+        $count=$threads->count();
+        if(!($count))
         {
             return view('messenger.blank');
         }
         $i=1;
         $t=array();
         foreach ($threads as $thread) {
-           $a =\App\User::find($thread->participants()->select('user_id')->where('user_id','!=',Auth::user()->id)->first()->user_id)->name;
+           $a =\App\User::find($thread->participants()->select('user_id')->where('user_id','!=',Auth::user()->id)->first()->user_id);
+           if($a!=null)
+           {
+            $a=$a->name;
            $t = array_add($t,$i, $a);
+            }
+            else
+            {
+                return view('messenger.blank');
+            }
            $i++;
         }
-        // All threads that user is participating in
-        // $threads = Thread::forUser($currentUserId)->latest('updated_at')->get();
-        // All threads that user is participating in, with new messages
-        // $threads = Thread::forUserWithNewMessages($currentUserId)->latest('updated_at')->get();
-        return view('messenger.chatbox',compact('threads','currentUserId','t'));
-        //return view('messenger.index', compact('threads', 'currentUserId'));
+        if(empty($t))
+        {
+            return view('messenger.blank');
+        }
+        else
+        {
+        return view('messenger.chatbox',compact('threads','currentUserId','t','count'));
+        }
     }
     /**
      * Shows a message thread.
@@ -53,7 +68,11 @@ class MessagesController extends Controller
             Session::flash('error_message', 'The thread with ID: ' . $id . ' was not found.');
             return redirect('messages');
         }
-        $threads = Thread::getAllLatest()->get();
+    /*   foreach ($thread->messages as $message) {
+           dd($message->user->id);
+       }*/
+       $currentUserId = Auth::user()->id;
+        $threads = Thread::forUser($currentUserId)->latest('updated_at')->get();
         // show current user in list if not a current participant
         // $users = User::whereNotIn('id', $thread->participantsUserIds())->get();
         // don't show the current user in list
@@ -62,16 +81,17 @@ class MessagesController extends Controller
         $users = User::findOrFail($thread->creator()->id);
         $user = $users->id;
         $thread->markAsRead($userId);
-        return view('messenger.show', compact('thread', 'users','threads','user'));
+        return view('messenger.show', compact('thread', 'users','user','threads'));
     }
     /**
      * Creates a new message thread.
      *
      * @return mixed
      */
-    public function create()
+    public function create($id)
     {
-        $users = Input::get('seller');
+        $users=$id;
+      //  $users = Input::get('seller');
       //  $users = User::where('id', '!=', Auth::id())->get();
         return view('messenger.create', compact('users'));
     }

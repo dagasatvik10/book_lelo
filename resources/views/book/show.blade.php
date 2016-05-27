@@ -200,7 +200,6 @@
                     <div align="center" class="slider-images">
                         @if($book->book_pics->first() != null)
                             <div id="main" class="main-img animated"><img class="img-rounded img-responsive img-thumbnail img-slider" src={{ '/uploads/images/'.$book->book_pics->first()->name.'.'.$book->book_pics->first()->extension }} }}></div>
-                        @endif
                         <?php $ids=7; $idsm=$ids-1; ?>
                         @foreach($book->book_pics as $pic)
                                 {{--@if($idsm!='6')--}}
@@ -209,6 +208,9 @@
                                 <div id="{{$ids}}" class="second-main-img img-hidden"><img class="img-thumbnail img-resposive img-rounded img-slider" src={{ '/uploads/images/'.$pic->name.'.'.$pic->extension }}></div>
                         <?php $ids++; ?>
                         @endforeach
+                        @else
+                        <div id="main" class="main-img animated"><img class="img-rounded img-responsive img-thumbnail img-slider" src="{{asset('uploads/notfound.png')}}"></div>
+                        @endif
                     </div>
 
                     <!-- <div align="center" class="right">
@@ -218,6 +220,7 @@
 
                 <div align="center" class="col-lg-12 col-md-12 col-sm-12 col-xs-12 thumbnails">
                     <?php $idt=1;?>
+                    @if($book->book_pics->first() != null)
                     @foreach($book->book_pics as $pic)
                         <div class="thumbs">
                             <div id="{{$idt}}" onclick="showImg({{$idt}})" class="white-shadow">
@@ -226,6 +229,7 @@
                         </div>
                         <?php $idt++; ?>
                     @endforeach
+                @endif
                 </div>
             </div>
 
@@ -245,7 +249,18 @@
                                 <br>    <font class="book-data" style="font-size:18px;">A Book for {{ $book->branch->name }}</font>
                             @endif
                             @if($book->year != null)
-                                <font class="book-data" style="font-size:18px;"><br>For Year{{ $book->year }}</font>
+                                @if($book->year==1)
+                                <font class="book-data" style="font-size:18px;"><br>For 1st Year</font>
+                                @endif
+                                @if($book->year==2)
+                                <font class="book-data" style="font-size:18px;"><br>For 2nd Year</font>
+                                @endif
+                                @if($book->year==3)
+                                <font class="book-data" style="font-size:18px;"><br>For 3rd Year</font>
+                                @endif
+                                @if($book->year==4)
+                                <font class="book-data" style="font-size:18px;"><br>For 4th Year</font>
+                                @endif
                         @endif
                         
                         <font class="book-data" style="font-size:22px;"><br><font class="heads">Seller :</font> {{ $book->user->name }}</font>
@@ -254,11 +269,15 @@
                         <font class="book-data" style="font-size:29px;"><br><i class="fa fa-inr"></i> {{ $book->price }}/-</font>
                         <p><font class="book-data" style="font-size:16px;"><br>{{ $book->description }}</font>
                         </p>
-                        <form action="{{url('/messages/create')}}" role="form" method="POST">
+                        @if(Auth::check())
+                        {{-- <form action="{{url('/messages/create')}}" role="form" method="POST">
                     {!! csrf_field() !!}
                     <input type="hidden" name="seller" value="{{ $book->user->id }}">
-                    <input type="submit" value="Send Message">
-                    </form>                        
+                    <input type="submit" class="btn submit-button" value="Send Message">
+                    </form>  --}}
+                    <a class="btn submit-button" href="{{ url('/messages/create/'.$book->user->id) }}">Send Message
+                    </a>
+                    @endif                       
                 </div>
             </div>
             <hr>
