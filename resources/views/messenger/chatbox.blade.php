@@ -35,8 +35,7 @@
 </head>
 
 <body>
-{{-- <div class="container">
- --}}
+
 <div class="row">
 
 <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 threads-holder">
@@ -67,6 +66,7 @@
     <iframe id="conversation3" name="qwerty" style="width:100%;height:100%;" frameborder="0" scrolling="yes" src="{{ url('/messages/1') }}">
 
     </iframe>
+
 </div>
 
 </div>

@@ -138,8 +138,8 @@
 <!-- /search div containing search bar and post ad button -->
 
 
-	 {{--<div class="row">--}}
-{{--		{!! Form::open(['class' => 'form-inline','role' => 'form','id' => 'sort_form','route' => 'book_sort']) !!}
+	 <div class="row">
+		{!! Form::open(['class' => 'form-inline','role' => 'form','id' => 'sort_form','route' => 'book_sort']) !!}
 		<div class="form-group">
 			<select class="form-control sort_elements" name="year">
 				<option value='none'>Year</option>
@@ -171,7 +171,7 @@
 		</div>
 		{!! Form::submit('post') !!}
 		{!! Form::close() !!}
-	</div>--}}
+	</div>
 
 	<div class="col-lg-8 col-sm-8 col-md-8 col-xs-12 trending-ads">
 		<h1>TRENDING ADS</h1>
