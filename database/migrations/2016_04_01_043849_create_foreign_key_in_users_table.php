@@ -14,7 +14,7 @@ class CreateForeignKeyInUsersTable extends Migration
     {
         Schema::table('users', function (Blueprint $table) {
             $table->foreign('college_id')->references('id')->on('colleges')->onDelete('cascade');
-            $table->foreign('branch_id')->references('id')->on('branchs')->onDelete('cascade');
+            $table->foreign('branch_id')->references('id')->on('branches')->onDelete('cascade');
         });
     }
 

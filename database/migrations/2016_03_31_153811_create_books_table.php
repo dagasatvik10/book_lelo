@@ -27,7 +27,7 @@ class CreateBooksTable extends Migration
             $table->integer('price');
             $table->enum('need',['buy','sell']);
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
-            $table->foreign('branch_id')->references('id')->on('branchs')->onDelete('cascade');
+            $table->foreign('branch_id')->references('id')->on('branches')->onDelete('cascade');
             $table->timestamps();
         });
     }

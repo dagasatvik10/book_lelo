@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateBranchsTable extends Migration
+class CreateBranchesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -12,7 +12,7 @@ class CreateBranchsTable extends Migration
      */
     public function up()
     {
-        Schema::create('branchs', function (Blueprint $table) {
+        Schema::create('branches', function (Blueprint $table) {
             $table->integer('id')->unsigned();
             $table->primary('id');
             $table->string('name');
@@ -26,6 +26,6 @@ class CreateBranchsTable extends Migration
      */
     public function down()
     {
-        Schema::drop('branchs');
+        Schema::drop('branches');
     }
 }
