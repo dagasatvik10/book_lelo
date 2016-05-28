@@ -476,7 +476,8 @@
             <form action="{{ url('/search') }}" method="post">
                 {!! csrf_field() !!}
                 <div class="col-md-11 col-xs-11 col-lg-11 col-sm-11"><input type="text" name="search" class="search-bar" placeholder="Search Books, Authors and Publication Here!"/></div>
-                <div class="col-md-1 col-xs-1 col-lg-1 col-sm-1"><i class="fa fa-search search-icon"></i> </div>
+                <div class="col-md-1 col-xs-1 col-lg-1 col-sm-1">{{-- <i class="fa fa-search search-icon"></i> --}}
+                </div>
                 <br>
             </form>
 
