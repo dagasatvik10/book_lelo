@@ -21,7 +21,7 @@ class HomeController extends Controller
             $books = Book::search($search, null, true);
         }
 
-        $books = $books->paginate(8);
+        $books = $books->paginate(2);
 
         //dd($books);
 

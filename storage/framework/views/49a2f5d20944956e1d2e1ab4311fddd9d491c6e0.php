@@ -17,7 +17,7 @@
 
             <!--     <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css"> -->
 <style type="text/css">
-    body
+	body
 	{
 		margin: 0;
 		/*font-family: 'Candara';*/
@@ -43,7 +43,7 @@
         /*background: -moz-linear-gradient(bottom, deepskyblue, #19F39A );*/
         /*background: linear-gradient(to right bottom, #03085D, deepskyblue 70%, #19F39A);*/
         position:absolute;
-        top: 110px;
+        top: 140px;
         padding-bottom: 15px;
 	}
 	.main-container{
@@ -108,7 +108,7 @@
         -webkit-transition: top 0.6s;
         -moz-transition: top 0.6s;
         transition: top 0.6s;
-		height: 107px;
+		height: 139px;
         box-shadow: 0 4px 4px #aaa;
         }
 
@@ -452,9 +452,11 @@
 <body>
 <div class='content-holder'>
 
+
 <header class="navbar nav-bar navbar-fixed-top col-lg-12 col-md-12 col-xs-12">
-<div class="container-fluid col-md-12 col-xs-12 col-lg-12">
-    <div class="navbar-header">
+<div class="container-fluid col-md-12 col-xs-12 col-sm-12 col-lg-12">
+    
+    <div class="navbar-header col-lg-3 col-md-3 col-sm-3 col-xs-12">
       <a href="<?php echo e(url('/')); ?>">
       	<div class="logo col-lg-2 col-md-2 col-xs-6">
             <img src="<?php echo e(asset('/uploads/logo.png')); ?>" class="image-logo" alt="">
@@ -468,9 +470,9 @@
       </button>
     </div>
 
-    <div class="col-lg-12 col-md-12 col-xs-12 collapse navbar-collapse " id="Navbar" style="background-color:seagreen; padding-top:0px; width:70%;">
+    <div class="col-lg-9 col-md-7 col-sm-7 col-xs-12 collapse navbar-collapse " id="Navbar" style="background-color:seagreen; padding-top:0px; width:70%;">
 
-        <div class="search-div col-lg-7 col-md-8 col-sm-7 col-xs-12">
+        <div class="search-div col-lg-7 col-md-7 col-sm-7 col-xs-12">
             <form action="<?php echo e(url('/search')); ?>" method="post">
                 <?php echo csrf_field(); ?>
 
@@ -480,7 +482,7 @@
             </form>
 
         </div>
-        <div class="col-lg-5 col-md-5 col-xs-12">
+        <div class="col-lg-5 col-md-5 col-sm-5 col-xs-12">
         <ul class="nav navbar-nav navbar-right right-nav">
 
             <li id="list"><a class="class-a" href="<?php echo e(url('/')); ?>"><font class="dropdown-text"><i class="fa fa-home"></i> Home</font></a></li>

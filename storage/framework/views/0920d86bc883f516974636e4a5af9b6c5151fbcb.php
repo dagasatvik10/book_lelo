@@ -119,11 +119,11 @@
                     </div>
 
                             <div class="form-group<?php echo e($errors->has('contact') ? ' has-error' : ''); ?>">
-                            <label class="col-md-4 control-label labelClass">Contact No</label>
+                            <label class="col-md-4 control-label labelClass">Contact No<font color="red">*</font></label>
 
                             <div class="col-md-6">
                                 <input type="text" class="form-control textboxClass" placeholder="Enter your contact number" name="contact" required>
-
+                                <p class="col-md-offset-1"style="color:red; font-size:13px;">Mobile No. is not a compulsory field although it is recommended.</p>
                                 <?php if($errors->has('contact')): ?>
                                     <span class="help-block">
                                         <strong><span class="glyphicon glyphicon-exclamation-sign"></span>&nbsp;&nbsp;&nbsp;<?php echo e($errors->first('contact')); ?></strong>
