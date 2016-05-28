@@ -18,10 +18,15 @@ class HomeController extends Controller
             ->authUserSort();
 
         if($search != null) {
-            $books = Book::search($search, null, true);
+            //$books = Book::search($search, null, true);
+            $books = Book::where('name','LIKE','%'.$search.'%');
+            if(!($books->count()))
+            {
+                $books = Book::where('publication','LIKE','%'.$search.'%');                
+            }
         }
 
-        $books = $books->paginate(2);
+        $books = $books->paginate(1);
 
         //dd($books);
 
