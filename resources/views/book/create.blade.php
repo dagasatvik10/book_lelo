@@ -149,20 +149,20 @@
                 </div>
                 <div class="col-md-10">
                 @for($i=1;$i<=4;$i++)
-                    {{--{!! Form::file('pic'.$i) !!}--}}
-                    <div class="" style="padding-left:30px;"> {{--col-lg-4 col-md-4 col-sm-4 col-xs-6--}}
-                        <div class="outer-class">
+                    <div class="" style="padding-left:30px;">
+                    {!! Form::file('pic'.$i,['class' => 'btn']) !!}
+                     {{--col-lg-4 col-md-4 col-sm-4 col-xs-6--}}
+                        {{-- <div class="outer-class">
                             <label class="upload">
-                                <input type="file" name="{{'pic'.$i}}" value="" accept="image/*" id="src">
+                                <input type="file" name="{{'pic'.$i}}" value="" accept="image/*" id="src" class="btn btn-primary">
                                 <div class="plus-image-holder">
 
                                     <img src="/uploads/addsign2.png" class="plus-image">
                                     <img id="target" class="plus-image">
 
-
                                 </div>
                             </label>
-                        </div>
+                        </div> --}}
                     </div>
                 @endfor
                 </div>
