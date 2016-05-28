@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Auth;
 use App\Book;
 use App\Http\Requests;
 use Illuminate\Http\Request;
@@ -19,11 +20,11 @@ class HomeController extends Controller
 
         if($search != null) {
             //$books = Book::search($search, null, true);
-            $books = Book::where('name','LIKE','%'.$search.'%');
-            if(!($books->count()))
+            $books = Book::where('name','LIKE','%'.$search.'%')->orWhere('publication','LIKE','%'.$search.'%');
+            /*if(!($books->count()))
             {
                 $books = Book::where('publication','LIKE','%'.$search.'%');                
-            }
+            }*/
         }
 
         $books = $books->paginate(1);

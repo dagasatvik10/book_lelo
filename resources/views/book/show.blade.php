@@ -275,8 +275,12 @@
                     <input type="hidden" name="seller" value="{{ $book->user->id }}">
                     <input type="submit" class="btn submit-button" value="Send Message">
                     </form>  --}}
+                    @if($book->user->id === Auth::user()->id)
+
+                    @else
                     <a class="btn submit-button" href="{{ url('/messages/create/'.$book->user->id) }}">Send Message
                     </a>
+                    @endif
                     @endif                       
                 </div>
             </div>

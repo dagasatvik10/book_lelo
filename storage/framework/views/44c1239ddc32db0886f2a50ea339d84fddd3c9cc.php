@@ -275,8 +275,12 @@
                     <input type="hidden" name="seller" value="<?php echo e($book->user->id); ?>">
                     <input type="submit" class="btn submit-button" value="Send Message">
                     </form>  */ ?>
+                    <?php if($book->user->id === Auth::user()->id): ?>
+
+                    <?php else: ?>
                     <a class="btn submit-button" href="<?php echo e(url('/messages/create/'.$book->user->id)); ?>">Send Message
                     </a>
+                    <?php endif; ?>
                     <?php endif; ?>                       
                 </div>
             </div>
