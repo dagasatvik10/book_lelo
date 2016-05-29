@@ -39,6 +39,8 @@ class CreateBooksTable extends Migration
      */
     public function down()
     {
+        Schema::dropForeign('user_id');
+        Schema::dropForeign('branch_id');
         Schema::drop('books');
     }
 }
