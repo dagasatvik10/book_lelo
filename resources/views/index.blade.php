@@ -300,7 +300,7 @@
                                     <i class="fa fa-btn fa-sign-in"></i> Login
                                 </button>
 
-                                <a class="forgot" href="{{ url('/password/reset') }}"><br><br>Forgot Your Password?</a>
+                                {{-- <a class="forgot" href="{{ url('/password/reset') }}"><br><br>Forgot Your Password?</a> --}}
                             </div>
                         </div>
                     </form>

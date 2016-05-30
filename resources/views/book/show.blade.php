@@ -238,12 +238,6 @@
                     <div style="box-shadow:0px 2px 0px #3a5795; padding-bottom: 10px;" >
                         <font class="tale">{{ $book->name }}</font>
                         <font class="book-data" style="font-size:22px;"><br>By {{ $book->author }}<br><br></font>
-                        @if(Auth::check())
-                        @if($book->user->id === Auth::user()->id)
-                        <!-- <div class="col-sm-4"> --><a class="btn btn-primary" href={{ route('book.edit',['id' => $book->id]) }}><i class="fa fa-fw fa-pencil"></i> Edit</a><!-- </div> -->
-                        <!-- <div class="col-sm-4"> --><a class="btn submit-button" href={{ route('book.delete',['id' => $book->id]) }}><i class="fa fa-fw fa-trash-o"></i> Delete</a><!-- </div> -->
-                        @endif
-                        @endif
                     </div>    
                         @if(!empty($book->branch_id) or $book->branch_id == '0')
                                 <br>    <font class="book-data" style="font-size:18px;">A Book for {{ $book->branch->name }}</font>
@@ -266,6 +260,7 @@
                         <font class="book-data" style="font-size:22px;"><br><font class="heads">Seller :</font> {{ $book->user->name }}</font>
                         <font class="book-data" style="font-size:22px;"><br><font class="heads">Publication :</font> {{ $book->publication }}</font>
                         <font class="book-data" style="font-size:22px;"><br><font class="heads">Publication Year :</font> {{ $book->publication_year }}</font>
+                        <font class="book-data" style="font-size:22px;"><br><font class="heads">Contact No. :</font> {{ $book->user->contact }}</font>
                         <font class="book-data" style="font-size:29px;"><br><i class="fa fa-inr"></i> {{ $book->price }}/-</font>
                         <p><font class="book-data" style="font-size:16px;"><br>{{ $book->description }}</font>
                         </p>

@@ -2,6 +2,7 @@
 <html lang="en">
 <head>
 	<meta charset="UTF-8">
+	<meta name="csrf-token" content="<?php echo e(csrf_token()); ?>" />
 	<title>BookLeLow</title>
     <link rel="stylesheet" type="text/css" href="/css/bootstrap.min.css" />
     <link rel="stylesheet" type="text/css" href="/css/animate.min.css" />
@@ -461,10 +462,10 @@
       	<div class="logo col-lg-2 col-md-2 col-xs-6">
             <img src="<?php echo e(asset('/uploads/logo.png')); ?>" class="image-logo" alt="">
         </div>
+    </a>
         <div class="title col-lg-2 col-md-2 col-xs-6">
             <font class="book">Book</font><font class="lelo">LeLow</font><font class="smiley">.in</font>
         </div>
-      </a>
       <button type="button" class="navbar-toggle glyph-btn" data-toggle="collapse" data-target="#Navbar" style="margin-top:15px;">
          <i class="fa fa-caret-down format-glyph"></i>
       </button>
@@ -595,7 +596,7 @@
                                     <i class="fa fa-btn fa-sign-in"></i> Login
                                 </button>
 
-                                <a class="forgot" href="<?php echo e(url('/password/reset')); ?>">Forgot Your Password?</a>
+                                <?php /* <a class="forgot" href="<?php echo e(url('/password/reset')); ?>">Forgot Your Password?</a> */ ?>
                             </div>
                         </div>
                         <div class="form-group">
@@ -650,10 +651,10 @@
 </html>
 <script type="text/javascript">
 	$(document).ready(function(){
-		<?php if($errors->any()): ?>
+/*		<?php if($errors->any()): ?>
 				$("#loginModal").modal('show');
 		<?php endif; ?>
-
+*/
 		$(document).on('click', '.pagination a', function (e) {
 			getBooks($(this).attr('href').split('page=')[1]);
 			e.preventDefault();
