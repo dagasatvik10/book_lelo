@@ -462,10 +462,10 @@
       	<div class="logo col-lg-2 col-md-2 col-xs-6">
             <img src="{{asset('/uploads/logo.png')}}" class="image-logo" alt="">
         </div>
+      </a>
         <div class="title col-lg-2 col-md-2 col-xs-6">
             <font class="book">Book</font><font class="lelo">LeLow</font><font class="smiley">.in</font>
         </div>
-      </a>
       <button type="button" class="navbar-toggle glyph-btn" data-toggle="collapse" data-target="#Navbar" style="margin-top:15px;">
          <i class="fa fa-caret-down format-glyph"></i>
       </button>
