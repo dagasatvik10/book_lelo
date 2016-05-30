@@ -27,7 +27,7 @@ class HomeController extends Controller
             }*/
         }
 
-        $books = $books->paginate(1);
+        $books = $books->paginate(10);
 
         //dd($books);
 
