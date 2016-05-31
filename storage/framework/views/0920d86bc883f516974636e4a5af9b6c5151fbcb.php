@@ -73,7 +73,9 @@
                                 <option value="">-- Branch --</option>
 
                                 <?php foreach(\App\Branch::all() as $branch): ?>
+                                <?php if(($branch->id!=50)&&($branch->id!=60)): ?>
                                 <option value="<?php echo e($branch->id); ?>"><?php echo e($branch->name); ?></option>
+                                <?php endif; ?>
                                 <?php endforeach; ?>
                                 </select>
                                 <?php if($errors->has('branch_id')): ?>

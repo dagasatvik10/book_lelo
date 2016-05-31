@@ -74,7 +74,9 @@
                                 <option value="">-- Branch --</option>
 
                                 @foreach(\App\Branch::all() as $branch)
+                                @if(($branch->id!=50)&&($branch->id!=60))
                                 <option value="{{ $branch->id }}">{{ $branch->name }}</option>
+                                @endif
                                 @endforeach
                                 </select>
                                 @if ($errors->has('branch_id'))
