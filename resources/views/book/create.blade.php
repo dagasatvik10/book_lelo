@@ -173,7 +173,8 @@
                 <div class="col-md-10">
                     <div id="extra-two" class="upload-hider" style="padding-left:30px;"> {{--col-lg-4 col-md-4 col-sm-4 col-xs-6--}}
                         @for($i=5;$i<=6;$i++)
-                        <div class="outer-class">
+                    {!! Form::file('pic'.$i,['class' => 'btn']) !!}
+                        {{-- <div class="outer-class">
                             <label class="upload">
                                 <input type="file" name="{{'pic'.$i}}" value="" accept="image/*" id="src" >
                                 <div class="plus-image-holder">
@@ -182,7 +183,7 @@
 
                                 </div>
                             </label>
-                        </div>
+                        </div> --}}
                         @endfor
                     </div>
                 </div>
