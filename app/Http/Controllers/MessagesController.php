@@ -28,12 +28,13 @@ class MessagesController extends Controller
         $count=$threads->count();
         if(!($count))
         {
-            return view('messenger.blank');
+           // return view('messenger.blank');
         }
         $i=1;
         $t=array();
         foreach ($threads as $thread) {
            $a =\App\User::find($thread->participants()->select('user_id')->where('user_id','!=',Auth::user()->id)->first()->user_id);
+
            if($a!=null)
            {
             $a=$a->name;
@@ -168,4 +169,5 @@ class MessagesController extends Controller
         }
         return redirect('messages/' . $id);
     }
+
 }

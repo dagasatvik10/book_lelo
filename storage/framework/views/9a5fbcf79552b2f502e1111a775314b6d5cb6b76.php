@@ -298,7 +298,7 @@
 
 <div class="col-lg-9 col-md-9 col-sm-9 col-xs-12 conversation-holder">
 
-    <iframe id="conversation3" name="qwerty" style="width:100%;height:100%;" frameborder="0" scrolling="yes" src="<?php echo e(url('/messages/'.$count)); ?>">
+    <iframe id="conversation3" name="qwerty" style="width:100%;height:100%;" frameborder="0" scrolling="yes" src="<?php echo e(url('/messages/'.$threads[0]->id)); ?>">
 
     </iframe>
 

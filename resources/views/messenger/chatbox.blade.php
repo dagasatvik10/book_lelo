@@ -1,13 +1,13 @@
 @extends('layouts.master')
 
 @section('content')
-	<link rel="stylesheet" href="{{ asset('css/bootstrap.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/bootstrap.min.css') }}">
 <style type="text/css" media="screen">
-	.row{
-		font-family: 'Overlock', serif;
-	}
-	
-	body
+    .row{
+        font-family: 'Overlock', serif;
+    }
+    
+    body
     {
         margin: 0;
         /*font-family: 'Candara';*/
@@ -233,42 +233,42 @@
     }
 
     .threads{
-    	height:125px;
-    	overflow: hidden;
-    	overflow-type:ellipsis;
-    	padding-bottom: 10px;
+        height:125px;
+        overflow: hidden;
+        overflow-type:ellipsis;
+        padding-bottom: 10px;
     }
-	.threads-holder{
-		height: 800px;
-		padding:10px 0px 10px 0px;
-		font-family: 'Overlock', serif;
-	}
-	.conversation-holder{
-		background-color: ;
-		height: 800px;
-		font-family: 'Overlock', serif;
-	}
+    .threads-holder{
+        height: 800px;
+        padding:10px 0px 10px 0px;
+        font-family: 'Overlock', serif;
+    }
+    .conversation-holder{
+        background-color: ;
+        height: 800px;
+        font-family: 'Overlock', serif;
+    }
 
-	#list{
-		margin-top: -45px;
-	}
+    #list{
+        margin-top: -45px;
+    }
     .right-nav{
         padding-top: 35px;
     }
-/*	.col-lg-4 {
+/*  .col-lg-4 {
     width: 18.333%;
 }
 .col-lg-8 {
     width: 80.667%;
 }*/
-	.threads{
-		border-bottom:1px solid black;
-	}
-	.threads:hover{
-		background-color: #f2f2f2;
-	}
+    .threads{
+        border-bottom:1px solid black;
+    }
+    .threads:hover{
+        background-color: #f2f2f2;
+    }
 </style>
-	<link rel="stylesheet/css" href="{{ asset('css/bootstrap.min.css') }}">
+    <link rel="stylesheet/css" href="{{ asset('css/bootstrap.min.css') }}">
 </head>
 
 <body>
@@ -276,8 +276,8 @@
 <div class="">
 
 <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12 threads-holder">
-	<?php $i=1; ?>
-	
+    <?php $i=1; ?>
+    
         @foreach($threads as $thread)
         <div class="col-lg-12 threads">
         <?php $class = $thread->isUnread($currentUserId) ? 'alert-info' : '';
@@ -300,7 +300,7 @@
 
 <div class="col-lg-9 col-md-9 col-sm-9 col-xs-12 conversation-holder">
 
-    <iframe id="conversation3" name="qwerty" style="width:100%;height:100%;" frameborder="0" scrolling="yes" src="{{ url('/messages/'.$count) }}">
+    <iframe id="conversation3" name="qwerty" style="width:100%;height:100%;" frameborder="0" scrolling="yes" src="{{ url('/messages/'.$threads[0]->id) }}">
 
     </iframe>
 

@@ -177,7 +177,7 @@
                         <?php for($i=5;$i<=6;$i++): ?>
                         <div class="outer-class">
                             <label class="upload">
-                                <button type="file" name="<?php echo e('pic'.$i); ?>" value="" accept="image/*" id="src" class="btn btn-danger">
+                                <input type="file" name="<?php echo e('pic'.$i); ?>" value="" accept="image/*" id="src" >
                                 <div class="plus-image-holder">
 
                                     <img src="/uploads/addsign2.png" id="target" class="plus-image">

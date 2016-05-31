@@ -12,6 +12,7 @@ use Input;
 use Hash;
 use Auth;
 use Validator;
+use Cmgmyr\Messenger\Models\Thread;
 
 class UserController extends Controller
 {
@@ -65,6 +66,11 @@ class UserController extends Controller
             $user=User::find(Auth::user()->id);
             if(Hash::check(Input::get('password'), $user->password))
             {
+                $threads = new Thread();
+                $threads = $threads->scopeForUser($threads,Auth::user()->id)->get();
+                foreach ($threads as $thread) {
+                    $thread->delete();
+                }
                 Auth::logout();
                 $user->delete();
                 return redirect()->route('home');
