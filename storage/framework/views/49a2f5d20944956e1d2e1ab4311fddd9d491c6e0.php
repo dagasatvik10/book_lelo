@@ -5,6 +5,7 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<meta name="csrf-token" content="<?php echo e(csrf_token()); ?>" />
 	<title>BookLeLow</title>
+	<link rel="shortcut icon" href="<?php echo e(asset('/uploads/logo.png')); ?>"/>
     <link rel="stylesheet" type="text/css" href="/css/bootstrap.min.css" />
     <link rel="stylesheet" type="text/css" href="/css/animate.min.css" />
     <link rel="stylesheet" type="text/css" href="/css/fontawesome/font-awesome.min.css" />
