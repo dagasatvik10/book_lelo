@@ -27,7 +27,7 @@ class HomeController extends Controller
             }*/
         }
 
-        $books = $books->paginate(10);
+        $books = $books->simplePaginate(12);
 
         //dd($books);
 
@@ -36,7 +36,7 @@ class HomeController extends Controller
             return response()->json(['success' => $books,'html' => $html]);
         }
 
-        return view('index',compact('books'));
+        return view('index',compact('books'))->render();
     }
 
     public function show($id)

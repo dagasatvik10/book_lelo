@@ -241,7 +241,7 @@
 		<div style="text-shadow: none;">
 			<div id="pagination-id">
 				<div align="center">
-					{!! $books->links() !!}
+					{!! $books->render() !!}
 				</div>
 			</div>
 			<br><br>
