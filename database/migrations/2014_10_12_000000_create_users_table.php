@@ -17,10 +17,11 @@ class CreateUsersTable extends Migration
             $table->string('name');
             $table->string('email')->unique();
             $table->string('password',60);
-            $table->integer('college_id')->unsigned();
-            $table->integer('branch_id')->unsigned();
+            $table->integer('college_id')->unsigned()->nullable();
+            $table->integer('branch_id')->unsigned()->nullable();
             $table->integer('batch')->nullable();
             $table->string('contact')->nullable();
+            $table->integer('details');
             $table->rememberToken();
             $table->timestamps();
         });

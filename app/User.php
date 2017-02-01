@@ -14,7 +14,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password','college_id', 'branch_id', 'batch', 'address', 'contact',
+        'name', 'email', 'password','college_id', 'branch_id', 'batch', 'address', 'contact', 'details'
     ];
 
     /**
@@ -52,6 +52,18 @@ class User extends Authenticatable
     public function college()
     {
         return $this->belongsTo('App\College');
+    }
+
+    public static function checkOrCreateUser($user){
+      $u = User::where('email',$user->email)->first();
+      if(!is_null($u)){
+        return $u;
+      }
+        return User::create([
+            'name'=>$user->name,
+            'email'=>$user->email,
+            'details'=>0,
+        ]);
     }
 
 }

@@ -118,14 +118,14 @@
 
 
     .book{
-        color: deepskyblue; 
+        color: deepskyblue;
         font-weight: bold;
         font-size: 40px;
 /*        text-transform: uppercase;
 */        text-shadow: 2px 2px 2px #aaa;
         /*font-family: 'Tangerine', serif;*/
     }
-    
+
     .smiley{
         color:greenyellow;
         font-size: 40px;
@@ -169,7 +169,7 @@
         position:relative;
         color: seagreen;
     }
-	
+
 /*    li.dropdown-list:hover{
         background-color: lime;
         border: 1px solid green;
@@ -258,7 +258,7 @@
         border-bottom: solid 1px #3a5795;
     }
 
-    
+
 	.headingClass
     {
         background-color:inherit; /*#9EA4DE;*/
@@ -420,7 +420,7 @@
         height: 50px;
         line-height: 50px;
     }
-    
+
     footer .footnote-left ul li a{
         text-decoration: none;
         color:white;
@@ -458,7 +458,7 @@
 
 <header class="navbar nav-bar navbar-fixed-top col-lg-12 col-md-12 col-xs-12">
 <div class="container-fluid col-md-12 col-xs-12 col-sm-12 col-lg-12">
-    
+
     <div class="navbar-header col-lg-3 col-md-3 col-sm-3 col-xs-12">
       <a href="{{ url('/') }}">
       	<div class="logo col-lg-2 col-md-2 col-xs-6">
@@ -492,7 +492,7 @@
 @if(Auth::guest())
         <li id="list"><a class="class-a" href="{{ url('/register') }}"><font class="dropdown-text"><i class="fa fa-user"></i>  Sign Up</font></a></li>
         <li id="list" style=""><a class="class-a" href="#" data-toggle="modal" data-target="#loginModal " ><font class="dropdown-text"><i class="fa fa-sign-in"></i>  Login</font></a></li>
-@else   
+@else
         <li  id="list" class="dropdown dropdown-list">
 
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" style="text-decoration:none;padding-right:10px;">
@@ -581,6 +581,10 @@
                         </div>
 
                         <div class="form-group">
+													<div class="col-md-6 col-md-offset-4">
+														<a href="{{url('/auth/google')}}"><img src="{{asset('/images/web/1x/btn_google_signin_dark_pressed_web.png')}}" class="image-logo" alt=""></a>
+													</div>
+
                             <div class="col-md-6 col-md-offset-4">
                                 <div class="checkbox">
                                     <label class="labelClass">
@@ -612,7 +616,7 @@
 
     {{--END LOGIN MODAL--}}
 
-   
+
 
 <div class="container container-fluid" id="full">
 	<div class="main-container">

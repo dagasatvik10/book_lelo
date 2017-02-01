@@ -3,7 +3,8 @@
 @section('content')
     <div class="row" style="margin-top:50px;">
         <div class="col-md-8 col-md-offset-2">
-            <div class="written-data" style="text-align: center; font-size: 20px;">Register free!</div>
+            <div class="written-data" style="text-align: center; font-size: 20px;">Register free! or <a href="{{url('/auth/google')}}"><img src="{{asset('/images/web/1x/btn_google_signin_dark_pressed_web.png')}}" class="image-logo" alt=""></a>
+</div>
             <br>
             <div class="panel panel-default">
                 <div class="headingClass">Register</div>

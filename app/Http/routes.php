@@ -19,7 +19,7 @@ Route::group(['middleware' =>'auth'],function(){
     Route::get('/user',['as' => 'user.show','uses' => 'UserController@show']);
     Route::get('/user/edit',['as' => 'user.edit','uses' => 'UserController@edit']);
     Route::post('/user/edit',['as' => 'user.update','uses' => 'UserController@update']);
-    Route::get('/user/deleteconfirm',['as'=>'user.deleteconfirm','uses' => 'UserController@deleteconfirm']);    
+    Route::get('/user/deleteconfirm',['as'=>'user.deleteconfirm','uses' => 'UserController@deleteconfirm']);
     Route::post('/user/delete',['as'=>'user.delete','uses' => 'UserController@delete']);
 
     // Create book post,edit book post,delete book post
@@ -35,6 +35,14 @@ Route::group(['middleware' =>'auth'],function(){
     Route::post('/suggestion',['as' => 'suggestion','uses' => 'BookController@suggestion']);
 });
 
+Route::group(['prefix' => 'auth'], function () {
+    Route::get('{provider}', 'Auth\AuthController@redirect');
+    Route::get('/{provider}/callback', 'Auth\AuthController@oauthlogin');
+    //Route::get('/complete_registration','Auth\AuthController@complete_registration');
+    Route::get('/complete_registration/{id}',['as' => 'auth.complete_registration', 'uses' => 'Auth\AuthController@complete_registration']);
+    Route::post('/complete_registration_post',['as' => 'auth.complete_registration_post', 'uses' => 'Auth\AuthController@complete_registration_post']);
+});
+
 Route::group(['middleware' => 'web'],function(){
     Route::auth();
     Route::get('/{search?}',['uses'  => 'HomeController@index','as' => 'home']);
@@ -42,4 +50,3 @@ Route::group(['middleware' => 'web'],function(){
     Route::post('/search',['uses' => 'HomeController@search','as' => 'search']);
     Route::post('/{search?}',['uses' => 'HomeController@index','as' => 'book_sort']);
 });
-

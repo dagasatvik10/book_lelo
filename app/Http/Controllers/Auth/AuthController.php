@@ -5,8 +5,11 @@ namespace App\Http\Controllers\Auth;
 use App\User;
 use Validator;
 use App\Http\Controllers\Controller;
+use Illuminate\Http\Request;
 use Illuminate\Foundation\Auth\ThrottlesLogins;
+use Laravel\Socialite\Facades\Socialite;
 use Illuminate\Foundation\Auth\AuthenticatesAndRegistersUsers;
+use Auth;
 
 class AuthController extends Controller
 {
@@ -81,6 +84,41 @@ class AuthController extends Controller
             'branch_id'     => $data['branch_id'],
             'batch'         => $data['batch'],
             'contact'       => $data['contact'],
+            'details'       => 0
         ]);
+    }
+
+    public function redirect($provider = 'google')
+    {
+        return Socialite::with($provider)->redirect();
+    }
+
+    public function oauthlogin($provider = 'google')
+    {
+        $user = Socialite::with($provider)->user();
+        $createduser = User::checkOrCreateUser($user);
+        if(!($createduser->details)){
+          return redirect()->route('auth.complete_registration',[$createduser]);
+        }
+        Auth::login($createduser, true);
+        return redirect('/');
+    }
+
+    public function complete_registration($id){
+      $user=User::find($id)->first();
+      return view('auth.oauth',compact('user'));
+    }
+
+    public function complete_registration_post(Request $request){
+      $user = User::where('email',$request->get('email'))->first();
+      $user->update([
+        'college_id' => $request->get('college_id'),
+        'branch_id'  => $request->get('branch_id'),
+        'contact'    => $request->get('contact'),
+        'batch'      => $request->get('batch'),
+        'details'    => 1,
+      ]);
+      Auth::login($user, true);
+      return redirect('/');
     }
 }
