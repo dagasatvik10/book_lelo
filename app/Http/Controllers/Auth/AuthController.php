@@ -105,7 +105,7 @@ class AuthController extends Controller
     }
 
     public function complete_registration($id){
-      $user=User::find($id)->first();
+      $user=User::find($id);
       return view('auth.oauth',compact('user'));
     }
 
